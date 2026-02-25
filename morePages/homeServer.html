@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lancePetrisko/homeServer</title>
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="../Images/websiteIcons/blackSquare.jpeg"
+    />
+    <link rel="stylesheet" href="../app.css" />
+  </head>
+  <body>
+    <marquee behavior="scroll" direction="left" scrollamount="4">
+      Home Lab Build Log
+    </marquee>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="../myProjects.html">< BACK</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="projects">
+        <article class="project-card">
+          <div class="project-media">
+            <img
+              src="../Images/homelabProject/ciscoUCS_c240_m3.jpg"
+              alt="Cisco UCS C240 M3 rack server used for the home lab"
+            />
+          </div>
+          <div class="project-content">
+            <h2>TrueNAS Scale Home Server</h2>
+            <p>
+              This page is the expanded overview of my home server build. It
+              runs 24/7 as my personal platform for media, backup storage, and
+              self-hosted tools.
+            </p>
+            <p>
+              <b>Current Hardware:</b> Cisco UCS C240 M3, multi-drive storage
+              array, and a dedicated home network segment.
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card reverse">
+          <div class="project-media">
+            <div class="project-content">
+              <h3>Core Services</h3>
+              <ul>
+                <li>Jellyfin for media streaming</li>
+                <li>Immich for photo backup and organization</li>
+                <li>WireGuard for secure remote access</li>
+                <li>SMB shares for file storage</li>
+                <li>Proxmox VMs/containers for experiments</li>
+              </ul>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Why I Built It</h3>
+            <p>
+              I wanted full control over my data and services while learning
+              enterprise hardware and real-world system administration.
+            </p>
+            <p>
+              This project gives me hands-on experience with virtualization,
+              Linux management, backups, and networking.
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-content">
+            <h3>Planned Upgrades</h3>
+            <ul>
+              <li>Add automated off-site backup replication</li>
+              <li>Improve service monitoring and alerting</li>
+              <li>Document full network + storage diagrams</li>
+              <li>Deploy reverse proxy + TLS for external apps</li>
+            </ul>
+            <p>
+              <b>Stack:</b> TrueNAS Scale, Docker, Linux, SMB, WireGuard,
+              Proxmox
+            </p>
+          </div>
+          <div class="project-content">
+            <h3>Status</h3>
+            <p>
+              This is a starter page and will keep growing as I expand the
+              server, add new services, and tune performance.
+            </p>
+            <p><a href="../myProjects.html">Back to Projects</a></p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
