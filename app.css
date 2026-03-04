@@ -63,6 +63,14 @@ p {
   font-family: "Roboto Mono", monospace;
 }
 
+.last-updated {
+  margin: -24px auto 48px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
 li {
   color: rgb(238, 238, 238);
   font-family: "Roboto Mono", monospace;
