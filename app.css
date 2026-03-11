@@ -145,6 +145,16 @@ h2 {
   margin: 10px 0;
 }
 
+.project-content h3 a {
+  color: rgb(255, 220, 50);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.project-content h3 a:hover {
+  opacity: 0.75;
+}
+
 /* ── About / Index page ─────────────────────────────────────── */
 
 .about-hero {
