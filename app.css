@@ -440,6 +440,39 @@ h2 {
   padding: 8px;
 }
 
+.exp-card-body:not(:has(.project-media)) {
+  grid-template-columns: 1fr;
+}
+
+.exp-card-body--wrap {
+  display: block;
+}
+
+.exp-card-body--wrap p,
+.exp-card-body--wrap ul {
+  font-family: "Roboto Mono", monospace;
+  color: rgba(238, 238, 238, 0.85);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+.exp-card-body--wrap ul {
+  padding-left: 18px;
+}
+
+.exp-card-body--wrap li {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  opacity: 0.75;
+}
+
+.exp-media-float {
+  float: right;
+  width: 380px;
+  margin: 0 0 16px 24px;
+}
+
 .exp-text p {
   margin: 0 0 10px;
   font-size: 0.88rem;
@@ -546,5 +579,11 @@ h2 {
 
   .exp-card-body {
     grid-template-columns: 1fr;
+  }
+
+  .exp-media-float {
+    float: none;
+    width: 100%;
+    margin: 0 0 16px 0;
   }
 }

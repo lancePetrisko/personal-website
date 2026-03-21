@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <title>lancePetrisko/modelTheU</title>
     <link
       rel="icon"
@@ -12,10 +18,6 @@
     <link rel="stylesheet" href="../app.css" />
   </head>
   <body>
-    <marquee behavior="scroll" direction="left" scrollamount="4">
-      3D4E Campus Model Project
-    </marquee>
-
     <nav class="navbar">
       <ul>
         <li><a href="../myExperience.html">< BACK</a></li>
@@ -23,69 +25,139 @@
     </nav>
 
     <main>
-      <section class="projects">
-        <article class="project-card">
-          <div class="project-media">
-            <img
-              src="../Images/modelTheUProject/actualModel.jpg"
-              alt="Large scale 3D printed campus model"
-            />
-          </div>
-          <div class="project-content">
-            <h2>3D4E UCLA Campus Print Showcase</h2>
-            <p>
-              This page is the expanded overview of my 3D4E campus model
-              project. The goal was to create an accurate, physical topographic
-              model of the University of Utah campus for showcase presentation.
-            </p>
-            <p>
-              <b>Project Focus:</b> terrain generation, model cleanup,
-              large scale printing, and presentation at a regional event.
-            </p>
+      <section class="exp-header">
+        <div class="exp-terminal" aria-hidden="true">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="terminalTyped"></span><span class="exp-cursor">_</span>
+          <div class="exp-output" id="terminalOutput"></div>
+        </div>
+        <p class="exp-subtitle">3D4E campus model project</p>
+      </section>
+
+      <section class="exp-timeline">
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">01</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>Overview</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">3d-printing</span>
+                <span class="exp-tag">blender</span>
+                <span class="exp-tag">lidar</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="../Images/modelTheUProject/actualModel.jpg"
+                  alt="Large scale 3D printed campus model"
+                />
+              </div>
+              <div class="exp-text">
+                <p>
+                  This page is the expanded overview of my 3D4E campus model
+                  project. The goal was to create an accurate, physical topographic
+                  model of the University of Utah campus for showcase presentation.
+                </p>
+                <p>
+                  <b>Project Focus:</b> terrain generation, model cleanup,
+                  large scale printing, and presentation at a regional event.
+                </p>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="project-card reverse">
-          <div class="project-media">
-            <img
-              src="../Images/modelTheUProject/modelTheUFlyer.jpg"
-              alt="Event flyer for the 3D printed campus model showcase"
-            />
-          </div>
-          <div class="project-content">
-            <h3>How It Was Built</h3>
-            <ul>
-              <li>Imported LiDAR data into Blender for terrain generation</li>
-              <li>Integrated official campus building models</li>
-              <li>Scaled and aligned structures for accurate placement</li>
-              <li>Prepared print ready geometry in slicing software</li>
-              <li>Produced the final model on a Modix 120X printer</li>
-            </ul>
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">02</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>How It Was Built</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">workflow</span>
+                <span class="exp-tag">modix-120x</span>
+                <span class="exp-tag">fdm</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="../Images/modelTheUProject/modelTheUFlyer.jpg"
+                  alt="Event flyer for the 3D printed campus model showcase"
+                />
+              </div>
+              <div class="exp-text">
+                <ul>
+                  <li>Imported LiDAR data into Blender for terrain generation</li>
+                  <li>Integrated official campus building models</li>
+                  <li>Scaled and aligned structures for accurate placement</li>
+                  <li>Prepared print ready geometry in slicing software</li>
+                  <li>Produced the final model on a Modix 120X printer</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-media">
-            <img
-              src="../Images/modelTheUProject/groupPic_modelTheU.jpg"
-              alt="Team group photo during the project showcase"
-            />
-          </div>
-          <div class="project-content">
-            <h3>Showcase + Impact</h3>
-            <p>
-              Me and Nathan Melish represented the "Model the U Team" for the University of Utah's 3D Printing for Everyone (3D4E) Club and
-              presented the final campus model alongside other member chapters from
-              UCLA and USC.
-            </p>
-            <p>
-              <b>Tools:</b> Blender, LiDAR plugin workflow, slicer software,
-              FDM 3D printing
-            </p>
-            <p><a href="../myExperience.html">Back to Experience</a></p>
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">03</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>Showcase + Impact</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">presentation</span>
+                <span class="exp-tag">ucla</span>
+                <span class="exp-tag">usc</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="../Images/modelTheUProject/groupPic_modelTheU.jpg"
+                  alt="Team group photo during the project showcase"
+                />
+              </div>
+              <div class="exp-text">
+                <p>
+                  Me and Nathan Melish represented the "Model the U Team" for the University of Utah's 3D Printing for Everyone (3D4E) Club and
+                  presented the final campus model alongside other member chapters from
+                  UCLA and USC.
+                </p>
+                <p class="exp-tools">Blender / LiDAR plugin / Slicer software / FDM 3D printing</p>
+              </div>
+            </div>
           </div>
         </article>
+
       </section>
     </main>
   </body>
+
+  <script src="../app.js"></script>
+  <script>
+    (function () {
+      var command = "cat ./modelTheU.log";
+      var output = "3 sections loaded";
+      var typed = document.getElementById("terminalTyped");
+      var out = document.getElementById("terminalOutput");
+      var i = 0;
+
+      function typeChar() {
+        if (i < command.length) {
+          typed.textContent += command[i];
+          i++;
+          setTimeout(typeChar, 70 + Math.random() * 60);
+        } else {
+          setTimeout(showOutput, 400);
+        }
+      }
+
+      function showOutput() {
+        out.textContent = output;
+        out.style.opacity = "1";
+      }
+
+      setTimeout(typeChar, 500);
+    })();
+  </script>
 </html>

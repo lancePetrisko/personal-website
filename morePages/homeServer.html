@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <title>lancePetrisko/homeServer</title>
     <link
       rel="icon"
@@ -12,10 +18,6 @@
     <link rel="stylesheet" href="../app.css" />
   </head>
   <body>
-    <marquee behavior="scroll" direction="left" scrollamount="4">
-      Home Lab Build Log
-    </marquee>
-
     <nav class="navbar">
       <ul>
         <li><a href="../myExperience.html">< BACK</a></li>
@@ -23,78 +25,100 @@
     </nav>
 
     <main>
-      <section class="projects">
-        <article class="project-card">
-          <div class="project-media">
-            <img
-              src="../Images/homelabProject/serverStats.png"
-              alt="Cisco UCS C240 M3 rack server used for the home lab"
-            />
-          </div>
-          <div class="project-content">
-            <h2>TrueNAS Scale Home Server</h2>
-            <p>
-              This page is the expanded overview of my home server build. It
-              runs 24/7 as my personal platform for media, backup storage, and
-              self hosted tools.
-            </p>
-            <p>
-              <b>Current Hardware:</b> Cisco UCS C240 M3S, 24 bay storage array,
-              756GB of ECC3 ram and a 2 Xeon E5-2680 v2 CPUs.
-            </p>
-          </div>
-        </article>
+      <section class="exp-header">
+        <div class="exp-terminal" aria-hidden="true">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="terminalTyped"></span><span class="exp-cursor">_</span>
+          <div class="exp-output" id="terminalOutput"></div>
+        </div>
+        <p class="exp-subtitle">home lab build log</p>
+      </section>
 
-        <article class="project-card reverse">
-          <div class="project-media">
-            <div class="project-content">
-              <h3>Core Services</h3>
+      <section class="exp-timeline">
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">01</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>TrueNAS Scale Home Server</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">24/7 uptime</span>
+                <span class="exp-tag">enterprise</span>
+                <span class="exp-tag">self-hosted</span>
+                <span class="exp-tag">docker</span>
+                <span class="exp-tag">linux</span>
+              </div>
+            </div>
+            <div class="exp-card-body exp-card-body--wrap">
+              <div class="project-media exp-media-float">
+                <img
+                  src="../Images/homelabProject/serverStats.png"
+                  alt="Cisco UCS C240 M3 rack server used for the home lab"
+                />
+              </div>
+              <p>
+                This page is the expanded overview of my home server build. It
+                runs 24/7 as my personal platform for media, backup storage, and
+                self hosted tools.
+              </p>
+              <p>
+                <b>Current Hardware:</b> Cisco UCS C240 M3S, 24 bay storage array,
+                756GB of ECC3 ram and a 2 Xeon E5-2680 v2 CPUs.
+              </p>
+              <p class="exp-label">Core Services</p>
               <ul>
-                <li>Jellyfin for perosnal media streaming</li>
+                <li>Jellyfin for personal media streaming</li>
                 <li>Immich for photo backup and organization</li>
                 <li>WireGuard for secure remote access</li>
                 <li>SMB shares for local file storage</li>
                 <li>Proxmox VMs/containers for experiments</li>
               </ul>
+              <p>
+                I wanted full control over my data and services while learning
+                enterprise hardware and real world system administration.
+                This project gives me hands on experience with virtualization,
+                Linux management, backups, and networking.
+              </p>
+              <p class="exp-label">Planned Upgrades</p>
+              <ul>
+                <li>Add automated off site backup replication</li>
+                <li>Improve service monitoring and alerting</li>
+                <li>Document full network + storage diagrams</li>
+                <li>Deploy reverse proxy + TLS for external apps</li>
+              </ul>
+              <p class="exp-tools">TrueNAS Scale / Docker / Linux / SMB / WireGuard / Proxmox</p>
             </div>
-          </div>
-          <div class="project-content">
-            <h3>Why I Have It</h3>
-            <p>
-              I wanted full control over my data and services while learning
-              enterprise hardware and real world system administration.
-            </p>
-            <p>
-              This project gives me hands on experience with virtualization,
-              Linux management, backups, and networking.
-            </p>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-content">
-            <h3>Planned Upgrades</h3>
-            <ul>
-              <li>Add automated off site backup replication</li>
-              <li>Improve service monitoring and alerting</li>
-              <li>Document full network + storage diagrams</li>
-              <li>Deploy reverse proxy + TLS for external apps</li>
-            </ul>
-            <p>
-              <b>Stack:</b> TrueNAS Scale, Docker, Linux, SMB, WireGuard,
-              Proxmox
-            </p>
-          </div>
-          <div class="project-content">
-            <h3>Status</h3>
-            <p>
-              This is a starter page and will keep growing as I expand the
-              server, add new services, and tune performance.
-            </p>
-            <p><a href="../myExperience.html">Back to Experience</a></p>
-          </div>
-        </article>
       </section>
     </main>
   </body>
+
+  <script src="../app.js"></script>
+  <script>
+    (function () {
+      var command = "cat ./homeServer.log";
+      var output = "1 entry loaded";
+      var typed = document.getElementById("terminalTyped");
+      var out = document.getElementById("terminalOutput");
+      var i = 0;
+
+      function typeChar() {
+        if (i < command.length) {
+          typed.textContent += command[i];
+          i++;
+          setTimeout(typeChar, 70 + Math.random() * 60);
+        } else {
+          setTimeout(showOutput, 400);
+        }
+      }
+
+      function showOutput() {
+        out.textContent = output;
+        out.style.opacity = "1";
+      }
+
+      setTimeout(typeChar, 500);
+    })();
+  </script>
 </html>
