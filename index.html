@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
 <title>lancePetrisko/aboutMe</title>
 <link rel="icon" type="image/jpeg" href="Images/websiteIcons/blackSquare.jpeg" />
 
@@ -8,9 +11,26 @@
 </head>
 <body>
 
+    <div class="exp-splash" id="indexSplash">
+      <div class="exp-splash-terminal">
+        <div class="exp-splash-line" id="splashLine1">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="splashTyped1"></span><span class="exp-cursor" id="splashCursor1">_</span>
+        </div>
+        <div class="exp-splash-line exp-splash-response" id="splashResponse1"></div>
+        <div class="exp-splash-line" id="splashLine2" style="display:none;">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="splashTyped2"></span><span class="exp-cursor" id="splashCursor2">_</span>
+        </div>
+        <div class="exp-splash-line exp-splash-response" id="splashResponse2"></div>
+        <div class="exp-splash-line" id="splashLine3" style="display:none;">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="splashTyped3"></span><span class="exp-cursor" id="splashCursor3">_</span>
+        </div>
+        <div class="exp-splash-line exp-splash-response" id="splashResponse3"></div>
+      </div>
+    </div>
+
     <marquee behavior="scroll" direction="left" scrollamount="10">Slow Scrolling>
 
-    <h1>BE HAPPY, HAVE FUN | SÉ FELIZ, DIVIÉRTETE | Sei glücklich, hab Spaß | 要开心, 玩得开心 | كن سعيداً واستمتع | Будьте счастливы, получайте удовольствие 
+    <h1>BE HAPPY, HAVE FUN | SÉ FELIZ, DIVIÉRTETE | Sei glücklich, hab Spaß | 要开心, 玩得开心 | كن سعيداً واستمتع | Будьте счастливы, получайте удовольствие
         | 幸せに、楽しんで | จงมีความสุข จงสนุกสนาน | సంతోషంగా ఉండు, ఆనందించు </h1>
     </marquee>
 
@@ -77,5 +97,70 @@
 
 <script src="last-updated.js"></script>
 <script src="app.js"></script>
+<script>
+  (function () {
+    var steps = [
+      { cmd: "ssh lance@portfolio", response: "connected." },
+      { cmd: "cat welcome.txt", response: "hey, welcome to my site." },
+      { cmd: "./init.sh", response: "loading..." }
+    ];
+    var splash = document.getElementById("indexSplash");
+    var step = 0;
+
+    if (sessionStorage.getItem("splashPlayed")) {
+      splash.style.display = "none";
+      return;
+    }
+
+    function typeCommand(text, typedEl, cursorEl, cb) {
+      var i = 0;
+      function tick() {
+        if (i < text.length) {
+          typedEl.textContent += text[i];
+          i++;
+          setTimeout(tick, 55 + Math.random() * 50);
+        } else {
+          cursorEl.style.display = "none";
+          if (cb) setTimeout(cb, 300);
+        }
+      }
+      tick();
+    }
+
+    function runStep() {
+      var s = steps[step];
+      var n = step + 1;
+      var lineEl = document.getElementById("splashLine" + n);
+      var typedEl = document.getElementById("splashTyped" + n);
+      var cursorEl = document.getElementById("splashCursor" + n);
+      var responseEl = document.getElementById("splashResponse" + n);
+
+      if (lineEl) lineEl.style.display = "";
+
+      typeCommand(s.cmd, typedEl, cursorEl, function () {
+        if (s.response) {
+          responseEl.textContent = s.response;
+          responseEl.style.opacity = "1";
+        }
+        step++;
+        if (step < steps.length) {
+          setTimeout(runStep, 400);
+        } else {
+          setTimeout(dismiss, 600);
+        }
+      });
+    }
+
+    function dismiss() {
+      sessionStorage.setItem("splashPlayed", "1");
+      splash.classList.add("exp-splash--exit");
+      splash.addEventListener("transitionend", function () {
+        splash.style.display = "none";
+      });
+    }
+
+    setTimeout(runStep, 400);
+  })();
+</script>
 
 </html>

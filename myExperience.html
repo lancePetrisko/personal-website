@@ -30,10 +30,6 @@
 
     <main>
       <section class="exp-header">
-        <div class="exp-terminal" aria-hidden="true">
-          <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="terminalTyped"></span><span class="exp-cursor">_</span>
-          <div class="exp-output" id="terminalOutput"></div>
-        </div>
         <p class="exp-subtitle">projects & things i've worked on</p>
       </section>
 
@@ -187,30 +183,4 @@
   </body>
 
   <script src="app.js"></script>
-  <script>
-    (function () {
-      var command = "ls ./experience";
-      var output = "4 entries found";
-      var typed = document.getElementById("terminalTyped");
-      var out = document.getElementById("terminalOutput");
-      var i = 0;
-
-      function typeChar() {
-        if (i < command.length) {
-          typed.textContent += command[i];
-          i++;
-          setTimeout(typeChar, 70 + Math.random() * 60);
-        } else {
-          setTimeout(showOutput, 400);
-        }
-      }
-
-      function showOutput() {
-        out.textContent = output;
-        out.style.opacity = "1";
-      }
-
-      setTimeout(typeChar, 500);
-    })();
-  </script>
 </html>

@@ -279,6 +279,45 @@ h2 {
   opacity: 0.85;
 }
 
+/* ── Experience splash screen ─────────────────────────────── */
+
+.exp-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.exp-splash--exit {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.exp-splash-terminal {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 2.2;
+  text-align: left;
+  min-width: 380px;
+}
+
+.exp-splash-line {
+  white-space: nowrap;
+}
+
+.exp-splash-response {
+  color: rgba(238, 238, 238, 0.35);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-bottom: 6px;
+}
+
 /* ── Experience page redesign ──────────────────────────────── */
 
 .exp-header {
