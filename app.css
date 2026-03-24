@@ -44,6 +44,15 @@ h1 {
   font-family: "Roboto Mono", monospace;
   letter-spacing: 5px;
 }
+.uou-hover {
+  transition: color 0.2s ease;
+}
+
+.uou-hover:hover {
+  color: rgb(204, 0, 0);
+  cursor: default;
+}
+
 .navbar {
   padding-top: 25px;
 }
