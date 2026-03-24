@@ -44,6 +44,10 @@ h1 {
   font-family: "Roboto Mono", monospace;
   letter-spacing: 5px;
 }
+.navbar {
+  padding-top: 50px;
+}
+
 .navbar ul {
   list-style-type: none; /* This removes bullet points from hyperlinked basic nav*/
   background-color: black;
