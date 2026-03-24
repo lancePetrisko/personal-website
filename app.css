@@ -18,7 +18,7 @@ body {
 
 .marquee-track {
   display: inline-flex;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 60s linear infinite;
 }
 
 .marquee-track h1 {
@@ -27,8 +27,12 @@ body {
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 h1 {
@@ -309,7 +313,9 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .exp-splash--exit {
@@ -369,7 +375,9 @@ h2 {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 .exp-output {
@@ -455,7 +463,9 @@ h2 {
   border-radius: 4px;
   padding: 24px;
   background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
 
 .exp-card:hover {
