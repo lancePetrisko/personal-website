@@ -11,6 +11,26 @@ body {
   background-color: rgb(0, 0, 0);
 }
 
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-track h1 {
+  padding-right: 4rem;
+  flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 h1 {
   color: rgb(221, 221, 221);
   /*
