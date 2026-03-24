@@ -626,14 +626,14 @@ h2 {
 
   .about-hero {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 28px;
     margin-top: 36px;
   }
 
   .about-photo {
-    width: 100%;
-    height: 300px;
+    width: 160px;
+    height: 200px;
   }
 
   .about-cards {
@@ -668,5 +668,31 @@ h2 {
     float: none;
     width: 100%;
     margin: 0 0 16px 0;
+  }
+
+  .marquee-track h1 {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .about-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-btn,
+  .about-btn--outline {
+    text-align: center;
+  }
+
+  .about-btn--icon {
+    align-self: flex-start;
   }
 }
