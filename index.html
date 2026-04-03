@@ -12,6 +12,7 @@
 <body>
 
     <div class="exp-splash" id="indexSplash">
+      <p class="exp-splash-skip" id="splashSkip">[ space / enter ] to skip</p>
       <div class="exp-splash-terminal">
         <div class="exp-splash-line" id="splashLine1">
           <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed" id="splashTyped1"></span><span class="exp-cursor" id="splashCursor1">_</span>
@@ -147,11 +148,27 @@
 
     function dismiss() {
       sessionStorage.setItem("splashPlayed", "1");
+      document.removeEventListener("keydown", onKey);
+      splash.removeEventListener("touchstart", onTouch);
       splash.classList.add("exp-splash--exit");
       splash.addEventListener("transitionend", function () {
         splash.style.display = "none";
       });
     }
+
+    function onKey(e) {
+      if (e.code === "Space" || e.code === "Enter") {
+        e.preventDefault();
+        dismiss();
+      }
+    }
+
+    function onTouch() {
+      dismiss();
+    }
+
+    document.addEventListener("keydown", onKey);
+    splash.addEventListener("touchstart", onTouch);
 
     setTimeout(runStep, 400);
   })();

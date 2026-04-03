@@ -336,6 +336,19 @@ h2 {
   transform: translateY(-30px);
 }
 
+.exp-splash-skip {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.7rem;
+  color: rgba(238, 238, 238, 0.3);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .exp-splash-terminal {
   font-family: "Roboto Mono", monospace;
   font-size: 0.9rem;
