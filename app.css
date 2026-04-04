@@ -618,6 +618,31 @@ h2 {
   opacity: 0.65;
 }
 
+/* ── Language logo strip ─────────────────────────────────────── */
+
+.exp-lang-strip {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(238, 238, 238, 0.08);
+}
+
+.exp-lang-strip img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.exp-lang-strip img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
 /* ── Expanded card sections ──────────────────────────────────── */
 
 .exp-section {
