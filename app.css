@@ -695,18 +695,40 @@ h2 {
   .about-hero {
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
     margin-top: 36px;
+    padding: 0 16px;
   }
 
   .about-photo {
-    width: 160px;
-    height: 200px;
+    width: 220px;
+    height: 270px;
+  }
+
+  .about-intro {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-name {
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+  }
+
+  .about-tagline {
+    font-size: 0.8rem;
+  }
+
+  .about-bio {
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.9;
   }
 
   .about-cards {
     grid-template-columns: 1fr;
     margin-top: 32px;
+    padding: 0 16px 60px;
   }
 
   .scroll-indicator {
