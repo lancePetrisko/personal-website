@@ -38,35 +38,68 @@
                 <span class="exp-tag">hardware</span>
                 <span class="exp-tag">self-hosted</span>
                 <span class="exp-tag">linux</span>
+                <span class="exp-tag">enterprise</span>
+                <span class="exp-tag">docker</span>
+                <span class="exp-tag">24/7 uptime</span>
               </div>
             </div>
-            <div class="exp-card-body">
+
+            <div class="exp-section exp-section--two-col">
               <div class="project-media">
                 <img
                   src="Images/homelabProject/ciscoUCS_c240_m3.jpg"
                   alt="Cisco UCS C240 M3 Enterprise Server, a black rackmount server with multiple drive bays and cooling fans"
                 />
               </div>
-              <div class="exp-text">
+              <div class="exp-section-text">
                 <p>
                   Self hosted services, through my Cisco UCS C240 M3 Enterprise
-                  server. I am a hardware enthusiast by heart and love
-                  everything data hoarding.
+                  server. I am a hardware enthusiast by heart and love everything
+                  data hoarding. It runs 24/7 as my personal platform for media,
+                  backup storage, and self hosted tools.
                 </p>
-                <p class="exp-label">Services I Run</p>
+                <p>
+                  <b>Hardware:</b> Cisco UCS C240 M3S, 24 bay storage array,
+                  756GB of ECC3 RAM, dual Xeon E5-2680 v2 CPUs.
+                </p>
+                <p class="exp-label">Core Services</p>
                 <ul>
-                  <li>Jellyfin (Media Server)</li>
-                  <li>Immich (Photo Management)</li>
-                  <li>Wiregaurd (Home VPN)</li>
-                  <li>Proxmox (Virtualization)</li>
-                  <li>SMB (File Sharing)</li>
+                  <li>Jellyfin — personal media streaming</li>
+                  <li>Immich — photo backup and organization</li>
+                  <li>WireGuard — secure remote access</li>
+                  <li>SMB — local file storage</li>
+                  <li>Proxmox — VMs and containers for experiments</li>
                 </ul>
-                <p class="exp-tools">TrueNAS / Docker / Linux</p>
               </div>
             </div>
-            <a href="morePages/homeServer.html" class="exp-more"
-              >[ MORE INFO ]</a
-            >
+
+            <div class="exp-section-divider"></div>
+
+            <div class="exp-section exp-section--two-col exp-section--reverse">
+              <div class="exp-section-text">
+                <p>
+                  I wanted full control over my data and services while learning
+                  enterprise hardware and real world system administration. This
+                  project gives me hands on experience with virtualization, Linux
+                  management, backups, and networking.
+                </p>
+                <p class="exp-label">Planned Upgrades</p>
+                <ul>
+                  <li>Add automated off-site backup replication</li>
+                  <li>Improve service monitoring and alerting</li>
+                  <li>Document full network + storage diagrams</li>
+                  <li>Deploy reverse proxy + TLS for external apps</li>
+                </ul>
+              </div>
+              <div class="project-media">
+                <img
+                  src="Images/homelabProject/serverStats.png"
+                  alt="Home server dashboard showing system statistics and running services"
+                />
+              </div>
+            </div>
+
+            <p class="exp-tools">TrueNAS Scale / Docker / Linux / SMB / WireGuard / Proxmox</p>
           </div>
         </article>
 
@@ -90,16 +123,18 @@
               </div>
               <div class="exp-text">
                 <p>
-                  Used Blender and a LiDAR import plugin to generate a
-                  topographic model of the University of Utah campus.
-                  Collaborated with a campus department to obtain official
-                  building models, which were accurately scaled and positioned
-                  within the terrain environment. Produced a large scale
-                  physical print using a Modix 120X industrial 3D printer.
-                  Represented the 3D Printing for Everyone (3D4E) Club at a
-                  regional showcase hosted at UCLA, presenting the project
-                  alongside partner 3D4E chapters from UCLA and USC.
+                  Generated an accurate, large scale topographic model of the
+                  University of Utah campus for presentation at a regional
+                  3D4E showcase hosted at UCLA.
                 </p>
+                <p class="exp-label">What I Did</p>
+                <ul>
+                  <li>Imported LiDAR data into Blender for terrain generation</li>
+                  <li>Collaborated with a campus department to obtain official building models</li>
+                  <li>Scaled and aligned structures for accurate placement</li>
+                  <li>Produced the final model on a Modix 120X industrial 3D printer</li>
+                  <li>Represented the U alongside 3D4E chapters from UCLA and USC</li>
+                </ul>
                 <p class="exp-tools">
                   Blender / Slicing software / FDM 3D printing
                 </p>
