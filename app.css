@@ -430,21 +430,6 @@ h2 {
   position: relative;
 }
 
-.exp-timeline::before {
-  content: "";
-  position: absolute;
-  left: 66px;
-  top: 40px;
-  bottom: 80px;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(238, 238, 238, 0.15) 10%,
-    rgba(238, 238, 238, 0.15) 90%,
-    transparent
-  );
-}
 
 .exp-entry {
   display: flex;
