@@ -280,6 +280,10 @@ h2 {
   display: block;
 }
 
+.social-icon--invert {
+  filter: invert(1);
+}
+
 .about-btn--outline {
   background-color: transparent;
   color: rgb(221, 221, 221);
