@@ -607,6 +607,20 @@ h2 {
   opacity: 0.65;
 }
 
+.exp-inline-link {
+  color: rgb(170, 170, 170);
+  text-decoration: none;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  opacity: 0.75;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.exp-inline-link:hover {
+  opacity: 1;
+  color: rgb(221, 221, 221);
+}
+
 /* ── Language logo strip ─────────────────────────────────────── */
 
 .exp-lang-strip {
