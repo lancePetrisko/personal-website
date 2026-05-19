@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lance Petrisko — Information Systems student at the University of Utah, hobbyist builder, and self-hosted enthusiast based in Salt Lake City. Portfolio of projects in homelab, 3D printing, and web design." />
+  <meta name="description" content="Lance Petrisko — Information Systems student at the University of Utah, hobbyist builder, and self-hosted enthusiast. Portfolio of projects in homelab, 3D printing, web design, and collegiate esports." />
   <meta name="author" content="Lance Petrisko" />
   <meta property="og:title" content="Lance Petrisko — Portfolio" />
   <meta property="og:description" content="Information Systems student and hobbyist builder. Homelab, 3D printing, web design, and more." />
@@ -44,13 +44,13 @@
 
 <nav class ="navbar"> <!-- Navigatater bar class containing "navbar"-->
     <ul> <!-- Un-orded list-->
-        <li><a href="index.html">ABOUT ME</a></li> <!--When Surrounded in "a" tags it creates hyperlink to other page-->
-        <li><a href="myExperience.html">EXPERIENCE</a></li> <!--BTW, "li" just stands for list item-->
+        <li><a href="#about">ABOUT ME</a></li>
+        <li><a href="#experience">EXPERIENCE</a></li>
     </ul> 
 </nav>
 
 <main>
-    <section class="about-hero">
+    <section class="about-hero" id="about">
         <div class="about-photo-wrap">
             <img src="Images/indexPictures/seniorPicture.JPG" alt="Lance Petrisko" class="about-photo" />
         </div>
@@ -63,7 +63,7 @@
                 writing code late into the night, or designing something to 3D print, I'm always working on a project.
             </p>
             <div class="about-links">
-                <a href="myExperience.html" class="about-btn">View My Experience</a>
+                <a href="#experience" class="about-btn">View My Experience</a>
                 <a href="morePages/resume.html" class="about-btn about-btn--outline">View Resume</a>
                 <a href="https://www.linkedin.com/in/lance-petrisko-b9994036a/" target="_blank" rel="noopener noreferrer" class="about-btn--icon" aria-label="LinkedIn">
                     <img src="Images/websiteIcons/linkedInLogo.jpg" alt="LinkedIn" class="social-icon" />
@@ -97,10 +97,238 @@
         </div>
     </section>
 
+    <section id="experience">
+      <div class="exp-section-heading">
+        <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls projects/</span>
+      </div>
+      <section class="exp-timeline">
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">01</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>Web Design Projects</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">html</span>
+                <span class="exp-tag">css</span>
+                <span class="exp-tag">javascript</span>
+                <span class="exp-tag">web design</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="exp-text">
+                <p>
+                  I've done a variety of web design projects, from simple static
+                  sites to more complex interactive applications. I enjoy
+                  crafting clean, user friendly interfaces and learning new web
+                  technologies along the way. Below are some highlights of my
+                  web design experience, click the More Info link for details on
+                  specific projects and technologies used.
+                </p>
+                <p class="exp-label">Freelance Web Design Projects</p>
+                <ul>
+                  <li>Lawfirm Website</li>
+                  <li>Influencer UGC Creator Website <a href="https://ethanle.us/" target="_blank" rel="noopener noreferrer" class="exp-inline-link">↗ visit</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="exp-lang-strip">
+              <img src="Images/webDesign/htmlLogo.png" alt="HTML5" />
+              <img src="Images/webDesign/cssLogo.png" alt="CSS3" />
+              <img src="Images/webDesign/javaScriptLogo.png" alt="JavaScript" />
+              <img src="Images/webDesign/Typescript.svg.png" alt="TypeScript" />
+            </div>
+            <a href="morePages/webDesign.html" class="exp-more">[ MORE INFO ]</a>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">02</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>3D4E UCLA Campus Print Showcase</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">3d printing</span>
+                <span class="exp-tag">blender</span>
+                <span class="exp-tag">collaboration</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="Images/modelTheUProject/actualModel.jpg"
+                  alt="3D printed model of the university campus"
+                />
+              </div>
+              <div class="exp-text">
+                <p>
+                  Generated an accurate, large scale topographic model of the
+                  University of Utah campus for presentation at a regional 3D4E
+                  showcase hosted at UCLA.
+                </p>
+                <p class="exp-label">What I Did</p>
+                <ul>
+                  <li>Imported LiDAR data into Blender for terrain generation</li>
+                  <li>Collaborated with a campus department to obtain official building models</li>
+                  <li>Scaled and aligned structures for accurate placement</li>
+                  <li>Produced the final model on a Modix 120X industrial 3D printer</li>
+                  <li>Represented the U alongside 3D4E chapters from UCLA and USC</li>
+                </ul>
+                <p class="exp-tools">Blender / Slicing software / FDM 3D printing</p>
+              </div>
+            </div>
+            <a href="morePages/modelTheU.html" class="exp-more">[ MORE INFO ]</a>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">03</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>TrueNAS Scale Home Server</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">hardware</span>
+                <span class="exp-tag">self hosted</span>
+                <span class="exp-tag">linux</span>
+                <span class="exp-tag">enterprise</span>
+                <span class="exp-tag">docker</span>
+                <span class="exp-tag">24/7 uptime</span>
+              </div>
+            </div>
+            <div class="exp-section exp-section--two-col">
+              <div class="project-media">
+                <img
+                  src="Images/homelabProject/ciscoUCS_c240_m3.jpg"
+                  alt="Cisco UCS C240 M3 Enterprise Server, a black rackmount server with multiple drive bays and cooling fans"
+                />
+              </div>
+              <div class="exp-section-text">
+                <p>
+                  Self hosted services, through my Cisco UCS C240 M3 Enterprise
+                  server. I am a hardware enthusiast by heart and love
+                  everything data hoarding. It runs 24/7 as my personal platform
+                  for media, backup storage, and self hosted tools.
+                </p>
+                <p><b>Hardware:</b> Cisco UCS C240 M3S, 24 bay storage array, 756GB of ECC3 RAM, dual Xeon E5-2680 v2 CPUs.</p>
+                <p class="exp-label">Core Services</p>
+                <ul>
+                  <li>Jellyfin — personal media streaming</li>
+                  <li>Immich — photo backup and organization</li>
+                  <li>WireGuard — secure remote access</li>
+                  <li>SMB — local file storage</li>
+                  <li>Proxmox — VMs and containers for experiments</li>
+                </ul>
+              </div>
+            </div>
+            <div class="exp-section-divider"></div>
+            <div class="exp-section exp-section--two-col exp-section--reverse">
+              <div class="exp-section-text">
+                <p>
+                  I wanted full control over my data and services while learning
+                  enterprise hardware and real world system administration. This
+                  project gives me hands on experience with virtualization,
+                  Linux management, backups, and networking.
+                </p>
+                <p class="exp-label">Planned Upgrades</p>
+                <ul>
+                  <li>Add automated off-site backup replication</li>
+                  <li>Improve service monitoring and alerting</li>
+                  <li>Document full network + storage diagrams</li>
+                  <li>Deploy reverse proxy + TLS for external apps</li>
+                </ul>
+              </div>
+              <div class="project-media">
+                <img
+                  src="Images/homelabProject/serverStats.png"
+                  alt="Home server dashboard showing system statistics and running services"
+                />
+              </div>
+            </div>
+            <p class="exp-tools">TrueNAS Scale / Docker / Linux / SMB / WireGuard / Proxmox</p>
+            <a href="morePages/homeServer.html" class="exp-more">[ MORE INFO ]</a>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">04</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>University of Utah Esports — JV Valorant</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">esports</span>
+                <span class="exp-tag">competition</span>
+                <span class="exp-tag">ongoing</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="Images/esports/lanVSUVU.jpg"
+                  alt="University of Utah JV Valorant team competing at a LAN event against UVU"
+                />
+              </div>
+              <div class="exp-text">
+                <p>
+                  Active member of the University of Utah's "JV" Valorant team,
+                  competing in collegiate esports leagues against other
+                  universities. Represented the U at LAN events, including a
+                  match against UVU, where players compete in person on
+                  university gaming computers. Thats me closet to the camera :)
+                </p>
+                <p class="exp-label">Team: University of Utah Red Valorant</p>
+                <ul>
+                  <li>Collegiate league play against regional university teams</li>
+                  <li>LAN competition experience</li>
+                  <li>Ongoing — currently rostered on the "JV" squad</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">05</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>Midnight Hosting</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">python</span>
+                <span class="exp-tag">flask</span>
+                <span class="exp-tag">web app</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <div class="project-media">
+                <img
+                  src="Images/midnightHostingProject/midnighthosting.png"
+                  alt="Example of Midnight Hosting's website interface showing server management dashboard"
+                />
+              </div>
+              <div class="exp-text">
+                <p>
+                  Midnight Hosting is a game server hosting platform which I
+                  made using Pterodactyl designed for small communities and
+                  friends who want simple, affordable hosting. With automated
+                  billing to make deploying and managing servers straightforward
+                  and reliable without me having to manage it all.
+                </p>
+                <p class="exp-tools">Python / Flask / SQLite</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </section>
+
     <p class="last-updated">
         Last updated <span id="last-updated-value">checking deploy time...</span>
     </p>
 </main>
+
+<!-- Lightbox overlay -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;">
+  <button id="lightbox-close" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:rgb(221,221,221);font-family:'Roboto Mono',monospace;font-size:2rem;cursor:pointer;line-height:1;">×</button>
+  <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:88vh;display:block;" />
+</div>
 
 <script src="last-updated.js"></script>
 <script src="app.js"></script>
@@ -183,6 +411,33 @@
     splash.addEventListener("touchstart", onTouch);
 
     setTimeout(runStep, 400);
+  })();
+</script>
+
+<script>
+  (function () {
+    var lightbox = document.getElementById("lightbox");
+    var lightboxImg = document.getElementById("lightbox-img");
+    var closeBtn = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".project-media img").forEach(function (img) {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", function () {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.style.display = "flex";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
   })();
 </script>
 

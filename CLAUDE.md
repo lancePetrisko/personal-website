@@ -36,8 +36,7 @@ project showcase intended for employers, recruiters, and anyone interested in hi
 
 ```
 /
-├── index.html              # About Me / landing page
-├── myExperience.html       # Experience + projects listing page
+├── index.html              # One-page site: About Me + Experience sections
 ├── app.css                 # Single shared stylesheet for all pages
 ├── app.js                  # Shared JS: last-updated display, misc utilities
 ├── last-updated.js         # Sets window.LAST_UPDATED_AT (injected at deploy time)
@@ -63,10 +62,9 @@ project showcase intended for employers, recruiters, and anyone interested in hi
 
 ## Navigation Structure
 
-- `index.html` — "ABOUT ME" in nav
-- `myExperience.html` — "EXPERIENCE" in nav
-- Both top-level pages share the same nav bar (two links, centered)
-- `morePages/` subpages use a single `< BACK` nav link pointing to `../myExperience.html`
+- `index.html` is a one-page site with two in-page anchor sections: `#about` and `#experience`
+- Nav has two links: `ABOUT ME` → `#about`, `EXPERIENCE` → `#experience`
+- `morePages/` subpages use a single `< BACK` nav link pointing to `../index.html#experience`
 - Nav links are uppercase, letter-spaced, no decoration
 
 ---
@@ -109,7 +107,7 @@ It should feel handcrafted, understated, and slightly retro — not polished or 
 ## Reusable Patterns and Components
 
 ### Project / Experience card (`.project-card`)
-Used on `myExperience.html` and `morePages/` subpages. Two-column grid: image on one side,
+Used in the `#experience` section of `index.html` and `morePages/` subpages. Two-column grid: image on one side,
 text content on the other. Add `.reverse` to flip image to the right. Cards alternate sides
 for visual rhythm. Separated by a bottom border, last card has none.
 
@@ -189,9 +187,10 @@ Displays "local copy" in dev, a formatted date in production.
 
 ## Current Experience Entries (as of last update)
 
-| Entry | Page | Has subpage? |
+| Entry | Section | Has subpage? |
 |---|---|---|
-| TrueNAS Scale Home Server | myExperience.html | Yes — `morePages/homeServer.html` |
-| 3D4E UCLA Campus Print Showcase | myExperience.html | Yes — `morePages/modelTheU.html` |
-| University of Utah Esports — JV Valorant | myExperience.html | No |
-| Midnight Hosting | myExperience.html | No |
+| Web Design Projects | `index.html#experience` | Yes — `morePages/webDesign.html` |
+| TrueNAS Scale Home Server | `index.html#experience` | Yes — `morePages/homeServer.html` |
+| 3D4E UCLA Campus Print Showcase | `index.html#experience` | Yes — `morePages/modelTheU.html` |
+| University of Utah Esports — JV Valorant | `index.html#experience` | No |
+| Midnight Hosting | `index.html#experience` | No |
