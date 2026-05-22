@@ -1,0 +1,7 @@
+blablalbal
+
++ I want to make the website a one pager
++ I want to have a personal music section where its like a bunch of albums, 
+in a vertical style like a bookshelf where you can move your mouse throught 
+them to look at them, it hovers with the album out of the case and you can then 
+click on it to listen and expand it
