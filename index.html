@@ -691,6 +691,11 @@
       closePlayer();
       return;
     }
+    // Collapse everything before opening new track
+    setActiveAlbums(null);
+    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+      el.classList.remove("shelf-focused");
+    });
     activeId = t.id;
     setActiveAlbums(t.id);
 
@@ -722,6 +727,9 @@
   function closePlayer() {
     player.classList.remove("open");
     setActiveAlbums(null);
+    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+      el.classList.remove("shelf-focused");
+    });
     activeId = null;
     mpAudio.pause();
     mpAudio.removeAttribute("src");
