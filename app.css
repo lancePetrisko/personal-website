@@ -1113,6 +1113,79 @@ h2 {
   transition: transform 0.3s ease;
 }
 
+/* ── Experience image grid ───────────────────────────────────── */
+
+.exp-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.exp-img-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(238, 238, 238, 0.1);
+  aspect-ratio: 4 / 3;
+  text-decoration: none;
+  cursor: default;
+}
+
+a.exp-img-card {
+  cursor: pointer;
+}
+
+.exp-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+a.exp-img-card:hover img {
+  transform: scale(1.04);
+}
+
+.exp-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.exp-img-card:hover .exp-img-overlay {
+  opacity: 1;
+}
+
+.exp-img-meta h3 {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: rgb(238, 238, 238);
+  font-family: "Roboto Mono", monospace;
+}
+
+.exp-img-meta .exp-tags {
+  margin-bottom: 12px;
+}
+
+.exp-img-more {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: rgb(255, 220, 50);
+  display: block;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .project-card,
@@ -1228,6 +1301,16 @@ h2 {
   .about-btn--icon {
     align-self: auto;
     flex: 0 0 auto;
+  }
+
+  .exp-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 16px 60px;
+  }
+
+  .exp-img-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.55);
   }
 
   .music-section {
