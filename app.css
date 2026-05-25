@@ -13,7 +13,8 @@ body {
 }
 
 #about,
-#experience {
+#experience,
+#music {
   scroll-margin-top: 80px;
 }
 
@@ -59,56 +60,74 @@ h1 {
   cursor: default;
 }
 
-.navbar {
-  padding-top: 25px;
-}
-
-.navbar ul {
-  list-style-type: none; /* This removes bullet points from hyperlinked basic nav*/
-  background-color: black;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  font-family: "Roboto Mono", monospace;
-  letter-spacing: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.5rem;
-}
-
 nav {
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   background-color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgba(238, 238, 238, 0.08);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 32px;
+  position: relative;
+}
+
+.nav-name {
+  flex: 1;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: rgb(221, 221, 221);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.15s;
+}
+
+.nav-name:hover {
+  opacity: 0.5;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2.2rem;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.nav-center a,
+.nav-right a {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(221, 221, 221);
+  opacity: 0.75;
+  transition: opacity 0.15s;
+}
+
+.nav-center a:hover,
+.nav-right a:hover {
+  opacity: 1;
 }
 
 main {
   padding-top: 80px;
-}
-
-nav a {
-  text-decoration: none;
-  color: rgb(221, 221, 221);
-  padding: 0.5rem 0; /* Vertical spacing for easier clicks */
-}
-
-.navbar a:hover {
-  /* When hovering u can change attributes of ".navbar a"*/
-  background-color: rgba(134, 134, 134, 0.541);
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 1px;
-}
-
-.navbar li {
-  float: none;
 }
 
 p {
@@ -1162,7 +1181,8 @@ a.exp-img-card:hover img {
   transition: opacity 0.2s ease;
 }
 
-.exp-img-card:hover .exp-img-overlay {
+.exp-img-card:hover .exp-img-overlay,
+.exp-img-card.overlay-active .exp-img-overlay {
   opacity: 1;
 }
 
@@ -1278,11 +1298,27 @@ a.exp-img-card:hover img {
     letter-spacing: 2px;
   }
 
-  nav a {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 8px;
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .nav-name {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+
+  .nav-center {
+    gap: 1.2rem;
+  }
+
+  .nav-right {
+    gap: 1.2rem;
+  }
+
+  .nav-center a,
+  .nav-right a {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
   }
 
   .about-links {
@@ -1306,11 +1342,6 @@ a.exp-img-card:hover img {
   .exp-grid {
     grid-template-columns: 1fr;
     padding: 16px 16px 60px;
-  }
-
-  .exp-img-overlay {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.55);
   }
 
   .music-section {
