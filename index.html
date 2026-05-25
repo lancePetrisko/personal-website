@@ -101,7 +101,9 @@
       <div class="music-section-heading">
         <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls music/favorites/</span>
       </div>
-      <div class="music-shelf" id="musicShelf"></div>
+      <div class="music-shelf-viewport" id="musicShelfViewport">
+        <div class="music-shelf" id="musicShelf"></div>
+      </div>
       <div class="music-player" id="musicPlayer">
         <div class="music-player-layout">
           <div class="music-art-lg" id="mpArtWrap"></div>
@@ -471,30 +473,37 @@
 <script>
 (function () {
   var TRACKS = [
-    { id: 0, title: "Splendor",               artist: "Glixen",               src: null, art: "Images/albumCovers/splendor-glixen-album-cover.jpg",         color: "#0a0a12", tracks: ["Splendor"],               why: "Replace with your reason for loving this track." },
-    { id: 1, title: "Tu Ultima Cancion",       artist: "Tu Ultima Cancion",    src: null, art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",        color: "#12080a", tracks: ["Tu Ultima Cancion"],       why: "Replace with your reason for loving this track." },
-    { id: 2, title: "MC HotDog",              artist: "MC HotDog",            src: null, art: "Images/albumCovers/mchotdog-album-cover.jpg",                  color: "#0a0a0a", tracks: ["MC HotDog"],              why: "Replace with your reason for loving this track." },
-    { id: 3, title: "Nour El Ein",             artist: "Nour El Ein",          src: null, art: "Images/albumCovers/nour-el-ein-album-cover.jpg",               color: "#12100a", tracks: ["Nour El Ein"],             why: "Replace with your reason for loving this track." },
-    { id: 4, title: "Moonchild",               artist: "MRD",                  src: null, art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",             color: "#080a14", tracks: ["Moonchild"],               why: "Replace with your reason for loving this track." },
-    { id: 5, title: "Friednen auf der Walt",   artist: "Friednen auf der Walt",src: null, art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",     color: "#0a1208", tracks: ["Friednen auf der Walt"],   why: "Replace with your reason for loving this track." },
-    { id: 6, title: "Casting",                 artist: "Casting",              src: null, art: "Images/albumCovers/casting-album-cover.jpg",                   color: "#0e0a0a", tracks: ["Casting"],                 why: "Replace with your reason for loving this track." },
-    { id: 7, title: "Wait 2",                  artist: "xaviersobased",        src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",             color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." }
+    { id: 0, title: "Splendor",               artist: "Glixen",                src: null, art: "Images/albumCovers/splendor-glixen-album-cover.jpg",        color: "#0a0a12", tracks: ["Splendor"],               why: "Replace with your reason for loving this track." },
+    { id: 1, title: "Tu Ultima Cancion",       artist: "Tu Ultima Cancion",     src: null, art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",       color: "#12080a", tracks: ["Tu Ultima Cancion"],       why: "Replace with your reason for loving this track." },
+    { id: 2, title: "MC HotDog",               artist: "MC HotDog",             src: null, art: "Images/albumCovers/mchotdog-album-cover.jpg",                color: "#0a0a0a", tracks: ["MC HotDog"],               why: "Replace with your reason for loving this track." },
+    { id: 3, title: "Nour El Ein",             artist: "Nour El Ein",           src: null, art: "Images/albumCovers/nour-el-ein-album-cover.jpg",             color: "#12100a", tracks: ["Nour El Ein"],             why: "Replace with your reason for loving this track." },
+    { id: 4, title: "Moonchild",               artist: "MRD",                   src: null, art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",           color: "#080a14", tracks: ["Moonchild"],               why: "Replace with your reason for loving this track." },
+    { id: 5, title: "Friednen auf der Walt",   artist: "Friednen auf der Walt", src: null, art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",   color: "#0a1208", tracks: ["Friednen auf der Walt"],   why: "Replace with your reason for loving this track." },
+    { id: 6, title: "Casting",                 artist: "Casting",               src: null, art: "Images/albumCovers/casting-album-cover.jpg",                 color: "#0e0a0a", tracks: ["Casting"],                 why: "Replace with your reason for loving this track." },
+    { id: 7, title: "Wait 2",                  artist: "xaviersobased",         src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",           color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." }
   ];
 
-  var shelf       = document.getElementById("musicShelf");
-  var player      = document.getElementById("musicPlayer");
-  var mpArtWrap   = document.getElementById("mpArtWrap");
-  var mpTitle     = document.getElementById("mpTitle");
-  var mpArtist    = document.getElementById("mpArtist");
-  var mpPlayBtn   = document.getElementById("mpPlayBtn");
-  var mpTime      = document.getElementById("mpTime");
-  var mpProgress  = document.getElementById("mpProgress");
-  var mpAudio     = document.getElementById("mpAudio");
-  var mpTracklist = document.getElementById("mpTracklist");
-  var mpWhy       = document.getElementById("mpWhy");
-  var mpClose     = document.getElementById("mpClose");
-  var activeEl    = null;
-  var activeId    = null;
+  var N_COPIES   = 5;
+  var viewport   = document.getElementById("musicShelfViewport");
+  var shelf      = document.getElementById("musicShelf");
+  var player     = document.getElementById("musicPlayer");
+  var mpArtWrap  = document.getElementById("mpArtWrap");
+  var mpTitle    = document.getElementById("mpTitle");
+  var mpArtist   = document.getElementById("mpArtist");
+  var mpPlayBtn  = document.getElementById("mpPlayBtn");
+  var mpTime     = document.getElementById("mpTime");
+  var mpProgress = document.getElementById("mpProgress");
+  var mpAudio    = document.getElementById("mpAudio");
+  var mpTracklist= document.getElementById("mpTracklist");
+  var mpWhy      = document.getElementById("mpWhy");
+  var mpClose    = document.getElementById("mpClose");
+
+  var activeId = null;
+  var pos      = 0;
+  var vel      = 0;
+  var oneSet   = 0;
+  var mouseOver= false;
+  var raf      = null;
 
   function fmt(s) {
     if (isNaN(s) || !isFinite(s)) return "0:00";
@@ -517,18 +526,17 @@
       var ph = document.createElement("div");
       ph.className = "album-placeholder";
       ph.style.backgroundColor = t.color;
-      var ttl = document.createElement("span");
-      ttl.className = "album-placeholder-title";
-      ttl.textContent = t.title;
-      var atr = document.createElement("span");
-      atr.className = "album-placeholder-artist";
-      atr.textContent = t.artist;
-      ph.appendChild(ttl);
-      ph.appendChild(atr);
+      var pttl = document.createElement("span");
+      pttl.className = "album-placeholder-title";
+      pttl.textContent = t.title;
+      var patr = document.createElement("span");
+      patr.className = "album-placeholder-artist";
+      patr.textContent = t.artist;
+      ph.appendChild(pttl);
+      ph.appendChild(patr);
       return ph;
     }
 
-    // Shelf spine/face element
     var face = document.createElement("div");
     face.className = "album-face";
     if (!t.art) face.style.backgroundColor = t.color;
@@ -554,33 +562,88 @@
     fatr.textContent = t.artist;
     info.appendChild(fttl);
     info.appendChild(fatr);
-
     face.appendChild(spine);
     face.appendChild(info);
     return face;
   }
 
-  TRACKS.forEach(function (t) {
-    var div = document.createElement("div");
-    div.className = "album";
-    div.appendChild(buildArtEl(t, false));
-    shelf.appendChild(div);
-    div.addEventListener("click", function () { openTrack(t, div); });
+  // Render N_COPIES sets of albums
+  for (var copy = 0; copy < N_COPIES; copy++) {
+    TRACKS.forEach(function (t) {
+      var div = document.createElement("div");
+      div.className = "album";
+      div.dataset.idx = t.id;
+      div.appendChild(buildArtEl(t, false));
+      shelf.appendChild(div);
+      div.addEventListener("click", function () { openTrack(t); });
+    });
+  }
+
+  // Measure oneSet after layout and snap to middle copy
+  function init() {
+    oneSet = shelf.offsetWidth / N_COPIES;
+    pos = -2 * oneSet;
+    shelf.style.transform = "translateX(" + pos + "px)";
+  }
+  requestAnimationFrame(function () { requestAnimationFrame(init); });
+
+  // Carousel tick — runs every frame while mouse is over viewport
+  function tick() {
+    pos += vel;
+    // Infinite wrap: stay in range [-3*oneSet, -oneSet]
+    if (pos < -3 * oneSet) pos += oneSet;
+    if (pos > -oneSet)     pos -= oneSet;
+    shelf.style.transform = "translateX(" + pos + "px)";
+    if (mouseOver) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      raf = null;
+    }
+  }
+
+  viewport.addEventListener("mouseenter", function () {
+    mouseOver = true;
+    if (!raf) raf = requestAnimationFrame(tick);
   });
 
-  function openTrack(t, el) {
+  viewport.addEventListener("mousemove", function (e) {
+    var rect = viewport.getBoundingClientRect();
+    var t = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2); // -1 to 1
+    var dead = 0.18;
+    if (Math.abs(t) < dead) {
+      vel = 0;
+    } else {
+      var s = (Math.abs(t) - dead) / (1 - dead); // 0 to 1
+      vel = Math.sign(t) * s * s * 9; // quadratic ramp, max ~9px/frame
+    }
+  });
+
+  viewport.addEventListener("mouseleave", function () {
+    mouseOver = false;
+    vel = 0;
+  });
+
+  function setActiveAlbums(id) {
+    shelf.querySelectorAll(".album.active").forEach(function (el) {
+      el.classList.remove("active");
+    });
+    if (id !== null) {
+      shelf.querySelectorAll(".album[data-idx='" + id + "']").forEach(function (el) {
+        el.classList.add("active");
+      });
+    }
+  }
+
+  function openTrack(t) {
     if (activeId === t.id && player.classList.contains("open")) {
       closePlayer();
       return;
     }
-    if (activeEl) activeEl.classList.remove("active");
-    activeEl = el;
     activeId = t.id;
-    el.classList.add("active");
+    setActiveAlbums(t.id);
 
     mpArtWrap.innerHTML = "";
     mpArtWrap.appendChild(buildArtEl(t, true));
-
     mpTitle.textContent = t.title;
     mpArtist.textContent = t.artist;
     mpWhy.textContent = t.why;
@@ -606,8 +669,7 @@
 
   function closePlayer() {
     player.classList.remove("open");
-    if (activeEl) activeEl.classList.remove("active");
-    activeEl = null;
+    setActiveAlbums(null);
     activeId = null;
     mpAudio.pause();
     mpAudio.removeAttribute("src");
