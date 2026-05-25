@@ -471,18 +471,14 @@
 <script>
 (function () {
   var TRACKS = [
-    { id: 0,  title: "Blinding Lights",           artist: "The Weeknd",              src: null, art: null, color: "#1a0a2e", tracks: ["Blinding Lights"],           why: "Replace with your reason for loving this track." },
-    { id: 1,  title: "SICKO MODE",                artist: "Travis Scott",             src: null, art: null, color: "#080414", tracks: ["SICKO MODE"],                why: "Replace with your reason for loving this track." },
-    { id: 2,  title: "Money Trees",               artist: "Kendrick Lamar",           src: null, art: null, color: "#0d1a08", tracks: ["Money Trees"],               why: "Replace with your reason for loving this track." },
-    { id: 3,  title: "505",                       artist: "Arctic Monkeys",           src: null, art: null, color: "#1a1208", tracks: ["505"],                       why: "Replace with your reason for loving this track." },
-    { id: 4,  title: "Redbone",                   artist: "Childish Gambino",         src: null, art: null, color: "#2e0a0a", tracks: ["Redbone"],                   why: "Replace with your reason for loving this track." },
-    { id: 5,  title: "Nights",                    artist: "Frank Ocean",              src: null, art: null, color: "#081a14", tracks: ["Nights"],                    why: "Replace with your reason for loving this track." },
-    { id: 6,  title: "HUMBLE.",                   artist: "Kendrick Lamar",           src: null, art: null, color: "#0a0a1a", tracks: ["HUMBLE."],                   why: "Replace with your reason for loving this track." },
-    { id: 7,  title: "Goosebumps",                artist: "Travis Scott",             src: null, art: null, color: "#1a0800", tracks: ["Goosebumps"],                why: "Replace with your reason for loving this track." },
-    { id: 8,  title: "Location",                  artist: "Khalid",                   src: null, art: null, color: "#001420", tracks: ["Location"],                  why: "Replace with your reason for loving this track." },
-    { id: 9,  title: "Good Days",                 artist: "SZA",                      src: null, art: null, color: "#100020", tracks: ["Good Days"],                 why: "Replace with your reason for loving this track." },
-    { id: 10, title: "Starboy",                   artist: "The Weeknd ft. Daft Punk", src: null, art: null, color: "#12061a", tracks: ["Starboy"],                   why: "Replace with your reason for loving this track." },
-    { id: 11, title: "Motion Picture Soundtrack", artist: "Radiohead",                src: null, art: null, color: "#0a1218", tracks: ["Motion Picture Soundtrack"], why: "Replace with your reason for loving this track." }
+    { id: 0, title: "Splendor",               artist: "Glixen",               src: null, art: "Images/albumCovers/splendor-glixen-album-cover.jpg",         color: "#0a0a12", tracks: ["Splendor"],               why: "Replace with your reason for loving this track." },
+    { id: 1, title: "Tu Ultima Cancion",       artist: "Tu Ultima Cancion",    src: null, art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",        color: "#12080a", tracks: ["Tu Ultima Cancion"],       why: "Replace with your reason for loving this track." },
+    { id: 2, title: "MC HotDog",              artist: "MC HotDog",            src: null, art: "Images/albumCovers/mchotdog-album-cover.jpg",                  color: "#0a0a0a", tracks: ["MC HotDog"],              why: "Replace with your reason for loving this track." },
+    { id: 3, title: "Nour El Ein",             artist: "Nour El Ein",          src: null, art: "Images/albumCovers/nour-el-ein-album-cover.jpg",               color: "#12100a", tracks: ["Nour El Ein"],             why: "Replace with your reason for loving this track." },
+    { id: 4, title: "Moonchild",               artist: "MRD",                  src: null, art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",             color: "#080a14", tracks: ["Moonchild"],               why: "Replace with your reason for loving this track." },
+    { id: 5, title: "Friednen auf der Walt",   artist: "Friednen auf der Walt",src: null, art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",     color: "#0a1208", tracks: ["Friednen auf der Walt"],   why: "Replace with your reason for loving this track." },
+    { id: 6, title: "Casting",                 artist: "Casting",              src: null, art: "Images/albumCovers/casting-album-cover.jpg",                   color: "#0e0a0a", tracks: ["Casting"],                 why: "Replace with your reason for loving this track." },
+    { id: 7, title: "Wait 2",                  artist: "xaviersobased",        src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",             color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." }
   ];
 
   var shelf       = document.getElementById("musicShelf");
@@ -508,33 +504,60 @@
   }
 
   function buildArtEl(t, large) {
-    if (t.art) {
-      var img = document.createElement("img");
-      img.src = t.art;
-      img.alt = t.title;
-      if (large) {
+    if (large) {
+      if (t.art) {
+        var img = document.createElement("img");
+        img.src = t.art;
+        img.alt = t.title;
         var wrap = document.createElement("div");
         wrap.style.cssText = "width:100%;height:100%;";
         wrap.appendChild(img);
         return wrap;
       }
-      var artDiv = document.createElement("div");
-      artDiv.className = "album-art";
-      artDiv.appendChild(img);
-      return artDiv;
+      var ph = document.createElement("div");
+      ph.className = "album-placeholder";
+      ph.style.backgroundColor = t.color;
+      var ttl = document.createElement("span");
+      ttl.className = "album-placeholder-title";
+      ttl.textContent = t.title;
+      var atr = document.createElement("span");
+      atr.className = "album-placeholder-artist";
+      atr.textContent = t.artist;
+      ph.appendChild(ttl);
+      ph.appendChild(atr);
+      return ph;
     }
-    var ph = document.createElement("div");
-    ph.className = "album-placeholder";
-    ph.style.backgroundColor = t.color;
-    var ttl = document.createElement("span");
-    ttl.className = "album-placeholder-title";
-    ttl.textContent = t.title;
-    var atr = document.createElement("span");
-    atr.className = "album-placeholder-artist";
-    atr.textContent = t.artist;
-    ph.appendChild(ttl);
-    ph.appendChild(atr);
-    return ph;
+
+    // Shelf spine/face element
+    var face = document.createElement("div");
+    face.className = "album-face";
+    if (!t.art) face.style.backgroundColor = t.color;
+
+    if (t.art) {
+      var img = document.createElement("img");
+      img.src = t.art;
+      img.alt = t.title;
+      face.appendChild(img);
+    }
+
+    var spine = document.createElement("span");
+    spine.className = "album-spine-title";
+    spine.textContent = t.title;
+
+    var info = document.createElement("div");
+    info.className = "album-face-info";
+    var fttl = document.createElement("span");
+    fttl.className = "album-face-title";
+    fttl.textContent = t.title;
+    var fatr = document.createElement("span");
+    fatr.className = "album-face-artist";
+    fatr.textContent = t.artist;
+    info.appendChild(fttl);
+    info.appendChild(fatr);
+
+    face.appendChild(spine);
+    face.appendChild(info);
+    return face;
   }
 
   TRACKS.forEach(function (t) {

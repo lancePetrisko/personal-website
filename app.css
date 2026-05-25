@@ -767,34 +767,100 @@ h2 {
 
 .album {
   flex-shrink: 0;
-  width: 115px;
+  width: 34px;
+  height: 160px;
   cursor: pointer;
-  transform: translateY(0);
-  transition: transform 0.15s ease;
-}
-
-.album:hover {
-  transform: translateY(-16px);
-}
-
-.album.active {
-  transform: translateY(-10px);
-}
-
-.album-art {
-  width: 115px;
-  height: 115px;
-  display: block;
-  border-radius: 2px;
   overflow: hidden;
-  border: 1px solid rgba(238, 238, 238, 0.08);
+  border-radius: 2px;
+  position: relative;
+  transition: width 0.22s ease, transform 0.22s ease;
 }
 
-.album-art img {
+.album:hover,
+.album.active {
+  width: 130px;
+  transform: translateY(-20px);
+}
+
+.album-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 160px;
+}
+
+.album-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+}
+
+.album-spine-title {
+  position: absolute;
+  left: 17px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.5rem;
+  color: rgba(238, 238, 238, 0.72);
+  letter-spacing: 1px;
+  max-width: 148px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.album:hover .album-spine-title,
+.album.active .album-spine-title {
+  opacity: 0;
+}
+
+.album-face-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 7px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+  opacity: 0;
+  transition: opacity 0.12s ease 0.08s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.album:hover .album-face-info,
+.album.active .album-face-info {
+  opacity: 1;
+}
+
+.album-face-title {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.52rem;
+  color: rgba(238, 238, 238, 0.92);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.album-face-artist {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.44rem;
+  color: rgba(238, 238, 238, 0.5);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .album-placeholder {
@@ -830,11 +896,6 @@ h2 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.album.active .album-placeholder,
-.album.active .album-art {
-  border-color: rgba(238, 238, 238, 0.45);
 }
 
 /* ── Music player ─────────────────────────────────────────── */
