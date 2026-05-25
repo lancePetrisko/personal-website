@@ -84,24 +84,21 @@
           <span class="exp-prompt">visitor@lance:~$&nbsp;</span
           ><span class="exp-typed">ls for-fun-stuff/</span>
         </div>
-        <div class="projects">
-          <article class="project-card">
-            <div class="project-media">
-              <img
-                src="Images/esports/lanVSUVU.jpg"
-                alt="University of Utah Esports — JV Valorant"
-              />
+        <div class="exp-grid">
+          <a class="exp-img-card" href="morePages/esports.html">
+            <img src="Images/esports/lanVSUVU.jpg" alt="University of Utah Esports — JV Valorant" />
+            <div class="exp-img-overlay">
+              <div class="exp-img-meta">
+                <h3>University of Utah Esports — JV Valorant</h3>
+                <div class="exp-tags">
+                  <span class="exp-tag">esports</span>
+                  <span class="exp-tag">competition</span>
+                  <span class="exp-tag">valorant</span>
+                </div>
+                <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+              </div>
             </div>
-            <div class="project-content">
-              <h3>University of Utah Esports — JV Valorant</h3>
-              <p>
-                Competed on the University of Utah's JV Valorant roster in
-                collegiate esports. Participated in LAN events and online league
-                play representing the U.
-              </p>
-              <p><b>Tags:</b> esports, competition, valorant</p>
-            </div>
-          </article>
+          </a>
         </div>
       </section>
 
@@ -113,6 +110,25 @@
 
     <script src="last-updated.js"></script>
     <script src="app.js"></script>
+
+    <script>
+    (function () {
+      function isMobile() { return window.matchMedia("(max-width: 900px)").matches; }
+      document.querySelectorAll(".exp-img-card").forEach(function (card) {
+        card.addEventListener("click", function (e) {
+          if (!isMobile()) return;
+          var wasActive = card.classList.contains("overlay-active");
+          document.querySelectorAll(".exp-img-card.overlay-active").forEach(function (c) {
+            c.classList.remove("overlay-active");
+          });
+          if (!wasActive) {
+            card.classList.add("overlay-active");
+            e.preventDefault();
+          }
+        });
+      });
+    })();
+    </script>
 
     <script>
       (function () {
