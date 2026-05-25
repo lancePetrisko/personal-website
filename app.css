@@ -1084,6 +1084,35 @@ h2 {
   color: rgba(238, 238, 238, 0.75);
 }
 
+.shelf-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(238, 238, 238, 0.18);
+  color: rgb(221, 221, 221);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shelf-arrow--left  { left: 0; }
+.shelf-arrow--right { right: 0; }
+
+.shelf-arrow:hover  { opacity: 0.75; }
+.shelf-arrow:disabled { opacity: 0.2; pointer-events: none; }
+
+.shelf-animated {
+  transition: transform 0.3s ease;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .project-card,
@@ -1203,6 +1232,7 @@ h2 {
 
   .music-shelf-viewport {
     height: 200px;
+    cursor: default;
   }
 
   .album {
@@ -1224,6 +1254,25 @@ h2 {
   .album-spine-title {
     left: 22px;
     max-width: 160px;
+  }
+
+  .shelf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .album.shelf-focused {
+    width: 148px;
+    transform: translateY(-18px);
+  }
+
+  .album.shelf-focused .album-spine-title {
+    opacity: 0;
+  }
+
+  .album.shelf-focused .album-face-info {
+    opacity: 1;
   }
 
   .music-player-layout {

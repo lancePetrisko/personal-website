@@ -103,6 +103,8 @@
       </div>
       <div class="music-shelf-viewport" id="musicShelfViewport">
         <div class="music-shelf" id="musicShelf"></div>
+        <button class="shelf-arrow shelf-arrow--left" id="shelfArrowLeft">←</button>
+        <button class="shelf-arrow shelf-arrow--right" id="shelfArrowRight">→</button>
       </div>
       <div class="music-player" id="musicPlayer">
         <div class="music-player-layout">
@@ -491,7 +493,6 @@
     { id: 15, title: "Classist",                artist: "Classist",              src: null, art: "Images/albumCovers/classist-album-cover.jpg",                   color: "#0e0c0a", tracks: ["Classist"],                why: "Replace with your reason for loving this track." }
   ];
 
-  var N_COPIES   = 5;
   var viewport   = document.getElementById("musicShelfViewport");
   var shelf      = document.getElementById("musicShelf");
   var player     = document.getElementById("musicPlayer");
@@ -506,12 +507,18 @@
   var mpWhy      = document.getElementById("mpWhy");
   var mpClose    = document.getElementById("mpClose");
 
-  var activeId = null;
-  var pos      = 0;
-  var vel      = 0;
-  var oneSet   = 0;
-  var mouseOver= false;
-  var raf      = null;
+  var activeId  = null;
+  var pos       = 0;
+  var vel       = 0;
+  var maxScroll = 0;
+  var mouseOver = false;
+  var raf       = null;
+  var mobileIdx = 0;
+
+  var arrowLeft  = document.getElementById("shelfArrowLeft");
+  var arrowRight = document.getElementById("shelfArrowRight");
+
+  function isMobile() { return window.matchMedia("(max-width: 900px)").matches; }
 
   function fmt(s) {
     if (isNaN(s) || !isFinite(s)) return "0:00";
@@ -575,32 +582,31 @@
     return face;
   }
 
-  // Render N_COPIES sets of albums
-  for (var copy = 0; copy < N_COPIES; copy++) {
-    TRACKS.forEach(function (t) {
-      var div = document.createElement("div");
-      div.className = "album";
-      div.dataset.idx = t.id;
-      div.appendChild(buildArtEl(t, false));
-      shelf.appendChild(div);
-      div.addEventListener("click", function () { openTrack(t); });
-    });
-  }
+  // Render albums once
+  TRACKS.forEach(function (t) {
+    var div = document.createElement("div");
+    div.className = "album";
+    div.dataset.idx = t.id;
+    div.appendChild(buildArtEl(t, false));
+    shelf.appendChild(div);
+    div.addEventListener("click", function () { openTrack(t); });
+  });
 
-  // Measure oneSet after layout and snap to middle copy
+  // Measure scroll bounds after layout
   function init() {
-    oneSet = shelf.offsetWidth / N_COPIES;
-    pos = -2 * oneSet;
-    shelf.style.transform = "translateX(" + pos + "px)";
+    maxScroll = -(shelf.offsetWidth - viewport.offsetWidth);
+    pos = 0;
+    shelf.style.transform = "translateX(0px)";
+    if (isMobile()) {
+      setMobileFocus(0);
+      updateArrows();
+    }
   }
   requestAnimationFrame(function () { requestAnimationFrame(init); });
 
   // Carousel tick — runs every frame while mouse is over viewport
   function tick() {
-    pos += vel;
-    // Infinite wrap: stay in range [-3*oneSet, -oneSet]
-    if (pos < -3 * oneSet) pos += oneSet;
-    if (pos > -oneSet)     pos -= oneSet;
+    pos = Math.min(0, Math.max(maxScroll, pos + vel));
     shelf.style.transform = "translateX(" + pos + "px)";
     if (mouseOver) {
       raf = requestAnimationFrame(tick);
@@ -610,11 +616,13 @@
   }
 
   viewport.addEventListener("mouseenter", function () {
+    if (isMobile()) return;
     mouseOver = true;
     if (!raf) raf = requestAnimationFrame(tick);
   });
 
   viewport.addEventListener("mousemove", function (e) {
+    if (isMobile()) return;
     var rect = viewport.getBoundingClientRect();
     var t = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2); // -1 to 1
     var dead = 0.18;
@@ -627,9 +635,45 @@
   });
 
   viewport.addEventListener("mouseleave", function () {
+    if (isMobile()) return;
     mouseOver = false;
     vel = 0;
   });
+
+  // ── Mobile arrow navigation ──────────────────────────────────
+
+  function setMobileFocus(idx) {
+    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+      el.classList.remove("shelf-focused");
+    });
+    var albums = shelf.querySelectorAll(".album");
+    if (albums[idx]) albums[idx].classList.add("shelf-focused");
+  }
+
+  function updateArrows() {
+    arrowLeft.disabled  = mobileIdx <= 0;
+    arrowRight.disabled = mobileIdx >= TRACKS.length - 1;
+  }
+
+  function navigateMobile(dir) {
+    mobileIdx = Math.max(0, Math.min(TRACKS.length - 1, mobileIdx + dir));
+    setMobileFocus(mobileIdx);
+
+    var vpW    = viewport.offsetWidth;
+    var step   = 44 + 6; // mobile spine + gap
+    var faceW  = 148;
+    var target = -(mobileIdx * step) + (vpW - faceW) / 2;
+    pos = Math.min(0, Math.max(maxScroll, target));
+
+    shelf.classList.add("shelf-animated");
+    shelf.style.transform = "translateX(" + pos + "px)";
+    setTimeout(function () { shelf.classList.remove("shelf-animated"); }, 320);
+
+    updateArrows();
+  }
+
+  arrowLeft.addEventListener("click",  function () { navigateMobile(-1); });
+  arrowRight.addEventListener("click", function () { navigateMobile(1); });
 
   function setActiveAlbums(id) {
     shelf.querySelectorAll(".album.active").forEach(function (el) {
