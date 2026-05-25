@@ -1,379 +1,572 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lance Petrisko — music favorites and esports." />
-  <meta name="author" content="Lance Petrisko" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
-  <title>lancePetrisko/play</title>
-  <link rel="icon" type="image/jpeg" href="Images/websiteIcons/blackSquare.jpeg" />
-  <link rel="stylesheet" href="app.css" />
-</head>
-<body>
-
-<nav class="navbar">
-  <a href="index.html" class="nav-name">Lance Petrisko</a>
-  <div class="nav-center">
-    <a href="index.html#experience">Work</a>
-    <a href="play.html">Play</a>
-  </div>
-  <div class="nav-right">
-    <a href="index.html#about">Info</a>
-    <a href="morePages/resume.html">Resume</a>
-  </div>
-</nav>
-
-<main>
-
-  <section class="music-section" id="music">
-    <div class="music-section-heading">
-      <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls music/favorites/</span>
-    </div>
-    <div class="music-shelf-viewport" id="musicShelfViewport">
-      <div class="music-shelf" id="musicShelf"></div>
-      <button class="shelf-arrow shelf-arrow--left" id="shelfArrowLeft">←</button>
-      <button class="shelf-arrow shelf-arrow--right" id="shelfArrowRight">→</button>
-    </div>
-    <div class="music-player" id="musicPlayer">
-      <div class="music-player-layout">
-        <div class="music-art-lg" id="mpArtWrap"></div>
-        <div class="music-info">
-          <button class="music-close" id="mpClose">[ close ]</button>
-          <h3 id="mpTitle"></h3>
-          <p class="music-artist" id="mpArtist"></p>
-          <div class="music-controls">
-            <button class="music-play-btn" id="mpPlayBtn">[ PLAY ]</button>
-            <span class="music-time" id="mpTime">0:00 / 0:00</span>
-          </div>
-          <input class="music-progress" id="mpProgress" type="range" min="0" max="100" value="0" step="0.1" />
-          <audio id="mpAudio"></audio>
-          <div class="music-tracklist" id="mpTracklist"></div>
-          <p class="music-why-label">// why I like this</p>
-          <p class="music-why" id="mpWhy"></p>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lance Petrisko — music favorites and esports."
+    />
+    <meta name="author" content="Lance Petrisko" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>lancePetrisko/play</title>
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="Images/websiteIcons/blackSquare.jpeg"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-name">Lance Petrisko</a>
+      <div class="nav-center">
+        <a href="index.html#experience">Work</a>
+        <a href="play.html">Play</a>
       </div>
-    </div>
-  </section>
+      <div class="nav-right">
+        <a href="index.html#about">Info</a>
+        <a href="morePages/resume.html">Resume</a>
+      </div>
+    </nav>
 
-  <section id="esports">
-    <div class="exp-section-heading">
-      <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls esports/</span>
-    </div>
-    <div class="projects">
-      <article class="project-card">
-        <div class="project-media">
-          <img src="Images/esports/lanVSUVU.jpg" alt="University of Utah Esports — JV Valorant" />
+    <main>
+      <section class="music-section" id="music">
+        <div class="music-section-heading">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span
+          ><span class="exp-typed">ls music/favorites/</span>
         </div>
-        <div class="project-content">
-          <h3>University of Utah Esports — JV Valorant</h3>
-          <p>Competed on the University of Utah's JV Valorant roster in collegiate esports. Participated in LAN events and online league play representing the U.</p>
-          <p><b>Tags:</b> esports, competition, valorant</p>
+        <div class="music-shelf-viewport" id="musicShelfViewport">
+          <div class="music-shelf" id="musicShelf"></div>
+          <button class="shelf-arrow shelf-arrow--left" id="shelfArrowLeft">
+            ←
+          </button>
+          <button class="shelf-arrow shelf-arrow--right" id="shelfArrowRight">
+            →
+          </button>
         </div>
-      </article>
-    </div>
-  </section>
+        <div class="music-player" id="musicPlayer">
+          <div class="music-player-layout">
+            <div class="music-art-lg" id="mpArtWrap"></div>
+            <div class="music-info">
+              <button class="music-close" id="mpClose">[ close ]</button>
+              <h3 id="mpTitle"></h3>
+              <p class="music-artist" id="mpArtist"></p>
+              <div class="music-controls">
+                <button class="music-play-btn" id="mpPlayBtn">[ PLAY ]</button>
+                <span class="music-time" id="mpTime">0:00 / 0:00</span>
+              </div>
+              <input
+                class="music-progress"
+                id="mpProgress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+              />
+              <audio id="mpAudio"></audio>
+              <div class="music-tracklist" id="mpTracklist"></div>
+              <p class="music-why-label">// why I like this</p>
+              <p class="music-why" id="mpWhy"></p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <p class="last-updated">
-    Last updated <span id="last-updated-value">checking deploy time...</span>
-  </p>
+      <section id="esports">
+        <div class="exp-section-heading">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span
+          ><span class="exp-typed">ls play/</span>
+        </div>
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="Images/esports/lanVSUVU.jpg"
+                alt="University of Utah Esports — JV Valorant"
+              />
+            </div>
+            <div class="project-content">
+              <h3>University of Utah Esports — JV Valorant</h3>
+              <p>
+                Competed on the University of Utah's JV Valorant roster in
+                collegiate esports. Participated in LAN events and online league
+                play representing the U.
+              </p>
+              <p><b>Tags:</b> esports, competition, valorant</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-</main>
+      <p class="last-updated">
+        Last updated
+        <span id="last-updated-value">checking deploy time...</span>
+      </p>
+    </main>
 
-<script src="last-updated.js"></script>
-<script src="app.js"></script>
+    <script src="last-updated.js"></script>
+    <script src="app.js"></script>
 
-<script>
-(function () {
-  var TRACKS = [
-    { id: 0,  title: "Splendor",               artist: "Glixen",                src: null, art: "Images/albumCovers/splendor-glixen-album-cover.jpg",        color: "#0a0a12", tracks: ["Splendor"],               why: "Replace with your reason for loving this track." },
-    { id: 1,  title: "Tu Ultima Cancion",       artist: "Tu Ultima Cancion",     src: null, art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",       color: "#12080a", tracks: ["Tu Ultima Cancion"],       why: "Replace with your reason for loving this track." },
-    { id: 2,  title: "MC HotDog",               artist: "MC HotDog",             src: null, art: "Images/albumCovers/mchotdog-album-cover.jpg",                color: "#0a0a0a", tracks: ["MC HotDog"],               why: "Replace with your reason for loving this track." },
-    { id: 3,  title: "Nour El Ein",             artist: "Nour El Ein",           src: null, art: "Images/albumCovers/nour-el-ein-album-cover.jpg",             color: "#12100a", tracks: ["Nour El Ein"],             why: "Replace with your reason for loving this track." },
-    { id: 4,  title: "Moonchild",               artist: "MRD",                   src: null, art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",           color: "#080a14", tracks: ["Moonchild"],               why: "Replace with your reason for loving this track." },
-    { id: 5,  title: "Friednen auf der Walt",   artist: "Friednen auf der Walt", src: null, art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",   color: "#0a1208", tracks: ["Friednen auf der Walt"],   why: "Replace with your reason for loving this track." },
-    { id: 6,  title: "Casting",                 artist: "Casting",               src: null, art: "Images/albumCovers/casting-album-cover.jpg",                 color: "#0e0a0a", tracks: ["Casting"],                 why: "Replace with your reason for loving this track." },
-    { id: 7,  title: "Wait 2",                  artist: "xaviersobased",         src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",           color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." },
-    { id: 8,  title: "Who Are U",               artist: "Who Are U",             src: null, art: "Images/albumCovers/who-are-u-album-cover.jpg",               color: "#0e0e0a", tracks: ["Who Are U"],               why: "Replace with your reason for loving this track." },
-    { id: 9,  title: "Until May",               artist: "Until May",             src: null, art: "Images/albumCovers/until-may-album-cover.jpg",               color: "#0a0c10", tracks: ["Until May"],               why: "Replace with your reason for loving this track." },
-    { id: 10, title: "Mas y Mas",               artist: "Mas y Mas",             src: null, art: "Images/albumCovers/mas-y-mas-album-cover.jpg",               color: "#100a0a", tracks: ["Mas y Mas"],               why: "Replace with your reason for loving this track." },
-    { id: 11, title: "Wahdon",                  artist: "Fairuz",                src: null, art: "Images/albumCovers/wahdon-fairuz-album-cover.jpg",           color: "#0a100e", tracks: ["Wahdon"],                  why: "Replace with your reason for loving this track." },
-    { id: 12, title: "waitt2rs",                artist: "waitt2rs",              src: null, art: "Images/albumCovers/waitt2rs-album-cover.jpg",                color: "#080c10", tracks: ["waitt2rs"],                why: "Replace with your reason for loving this track." },
-    { id: 13, title: "Pitfall",                 artist: "Pitfall",               src: null, art: "Images/albumCovers/pitfall-album-cover.png",                 color: "#0c0a0e", tracks: ["Pitfall"],                 why: "Replace with your reason for loving this track." },
-    { id: 14, title: "Mice on Carcasses",       artist: "Mice on Carcasses",     src: null, art: "Images/albumCovers/mice-on-carcasses-album-cover.jpg",       color: "#0a0808", tracks: ["Mice on Carcasses"],       why: "Replace with your reason for loving this track." },
-    { id: 15, title: "Classist",                artist: "Classist",              src: null, art: "Images/albumCovers/classist-album-cover.jpg",                color: "#0e0c0a", tracks: ["Classist"],                why: "Replace with your reason for loving this track." }
-  ];
+    <script>
+      (function () {
+        var TRACKS = [
+          {
+            id: 0,
+            title: "Splendor",
+            artist: "Glixen",
+            src: null,
+            art: "Images/albumCovers/splendor-glixen-album-cover.jpg",
+            color: "#0a0a12",
+            tracks: ["Splendor"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 1,
+            title: "Tu Ultima Cancion",
+            artist: "Tu Ultima Cancion",
+            src: null,
+            art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",
+            color: "#12080a",
+            tracks: ["Tu Ultima Cancion"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 2,
+            title: "MC HotDog",
+            artist: "MC HotDog",
+            src: null,
+            art: "Images/albumCovers/mchotdog-album-cover.jpg",
+            color: "#0a0a0a",
+            tracks: ["MC HotDog"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 3,
+            title: "Nour El Ein",
+            artist: "Nour El Ein",
+            src: null,
+            art: "Images/albumCovers/nour-el-ein-album-cover.jpg",
+            color: "#12100a",
+            tracks: ["Nour El Ein"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 4,
+            title: "Moonchild",
+            artist: "MRD",
+            src: null,
+            art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",
+            color: "#080a14",
+            tracks: ["Moonchild"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 5,
+            title: "Friednen auf der Walt",
+            artist: "Friednen auf der Walt",
+            src: null,
+            art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",
+            color: "#0a1208",
+            tracks: ["Friednen auf der Walt"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 6,
+            title: "Casting",
+            artist: "Casting",
+            src: null,
+            art: "Images/albumCovers/casting-album-cover.jpg",
+            color: "#0e0a0a",
+            tracks: ["Casting"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 7,
+            title: "Wait 2",
+            artist: "xaviersobased",
+            src: null,
+            art: "Images/albumCovers/wait2-xaviersobased-cover.webp",
+            color: "#0a0e12",
+            tracks: ["Wait 2"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 8,
+            title: "Who Are U",
+            artist: "Who Are U",
+            src: null,
+            art: "Images/albumCovers/who-are-u-album-cover.jpg",
+            color: "#0e0e0a",
+            tracks: ["Who Are U"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 9,
+            title: "Until May",
+            artist: "Until May",
+            src: null,
+            art: "Images/albumCovers/until-may-album-cover.jpg",
+            color: "#0a0c10",
+            tracks: ["Until May"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 10,
+            title: "Mas y Mas",
+            artist: "Mas y Mas",
+            src: null,
+            art: "Images/albumCovers/mas-y-mas-album-cover.jpg",
+            color: "#100a0a",
+            tracks: ["Mas y Mas"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 11,
+            title: "Wahdon",
+            artist: "Fairuz",
+            src: null,
+            art: "Images/albumCovers/wahdon-fairuz-album-cover.jpg",
+            color: "#0a100e",
+            tracks: ["Wahdon"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 12,
+            title: "waitt2rs",
+            artist: "waitt2rs",
+            src: null,
+            art: "Images/albumCovers/waitt2rs-album-cover.jpg",
+            color: "#080c10",
+            tracks: ["waitt2rs"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 13,
+            title: "Pitfall",
+            artist: "Pitfall",
+            src: null,
+            art: "Images/albumCovers/pitfall-album-cover.png",
+            color: "#0c0a0e",
+            tracks: ["Pitfall"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 14,
+            title: "Mice on Carcasses",
+            artist: "Mice on Carcasses",
+            src: null,
+            art: "Images/albumCovers/mice-on-carcasses-album-cover.jpg",
+            color: "#0a0808",
+            tracks: ["Mice on Carcasses"],
+            why: "Replace with your reason for loving this track.",
+          },
+          {
+            id: 15,
+            title: "Classist",
+            artist: "Classist",
+            src: null,
+            art: "Images/albumCovers/classist-album-cover.jpg",
+            color: "#0e0c0a",
+            tracks: ["Classist"],
+            why: "Replace with your reason for loving this track.",
+          },
+        ];
 
-  var viewport   = document.getElementById("musicShelfViewport");
-  var shelf      = document.getElementById("musicShelf");
-  var player     = document.getElementById("musicPlayer");
-  var mpArtWrap  = document.getElementById("mpArtWrap");
-  var mpTitle    = document.getElementById("mpTitle");
-  var mpArtist   = document.getElementById("mpArtist");
-  var mpPlayBtn  = document.getElementById("mpPlayBtn");
-  var mpTime     = document.getElementById("mpTime");
-  var mpProgress = document.getElementById("mpProgress");
-  var mpAudio    = document.getElementById("mpAudio");
-  var mpTracklist= document.getElementById("mpTracklist");
-  var mpWhy      = document.getElementById("mpWhy");
-  var mpClose    = document.getElementById("mpClose");
+        var viewport = document.getElementById("musicShelfViewport");
+        var shelf = document.getElementById("musicShelf");
+        var player = document.getElementById("musicPlayer");
+        var mpArtWrap = document.getElementById("mpArtWrap");
+        var mpTitle = document.getElementById("mpTitle");
+        var mpArtist = document.getElementById("mpArtist");
+        var mpPlayBtn = document.getElementById("mpPlayBtn");
+        var mpTime = document.getElementById("mpTime");
+        var mpProgress = document.getElementById("mpProgress");
+        var mpAudio = document.getElementById("mpAudio");
+        var mpTracklist = document.getElementById("mpTracklist");
+        var mpWhy = document.getElementById("mpWhy");
+        var mpClose = document.getElementById("mpClose");
 
-  var activeId  = null;
-  var pos       = 0;
-  var vel       = 0;
-  var maxScroll = 0;
-  var mouseOver = false;
-  var raf       = null;
-  var mobileIdx = 0;
+        var activeId = null;
+        var pos = 0;
+        var vel = 0;
+        var maxScroll = 0;
+        var mouseOver = false;
+        var raf = null;
+        var mobileIdx = 0;
 
-  var arrowLeft  = document.getElementById("shelfArrowLeft");
-  var arrowRight = document.getElementById("shelfArrowRight");
+        var arrowLeft = document.getElementById("shelfArrowLeft");
+        var arrowRight = document.getElementById("shelfArrowRight");
 
-  function isMobile() { return window.matchMedia("(max-width: 900px)").matches; }
+        function isMobile() {
+          return window.matchMedia("(max-width: 900px)").matches;
+        }
 
-  function fmt(s) {
-    if (isNaN(s) || !isFinite(s)) return "0:00";
-    var m = Math.floor(s / 60);
-    var sec = Math.floor(s % 60);
-    return m + ":" + (sec < 10 ? "0" : "") + sec;
-  }
+        function fmt(s) {
+          if (isNaN(s) || !isFinite(s)) return "0:00";
+          var m = Math.floor(s / 60);
+          var sec = Math.floor(s % 60);
+          return m + ":" + (sec < 10 ? "0" : "") + sec;
+        }
 
-  function buildArtEl(t, large) {
-    if (large) {
-      if (t.art) {
-        var img = document.createElement("img");
-        img.src = t.art;
-        img.alt = t.title;
-        var wrap = document.createElement("div");
-        wrap.style.cssText = "width:100%;height:100%;";
-        wrap.appendChild(img);
-        return wrap;
-      }
-      var ph = document.createElement("div");
-      ph.className = "album-placeholder";
-      ph.style.backgroundColor = t.color;
-      var pttl = document.createElement("span");
-      pttl.className = "album-placeholder-title";
-      pttl.textContent = t.title;
-      var patr = document.createElement("span");
-      patr.className = "album-placeholder-artist";
-      patr.textContent = t.artist;
-      ph.appendChild(pttl);
-      ph.appendChild(patr);
-      return ph;
-    }
+        function buildArtEl(t, large) {
+          if (large) {
+            if (t.art) {
+              var img = document.createElement("img");
+              img.src = t.art;
+              img.alt = t.title;
+              var wrap = document.createElement("div");
+              wrap.style.cssText = "width:100%;height:100%;";
+              wrap.appendChild(img);
+              return wrap;
+            }
+            var ph = document.createElement("div");
+            ph.className = "album-placeholder";
+            ph.style.backgroundColor = t.color;
+            var pttl = document.createElement("span");
+            pttl.className = "album-placeholder-title";
+            pttl.textContent = t.title;
+            var patr = document.createElement("span");
+            patr.className = "album-placeholder-artist";
+            patr.textContent = t.artist;
+            ph.appendChild(pttl);
+            ph.appendChild(patr);
+            return ph;
+          }
 
-    var face = document.createElement("div");
-    face.className = "album-face";
-    if (!t.art) face.style.backgroundColor = t.color;
+          var face = document.createElement("div");
+          face.className = "album-face";
+          if (!t.art) face.style.backgroundColor = t.color;
 
-    if (t.art) {
-      var img = document.createElement("img");
-      img.src = t.art;
-      img.alt = t.title;
-      face.appendChild(img);
-    }
+          if (t.art) {
+            var img = document.createElement("img");
+            img.src = t.art;
+            img.alt = t.title;
+            face.appendChild(img);
+          }
 
-    var spine = document.createElement("span");
-    spine.className = "album-spine-title";
-    spine.textContent = t.title;
+          var spine = document.createElement("span");
+          spine.className = "album-spine-title";
+          spine.textContent = t.title;
 
-    var info = document.createElement("div");
-    info.className = "album-face-info";
-    var fttl = document.createElement("span");
-    fttl.className = "album-face-title";
-    fttl.textContent = t.title;
-    var fatr = document.createElement("span");
-    fatr.className = "album-face-artist";
-    fatr.textContent = t.artist;
-    info.appendChild(fttl);
-    info.appendChild(fatr);
-    face.appendChild(spine);
-    face.appendChild(info);
-    return face;
-  }
+          var info = document.createElement("div");
+          info.className = "album-face-info";
+          var fttl = document.createElement("span");
+          fttl.className = "album-face-title";
+          fttl.textContent = t.title;
+          var fatr = document.createElement("span");
+          fatr.className = "album-face-artist";
+          fatr.textContent = t.artist;
+          info.appendChild(fttl);
+          info.appendChild(fatr);
+          face.appendChild(spine);
+          face.appendChild(info);
+          return face;
+        }
 
-  TRACKS.forEach(function (t) {
-    var div = document.createElement("div");
-    div.className = "album";
-    div.dataset.idx = t.id;
-    div.appendChild(buildArtEl(t, false));
-    shelf.appendChild(div);
-    div.addEventListener("click", function () { openTrack(t); });
-  });
+        TRACKS.forEach(function (t) {
+          var div = document.createElement("div");
+          div.className = "album";
+          div.dataset.idx = t.id;
+          div.appendChild(buildArtEl(t, false));
+          shelf.appendChild(div);
+          div.addEventListener("click", function () {
+            openTrack(t);
+          });
+        });
 
-  function init() {
-    maxScroll = -(shelf.offsetWidth - viewport.offsetWidth);
-    pos = 0;
-    shelf.style.transform = "translateX(0px)";
-    if (isMobile()) {
-      setMobileFocus(0);
-      updateArrows();
-    }
-  }
-  requestAnimationFrame(function () { requestAnimationFrame(init); });
+        function init() {
+          maxScroll = -(shelf.offsetWidth - viewport.offsetWidth);
+          pos = 0;
+          shelf.style.transform = "translateX(0px)";
+          if (isMobile()) {
+            setMobileFocus(0);
+            updateArrows();
+          }
+        }
+        requestAnimationFrame(function () {
+          requestAnimationFrame(init);
+        });
 
-  function tick() {
-    pos = Math.min(0, Math.max(maxScroll, pos + vel));
-    shelf.style.transform = "translateX(" + pos + "px)";
-    if (mouseOver) {
-      raf = requestAnimationFrame(tick);
-    } else {
-      raf = null;
-    }
-  }
+        function tick() {
+          pos = Math.min(0, Math.max(maxScroll, pos + vel));
+          shelf.style.transform = "translateX(" + pos + "px)";
+          if (mouseOver) {
+            raf = requestAnimationFrame(tick);
+          } else {
+            raf = null;
+          }
+        }
 
-  viewport.addEventListener("mouseenter", function () {
-    if (isMobile()) return;
-    mouseOver = true;
-    if (!raf) raf = requestAnimationFrame(tick);
-  });
+        viewport.addEventListener("mouseenter", function () {
+          if (isMobile()) return;
+          mouseOver = true;
+          if (!raf) raf = requestAnimationFrame(tick);
+        });
 
-  viewport.addEventListener("mousemove", function (e) {
-    if (isMobile()) return;
-    var rect = viewport.getBoundingClientRect();
-    var t = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    var dead = 0.18;
-    if (Math.abs(t) < dead) {
-      vel = 0;
-    } else {
-      var s = (Math.abs(t) - dead) / (1 - dead);
-      vel = -Math.sign(t) * s * s * 9;
-    }
-  });
+        viewport.addEventListener("mousemove", function (e) {
+          if (isMobile()) return;
+          var rect = viewport.getBoundingClientRect();
+          var t = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          var dead = 0.18;
+          if (Math.abs(t) < dead) {
+            vel = 0;
+          } else {
+            var s = (Math.abs(t) - dead) / (1 - dead);
+            vel = -Math.sign(t) * s * s * 9;
+          }
+        });
 
-  viewport.addEventListener("mouseleave", function () {
-    if (isMobile()) return;
-    mouseOver = false;
-    vel = 0;
-  });
+        viewport.addEventListener("mouseleave", function () {
+          if (isMobile()) return;
+          mouseOver = false;
+          vel = 0;
+        });
 
-  function setMobileFocus(idx) {
-    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
-      el.classList.remove("shelf-focused");
-    });
-    var albums = shelf.querySelectorAll(".album");
-    if (albums[idx]) albums[idx].classList.add("shelf-focused");
-  }
+        function setMobileFocus(idx) {
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          var albums = shelf.querySelectorAll(".album");
+          if (albums[idx]) albums[idx].classList.add("shelf-focused");
+        }
 
-  function updateArrows() {
-    arrowLeft.disabled  = mobileIdx <= 0;
-    arrowRight.disabled = mobileIdx >= TRACKS.length - 1;
-  }
+        function updateArrows() {
+          arrowLeft.disabled = mobileIdx <= 0;
+          arrowRight.disabled = mobileIdx >= TRACKS.length - 1;
+        }
 
-  function navigateMobile(dir) {
-    mobileIdx = Math.max(0, Math.min(TRACKS.length - 1, mobileIdx + dir));
-    setMobileFocus(mobileIdx);
+        function navigateMobile(dir) {
+          mobileIdx = Math.max(0, Math.min(TRACKS.length - 1, mobileIdx + dir));
+          setMobileFocus(mobileIdx);
 
-    var vpW    = viewport.offsetWidth;
-    var step   = 44 + 6;
-    var faceW  = 148;
-    var target = -(mobileIdx * step) + (vpW - faceW) / 2;
-    pos = Math.min(0, Math.max(maxScroll, target));
+          var vpW = viewport.offsetWidth;
+          var step = 44 + 6;
+          var faceW = 148;
+          var target = -(mobileIdx * step) + (vpW - faceW) / 2;
+          pos = Math.min(0, Math.max(maxScroll, target));
 
-    shelf.classList.add("shelf-animated");
-    shelf.style.transform = "translateX(" + pos + "px)";
-    setTimeout(function () { shelf.classList.remove("shelf-animated"); }, 320);
+          shelf.classList.add("shelf-animated");
+          shelf.style.transform = "translateX(" + pos + "px)";
+          setTimeout(function () {
+            shelf.classList.remove("shelf-animated");
+          }, 320);
 
-    updateArrows();
-  }
+          updateArrows();
+        }
 
-  arrowLeft.addEventListener("click",  function () { navigateMobile(-1); });
-  arrowRight.addEventListener("click", function () { navigateMobile(1); });
+        arrowLeft.addEventListener("click", function () {
+          navigateMobile(-1);
+        });
+        arrowRight.addEventListener("click", function () {
+          navigateMobile(1);
+        });
 
-  function setActiveAlbums(id) {
-    shelf.querySelectorAll(".album.active").forEach(function (el) {
-      el.classList.remove("active");
-    });
-    if (id !== null) {
-      shelf.querySelectorAll(".album[data-idx='" + id + "']").forEach(function (el) {
-        el.classList.add("active");
-      });
-    }
-  }
+        function setActiveAlbums(id) {
+          shelf.querySelectorAll(".album.active").forEach(function (el) {
+            el.classList.remove("active");
+          });
+          if (id !== null) {
+            shelf
+              .querySelectorAll(".album[data-idx='" + id + "']")
+              .forEach(function (el) {
+                el.classList.add("active");
+              });
+          }
+        }
 
-  function openTrack(t) {
-    if (activeId === t.id && player.classList.contains("open")) {
-      closePlayer();
-      return;
-    }
-    setActiveAlbums(null);
-    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
-      el.classList.remove("shelf-focused");
-    });
-    activeId = t.id;
-    setActiveAlbums(t.id);
+        function openTrack(t) {
+          if (activeId === t.id && player.classList.contains("open")) {
+            closePlayer();
+            return;
+          }
+          setActiveAlbums(null);
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          activeId = t.id;
+          setActiveAlbums(t.id);
 
-    mpArtWrap.innerHTML = "";
-    mpArtWrap.appendChild(buildArtEl(t, true));
-    mpTitle.textContent = t.title;
-    mpArtist.textContent = t.artist;
-    mpWhy.textContent = t.why;
+          mpArtWrap.innerHTML = "";
+          mpArtWrap.appendChild(buildArtEl(t, true));
+          mpTitle.textContent = t.title;
+          mpArtist.textContent = t.artist;
+          mpWhy.textContent = t.why;
 
-    mpAudio.pause();
-    if (t.src) { mpAudio.src = t.src; } else { mpAudio.removeAttribute("src"); }
-    mpAudio.load();
-    mpPlayBtn.textContent = "[ PLAY ]";
-    mpProgress.value = 0;
-    mpTime.textContent = "0:00 / 0:00";
+          mpAudio.pause();
+          if (t.src) {
+            mpAudio.src = t.src;
+          } else {
+            mpAudio.removeAttribute("src");
+          }
+          mpAudio.load();
+          mpPlayBtn.textContent = "[ PLAY ]";
+          mpProgress.value = 0;
+          mpTime.textContent = "0:00 / 0:00";
 
-    mpTracklist.innerHTML = "";
-    t.tracks.forEach(function (name, i) {
-      var item = document.createElement("div");
-      item.className = "music-track-item";
-      item.textContent = (i + 1) + ". " + name;
-      mpTracklist.appendChild(item);
-    });
+          mpTracklist.innerHTML = "";
+          t.tracks.forEach(function (name, i) {
+            var item = document.createElement("div");
+            item.className = "music-track-item";
+            item.textContent = i + 1 + ". " + name;
+            mpTracklist.appendChild(item);
+          });
 
-    player.classList.add("open");
-    setTimeout(function () { player.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 50);
-  }
+          player.classList.add("open");
+          setTimeout(function () {
+            player.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 50);
+        }
 
-  function closePlayer() {
-    player.classList.remove("open");
-    setActiveAlbums(null);
-    shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
-      el.classList.remove("shelf-focused");
-    });
-    activeId = null;
-    mpAudio.pause();
-    mpAudio.removeAttribute("src");
-    mpAudio.load();
-    mpPlayBtn.textContent = "[ PLAY ]";
-  }
+        function closePlayer() {
+          player.classList.remove("open");
+          setActiveAlbums(null);
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          activeId = null;
+          mpAudio.pause();
+          mpAudio.removeAttribute("src");
+          mpAudio.load();
+          mpPlayBtn.textContent = "[ PLAY ]";
+        }
 
-  mpClose.addEventListener("click", closePlayer);
+        mpClose.addEventListener("click", closePlayer);
 
-  mpPlayBtn.addEventListener("click", function () {
-    if (!mpAudio.getAttribute("src")) return;
-    if (mpAudio.paused) {
-      mpAudio.play();
-      mpPlayBtn.textContent = "[ PAUSE ]";
-    } else {
-      mpAudio.pause();
-      mpPlayBtn.textContent = "[ PLAY ]";
-    }
-  });
+        mpPlayBtn.addEventListener("click", function () {
+          if (!mpAudio.getAttribute("src")) return;
+          if (mpAudio.paused) {
+            mpAudio.play();
+            mpPlayBtn.textContent = "[ PAUSE ]";
+          } else {
+            mpAudio.pause();
+            mpPlayBtn.textContent = "[ PLAY ]";
+          }
+        });
 
-  mpAudio.addEventListener("timeupdate", function () {
-    if (!mpAudio.duration) return;
-    mpProgress.value = (mpAudio.currentTime / mpAudio.duration) * 100;
-    mpTime.textContent = fmt(mpAudio.currentTime) + " / " + fmt(mpAudio.duration);
-  });
+        mpAudio.addEventListener("timeupdate", function () {
+          if (!mpAudio.duration) return;
+          mpProgress.value = (mpAudio.currentTime / mpAudio.duration) * 100;
+          mpTime.textContent =
+            fmt(mpAudio.currentTime) + " / " + fmt(mpAudio.duration);
+        });
 
-  mpAudio.addEventListener("ended", function () {
-    mpPlayBtn.textContent = "[ PLAY ]";
-    mpProgress.value = 0;
-  });
+        mpAudio.addEventListener("ended", function () {
+          mpPlayBtn.textContent = "[ PLAY ]";
+          mpProgress.value = 0;
+        });
 
-  mpProgress.addEventListener("input", function () {
-    if (!mpAudio.duration) return;
-    mpAudio.currentTime = (mpProgress.value / 100) * mpAudio.duration;
-  });
-})();
-</script>
-
-</body>
+        mpProgress.addEventListener("input", function () {
+          if (!mpAudio.duration) return;
+          mpAudio.currentTime = (mpProgress.value / 100) * mpAudio.duration;
+        });
+      })();
+    </script>
+  </body>
 </html>
