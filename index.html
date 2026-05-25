@@ -480,7 +480,15 @@
     { id: 4, title: "Moonchild",               artist: "MRD",                   src: null, art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",           color: "#080a14", tracks: ["Moonchild"],               why: "Replace with your reason for loving this track." },
     { id: 5, title: "Friednen auf der Walt",   artist: "Friednen auf der Walt", src: null, art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",   color: "#0a1208", tracks: ["Friednen auf der Walt"],   why: "Replace with your reason for loving this track." },
     { id: 6, title: "Casting",                 artist: "Casting",               src: null, art: "Images/albumCovers/casting-album-cover.jpg",                 color: "#0e0a0a", tracks: ["Casting"],                 why: "Replace with your reason for loving this track." },
-    { id: 7, title: "Wait 2",                  artist: "xaviersobased",         src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",           color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." }
+    { id: 7,  title: "Wait 2",                  artist: "xaviersobased",         src: null, art: "Images/albumCovers/wait2-xaviersobased-cover.webp",           color: "#0a0e12", tracks: ["Wait 2"],                  why: "Replace with your reason for loving this track." },
+    { id: 8,  title: "Who Are U",               artist: "Who Are U",             src: null, art: "Images/albumCovers/who-are-u-album-cover.jpg",                  color: "#0e0e0a", tracks: ["Who Are U"],               why: "Replace with your reason for loving this track." },
+    { id: 9,  title: "Until May",               artist: "Until May",             src: null, art: "Images/albumCovers/until-may-album-cover.jpg",                  color: "#0a0c10", tracks: ["Until May"],               why: "Replace with your reason for loving this track." },
+    { id: 10, title: "Mas y Mas",               artist: "Mas y Mas",             src: null, art: "Images/albumCovers/mas-y-mas-album-cover.jpg",                  color: "#100a0a", tracks: ["Mas y Mas"],               why: "Replace with your reason for loving this track." },
+    { id: 11, title: "Wahdon",                  artist: "Fairuz",                src: null, art: "Images/albumCovers/wahdon-fairuz-album-cover.jpg",              color: "#0a100e", tracks: ["Wahdon"],                  why: "Replace with your reason for loving this track." },
+    { id: 12, title: "waitt2rs",                artist: "waitt2rs",              src: null, art: "Images/albumCovers/waitt2rs-album-cover.jpg",                   color: "#080c10", tracks: ["waitt2rs"],                why: "Replace with your reason for loving this track." },
+    { id: 13, title: "Pitfall",                 artist: "Pitfall",               src: null, art: "Images/albumCovers/pitfall-album-cover.png",                    color: "#0c0a0e", tracks: ["Pitfall"],                 why: "Replace with your reason for loving this track." },
+    { id: 14, title: "Mice on Carcasses",       artist: "Mice on Carcasses",     src: null, art: "Images/albumCovers/mice-on-carcasses-album-cover.jpg",          color: "#0a0808", tracks: ["Mice on Carcasses"],       why: "Replace with your reason for loving this track." },
+    { id: 15, title: "Classist",                artist: "Classist",              src: null, art: "Images/albumCovers/classist-album-cover.jpg",                   color: "#0e0c0a", tracks: ["Classist"],                why: "Replace with your reason for loving this track." }
   ];
 
   var N_COPIES   = 5;
@@ -614,7 +622,7 @@
       vel = 0;
     } else {
       var s = (Math.abs(t) - dead) / (1 - dead); // 0 to 1
-      vel = Math.sign(t) * s * s * 9; // quadratic ramp, max ~9px/frame
+      vel = -Math.sign(t) * s * s * 9; // quadratic ramp, max ~9px/frame
     }
   });
 
