@@ -97,6 +97,32 @@
         </div>
     </section>
 
+    <section class="music-section">
+      <div class="music-section-heading">
+        <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls music/favorites/</span>
+      </div>
+      <div class="music-shelf" id="musicShelf"></div>
+      <div class="music-player" id="musicPlayer">
+        <div class="music-player-layout">
+          <div class="music-art-lg" id="mpArtWrap"></div>
+          <div class="music-info">
+            <button class="music-close" id="mpClose">[ close ]</button>
+            <h3 id="mpTitle"></h3>
+            <p class="music-artist" id="mpArtist"></p>
+            <div class="music-controls">
+              <button class="music-play-btn" id="mpPlayBtn">[ PLAY ]</button>
+              <span class="music-time" id="mpTime">0:00 / 0:00</span>
+            </div>
+            <input class="music-progress" id="mpProgress" type="range" min="0" max="100" value="0" step="0.1" />
+            <audio id="mpAudio"></audio>
+            <div class="music-tracklist" id="mpTracklist"></div>
+            <p class="music-why-label">// why I like this</p>
+            <p class="music-why" id="mpWhy"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="experience">
       <div class="exp-section-heading">
         <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls projects/</span>
@@ -441,4 +467,159 @@
   })();
 </script>
 
+
+<script>
+(function () {
+  var TRACKS = [
+    { id: 0,  title: "Blinding Lights",           artist: "The Weeknd",              src: null, art: null, color: "#1a0a2e", tracks: ["Blinding Lights"],           why: "Replace with your reason for loving this track." },
+    { id: 1,  title: "SICKO MODE",                artist: "Travis Scott",             src: null, art: null, color: "#080414", tracks: ["SICKO MODE"],                why: "Replace with your reason for loving this track." },
+    { id: 2,  title: "Money Trees",               artist: "Kendrick Lamar",           src: null, art: null, color: "#0d1a08", tracks: ["Money Trees"],               why: "Replace with your reason for loving this track." },
+    { id: 3,  title: "505",                       artist: "Arctic Monkeys",           src: null, art: null, color: "#1a1208", tracks: ["505"],                       why: "Replace with your reason for loving this track." },
+    { id: 4,  title: "Redbone",                   artist: "Childish Gambino",         src: null, art: null, color: "#2e0a0a", tracks: ["Redbone"],                   why: "Replace with your reason for loving this track." },
+    { id: 5,  title: "Nights",                    artist: "Frank Ocean",              src: null, art: null, color: "#081a14", tracks: ["Nights"],                    why: "Replace with your reason for loving this track." },
+    { id: 6,  title: "HUMBLE.",                   artist: "Kendrick Lamar",           src: null, art: null, color: "#0a0a1a", tracks: ["HUMBLE."],                   why: "Replace with your reason for loving this track." },
+    { id: 7,  title: "Goosebumps",                artist: "Travis Scott",             src: null, art: null, color: "#1a0800", tracks: ["Goosebumps"],                why: "Replace with your reason for loving this track." },
+    { id: 8,  title: "Location",                  artist: "Khalid",                   src: null, art: null, color: "#001420", tracks: ["Location"],                  why: "Replace with your reason for loving this track." },
+    { id: 9,  title: "Good Days",                 artist: "SZA",                      src: null, art: null, color: "#100020", tracks: ["Good Days"],                 why: "Replace with your reason for loving this track." },
+    { id: 10, title: "Starboy",                   artist: "The Weeknd ft. Daft Punk", src: null, art: null, color: "#12061a", tracks: ["Starboy"],                   why: "Replace with your reason for loving this track." },
+    { id: 11, title: "Motion Picture Soundtrack", artist: "Radiohead",                src: null, art: null, color: "#0a1218", tracks: ["Motion Picture Soundtrack"], why: "Replace with your reason for loving this track." }
+  ];
+
+  var shelf       = document.getElementById("musicShelf");
+  var player      = document.getElementById("musicPlayer");
+  var mpArtWrap   = document.getElementById("mpArtWrap");
+  var mpTitle     = document.getElementById("mpTitle");
+  var mpArtist    = document.getElementById("mpArtist");
+  var mpPlayBtn   = document.getElementById("mpPlayBtn");
+  var mpTime      = document.getElementById("mpTime");
+  var mpProgress  = document.getElementById("mpProgress");
+  var mpAudio     = document.getElementById("mpAudio");
+  var mpTracklist = document.getElementById("mpTracklist");
+  var mpWhy       = document.getElementById("mpWhy");
+  var mpClose     = document.getElementById("mpClose");
+  var activeEl    = null;
+  var activeId    = null;
+
+  function fmt(s) {
+    if (isNaN(s) || !isFinite(s)) return "0:00";
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ":" + (sec < 10 ? "0" : "") + sec;
+  }
+
+  function buildArtEl(t, large) {
+    if (t.art) {
+      var img = document.createElement("img");
+      img.src = t.art;
+      img.alt = t.title;
+      if (large) {
+        var wrap = document.createElement("div");
+        wrap.style.cssText = "width:100%;height:100%;";
+        wrap.appendChild(img);
+        return wrap;
+      }
+      var artDiv = document.createElement("div");
+      artDiv.className = "album-art";
+      artDiv.appendChild(img);
+      return artDiv;
+    }
+    var ph = document.createElement("div");
+    ph.className = "album-placeholder";
+    ph.style.backgroundColor = t.color;
+    var ttl = document.createElement("span");
+    ttl.className = "album-placeholder-title";
+    ttl.textContent = t.title;
+    var atr = document.createElement("span");
+    atr.className = "album-placeholder-artist";
+    atr.textContent = t.artist;
+    ph.appendChild(ttl);
+    ph.appendChild(atr);
+    return ph;
+  }
+
+  TRACKS.forEach(function (t) {
+    var div = document.createElement("div");
+    div.className = "album";
+    div.appendChild(buildArtEl(t, false));
+    shelf.appendChild(div);
+    div.addEventListener("click", function () { openTrack(t, div); });
+  });
+
+  function openTrack(t, el) {
+    if (activeId === t.id && player.classList.contains("open")) {
+      closePlayer();
+      return;
+    }
+    if (activeEl) activeEl.classList.remove("active");
+    activeEl = el;
+    activeId = t.id;
+    el.classList.add("active");
+
+    mpArtWrap.innerHTML = "";
+    mpArtWrap.appendChild(buildArtEl(t, true));
+
+    mpTitle.textContent = t.title;
+    mpArtist.textContent = t.artist;
+    mpWhy.textContent = t.why;
+
+    mpAudio.pause();
+    if (t.src) { mpAudio.src = t.src; } else { mpAudio.removeAttribute("src"); }
+    mpAudio.load();
+    mpPlayBtn.textContent = "[ PLAY ]";
+    mpProgress.value = 0;
+    mpTime.textContent = "0:00 / 0:00";
+
+    mpTracklist.innerHTML = "";
+    t.tracks.forEach(function (name, i) {
+      var item = document.createElement("div");
+      item.className = "music-track-item";
+      item.textContent = (i + 1) + ". " + name;
+      mpTracklist.appendChild(item);
+    });
+
+    player.classList.add("open");
+    setTimeout(function () { player.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 50);
+  }
+
+  function closePlayer() {
+    player.classList.remove("open");
+    if (activeEl) activeEl.classList.remove("active");
+    activeEl = null;
+    activeId = null;
+    mpAudio.pause();
+    mpAudio.removeAttribute("src");
+    mpAudio.load();
+    mpPlayBtn.textContent = "[ PLAY ]";
+  }
+
+  mpClose.addEventListener("click", closePlayer);
+
+  mpPlayBtn.addEventListener("click", function () {
+    if (!mpAudio.getAttribute("src")) return;
+    if (mpAudio.paused) {
+      mpAudio.play();
+      mpPlayBtn.textContent = "[ PAUSE ]";
+    } else {
+      mpAudio.pause();
+      mpPlayBtn.textContent = "[ PLAY ]";
+    }
+  });
+
+  mpAudio.addEventListener("timeupdate", function () {
+    if (!mpAudio.duration) return;
+    mpProgress.value = (mpAudio.currentTime / mpAudio.duration) * 100;
+    mpTime.textContent = fmt(mpAudio.currentTime) + " / " + fmt(mpAudio.duration);
+  });
+
+  mpAudio.addEventListener("ended", function () {
+    mpPlayBtn.textContent = "[ PLAY ]";
+    mpProgress.value = 0;
+  });
+
+  mpProgress.addEventListener("input", function () {
+    if (!mpAudio.duration) return;
+    mpAudio.currentTime = (mpProgress.value / 100) * mpAudio.duration;
+  });
+})();
+</script>
 </html>
