@@ -772,6 +772,14 @@ h2 {
   margin-bottom: 8px;
 }
 
+.spotify-volume-warn {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(221, 221, 221, 0.35);
+  margin: 6px 0 0;
+  font-style: italic;
+}
+
 .music-section-blurb {
   font-family: "Roboto Mono", monospace;
   font-size: 0.78rem;

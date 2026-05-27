@@ -73,9 +73,6 @@
               />
               <audio id="mpAudio"></audio>
               <div id="mpSpotify"></div>
-              <div class="music-tracklist" id="mpTracklist"></div>
-              <p class="music-why-label">// why I like this</p>
-              <p class="music-why" id="mpWhy"></p>
             </div>
           </div>
         </div>
@@ -385,8 +382,6 @@
         var mpTime = document.getElementById("mpTime");
         var mpProgress = document.getElementById("mpProgress");
         var mpAudio = document.getElementById("mpAudio");
-        var mpTracklist = document.getElementById("mpTracklist");
-        var mpWhy = document.getElementById("mpWhy");
         var mpClose = document.getElementById("mpClose");
         var mpSpotify = document.getElementById("mpSpotify");
         var mpControls = document.getElementById("mpControls");
@@ -595,8 +590,6 @@
           mpArtWrap.appendChild(buildArtEl(t, true));
           mpTitle.textContent = t.title;
           mpArtist.textContent = t.artist;
-          mpWhy.textContent = t.why;
-
           mpAudio.pause();
           mpAudio.removeAttribute("src");
           mpAudio.load();
@@ -614,6 +607,10 @@
               "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
             iframe.setAttribute("allowtransparency", "true");
             mpSpotify.appendChild(iframe);
+            var warn = document.createElement("p");
+            warn.className = "spotify-volume-warn";
+            warn.textContent = "// heads up: spotify embeds can be loud";
+            mpSpotify.appendChild(warn);
           } else {
             mpControls.style.display = "";
             mpProgress.style.display = "";
@@ -626,13 +623,6 @@
             mpTime.textContent = "0:00 / 0:00";
           }
 
-          mpTracklist.innerHTML = "";
-          t.tracks.forEach(function (name, i) {
-            var item = document.createElement("div");
-            item.className = "music-track-item";
-            item.textContent = i + 1 + ". " + name;
-            mpTracklist.appendChild(item);
-          });
 
           player.classList.add("open");
           setTimeout(function () {
