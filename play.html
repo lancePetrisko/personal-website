@@ -57,7 +57,7 @@
               <button class="music-close" id="mpClose">[ close ]</button>
               <h3 id="mpTitle"></h3>
               <p class="music-artist" id="mpArtist"></p>
-              <div class="music-controls">
+              <div class="music-controls" id="mpControls">
                 <button class="music-play-btn" id="mpPlayBtn">[ PLAY ]</button>
                 <span class="music-time" id="mpTime">0:00 / 0:00</span>
               </div>
@@ -71,6 +71,7 @@
                 step="0.1"
               />
               <audio id="mpAudio"></audio>
+              <div id="mpSpotify"></div>
               <div class="music-tracklist" id="mpTracklist"></div>
               <p class="music-why-label">// why I like this</p>
               <p class="music-why" id="mpWhy"></p>
@@ -86,7 +87,10 @@
         </div>
         <div class="exp-grid">
           <a class="exp-img-card" href="morePages/esports.html">
-            <img src="Images/esports/lanVSUVU.jpg" alt="University of Utah Esports — JV Valorant" />
+            <img
+              src="Images/esports/lanVSUVU.jpg"
+              alt="University of Utah Esports — JV Valorant"
+            />
             <div class="exp-img-overlay">
               <div class="exp-img-meta">
                 <h3>University of Utah Esports — JV Valorant</h3>
@@ -112,22 +116,26 @@
     <script src="app.js"></script>
 
     <script>
-    (function () {
-      function isMobile() { return window.matchMedia("(max-width: 900px)").matches; }
-      document.querySelectorAll(".exp-img-card").forEach(function (card) {
-        card.addEventListener("click", function (e) {
-          if (!isMobile()) return;
-          var wasActive = card.classList.contains("overlay-active");
-          document.querySelectorAll(".exp-img-card.overlay-active").forEach(function (c) {
-            c.classList.remove("overlay-active");
+      (function () {
+        function isMobile() {
+          return window.matchMedia("(max-width: 900px)").matches;
+        }
+        document.querySelectorAll(".exp-img-card").forEach(function (card) {
+          card.addEventListener("click", function (e) {
+            if (!isMobile()) return;
+            var wasActive = card.classList.contains("overlay-active");
+            document
+              .querySelectorAll(".exp-img-card.overlay-active")
+              .forEach(function (c) {
+                c.classList.remove("overlay-active");
+              });
+            if (!wasActive) {
+              card.classList.add("overlay-active");
+              e.preventDefault();
+            }
           });
-          if (!wasActive) {
-            card.classList.add("overlay-active");
-            e.preventDefault();
-          }
         });
-      });
-    })();
+      })();
     </script>
 
     <script>
@@ -135,163 +143,234 @@
         var TRACKS = [
           {
             id: 0,
-            title: "Splendor",
-            artist: "Glixen",
-            src: null,
-            art: "Images/albumCovers/splendor-glixen-album-cover.jpg",
-            color: "#0a0a12",
-            tracks: ["Splendor"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 1,
-            title: "Tu Ultima Cancion",
-            artist: "Tu Ultima Cancion",
-            src: null,
-            art: "Images/albumCovers/tu-ultima-cancion-album-cover.jpg",
-            color: "#12080a",
-            tracks: ["Tu Ultima Cancion"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 2,
-            title: "MC HotDog",
-            artist: "MC HotDog",
-            src: null,
-            art: "Images/albumCovers/mchotdog-album-cover.jpg",
-            color: "#0a0a0a",
-            tracks: ["MC HotDog"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 3,
-            title: "Nour El Ein",
-            artist: "Nour El Ein",
-            src: null,
-            art: "Images/albumCovers/nour-el-ein-album-cover.jpg",
-            color: "#12100a",
-            tracks: ["Nour El Ein"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 4,
             title: "Moonchild",
             artist: "MRD",
             src: null,
+            spotifyId: "6GCGJ6v79g6c5QhwGE7xHT",
             art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",
             color: "#080a14",
             tracks: ["Moonchild"],
-            why: "Replace with your reason for loving this track.",
+            why: "coding music",
           },
           {
-            id: 5,
+            id: 1,
             title: "Friednen auf der Walt",
             artist: "Friednen auf der Walt",
             src: null,
+            spotifyId: "5MMLfFgDMlzwG8aNOkmmh1",
             art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",
             color: "#0a1208",
             tracks: ["Friednen auf der Walt"],
-            why: "Replace with your reason for loving this track.",
+            why: "coding music",
           },
           {
-            id: 6,
+            id: 2,
             title: "Casting",
             artist: "Casting",
             src: null,
+            spotifyId: "7luHHMpLx79I79TDTT40JX",
             art: "Images/albumCovers/casting-album-cover.jpg",
             color: "#0e0a0a",
             tracks: ["Casting"],
-            why: "Replace with your reason for loving this track.",
+            why: "coding music",
           },
           {
-            id: 7,
-            title: "Wait 2",
-            artist: "xaviersobased",
-            src: null,
-            art: "Images/albumCovers/wait2-xaviersobased-cover.webp",
-            color: "#0a0e12",
-            tracks: ["Wait 2"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 8,
-            title: "Who Are U",
-            artist: "Who Are U",
-            src: null,
-            art: "Images/albumCovers/who-are-u-album-cover.jpg",
-            color: "#0e0e0a",
-            tracks: ["Who Are U"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 9,
-            title: "Until May",
-            artist: "Until May",
-            src: null,
-            art: "Images/albumCovers/until-may-album-cover.jpg",
-            color: "#0a0c10",
-            tracks: ["Until May"],
-            why: "Replace with your reason for loving this track.",
-          },
-          {
-            id: 10,
+            id: 3,
             title: "Mas y Mas",
             artist: "Mas y Mas",
             src: null,
+            spotifyId: "025Z8KBAXKGdKGW7MPtnPa",
             art: "Images/albumCovers/mas-y-mas-album-cover.jpg",
             color: "#100a0a",
             tracks: ["Mas y Mas"],
-            why: "Replace with your reason for loving this track.",
+            why: "coding music",
+          },
+          {
+            id: 4,
+            title: "Velvet Skys",
+            artist: "Taranfall",
+            src: null,
+            spotifyId: "6vwCB2MjEPCq0rHC9ZrCOJ",
+            art: null,
+            color: "#080e12",
+            tracks: ["Velvet Skys"],
+            why: "coding music",
+          },
+          {
+            id: 5,
+            title: "Frieden",
+            artist: "Die Selektion",
+            src: null,
+            spotifyId: "1oGGCX89vSZCIDiKG1PB5M",
+            art: "Images/albumCovers/reiden.jpg",
+            color: "#0a0c0e",
+            tracks: ["Frieden"],
+            why: "coding music",
+          },
+          {
+            id: 6,
+            title: "Destination",
+            artist: "Buzz Kill",
+            src: null,
+            spotifyId: "5Mm2jeBNfT4QT8U6xixuxT",
+            art: "Images/albumCovers/destination.jpg",
+            color: "#0e0a08",
+            tracks: ["Destination"],
+            why: "coding music",
+          },
+          {
+            id: 7,
+            title: "Gone",
+            artist: "Third Wife",
+            src: null,
+            spotifyId: "4u1fJAMuSeUR9ERZtJAMni",
+            art: "Images/albumCovers/gone.jpg",
+            color: "#0a0808",
+            tracks: ["Gone"],
+            why: "coding music",
+          },
+          {
+            id: 8,
+            title: "Digital Insomnia",
+            artist: "Tanzanfall",
+            src: null,
+            spotifyId: "4eRJjguPQVBKgmY2svtwIl",
+            art: "Images/albumCovers/tanzanfall digital insom.jpg",
+            color: "#080a10",
+            tracks: ["Digital Insomnia"],
+            why: "coding music",
+          },
+          {
+            id: 9,
+            title: "Wenn der Mond in Mein Herz Kracht",
+            artist: "MCR-T",
+            src: null,
+            spotifyId: "2kUYYi9Y1TwfLgE2yftTIC",
+            art: "Images/albumCovers/wenn der mond in mein herz kracht by mcr-t.jpg",
+            color: "#0c0a0e",
+            tracks: ["Wenn der Mond in Mein Herz Kracht"],
+            why: "coding music",
+          },
+          {
+            id: 10,
+            title: "Show Me",
+            artist: "MRD",
+            src: null,
+            spotifyId: "0Uab0XwXpwxzjLjjNRi2Y1",
+            art: "Images/albumCovers/show me by mrd.jpg",
+            color: "#080c0e",
+            tracks: ["Show Me"],
+            why: "coding music",
           },
           {
             id: 11,
-            title: "Wahdon",
-            artist: "Fairuz",
+            title: "Zwei",
+            artist: "Obernauer",
             src: null,
-            art: "Images/albumCovers/wahdon-fairuz-album-cover.jpg",
-            color: "#0a100e",
-            tracks: ["Wahdon"],
-            why: "Replace with your reason for loving this track.",
+            spotifyId: "6zoVzjPG0ZCxEEKe6PjZq3",
+            art: "Images/albumCovers/zwei by obernauer.jpg",
+            color: "#0a0e0c",
+            tracks: ["Zwei"],
+            why: "coding music",
           },
           {
             id: 12,
-            title: "waitt2rs",
-            artist: "waitt2rs",
+            title: "Arrasadora Utopia",
+            artist: "Reka, Imperial Black Unit",
             src: null,
-            art: "Images/albumCovers/waitt2rs-album-cover.jpg",
-            color: "#080c10",
-            tracks: ["waitt2rs"],
-            why: "Replace with your reason for loving this track.",
+            spotifyId: "1PXGL0NWbNFO8Fuj2rlk4C",
+            art: "Images/albumCovers/arrasadora utopia by reka, imperial black unit.jpg",
+            color: "#0e0808",
+            tracks: ["Arrasadora Utopia"],
+            why: "coding music",
           },
           {
             id: 13,
-            title: "Pitfall",
-            artist: "Pitfall",
+            title: "Silence Is Violence",
+            artist: "Lousiahhh, Maelstrom",
             src: null,
-            art: "Images/albumCovers/pitfall-album-cover.png",
-            color: "#0c0a0e",
-            tracks: ["Pitfall"],
-            why: "Replace with your reason for loving this track.",
+            spotifyId: "0BAdIHxksRsezymJn5359R",
+            art: "Images/albumCovers/silence is violence by lousiahhh, maelstrom.jpg",
+            color: "#0a080e",
+            tracks: ["Silence Is Violence"],
+            why: "coding music",
           },
           {
             id: 14,
-            title: "Mice on Carcasses",
-            artist: "Mice on Carcasses",
+            title: "Omens Duty",
+            artist: "Acient Methods",
             src: null,
-            art: "Images/albumCovers/mice-on-carcasses-album-cover.jpg",
-            color: "#0a0808",
-            tracks: ["Mice on Carcasses"],
-            why: "Replace with your reason for loving this track.",
+            spotifyId: "1ErpfywJiNFGvg1UvCRY4J",
+            art: "Images/albumCovers/omens duty by acient methods.jpg",
+            color: "#080e0a",
+            tracks: ["Omens Duty"],
+            why: "coding music",
           },
           {
             id: 15,
-            title: "Classist",
-            artist: "Classist",
+            title: "Creek",
+            artist: "MRD",
             src: null,
-            art: "Images/albumCovers/classist-album-cover.jpg",
-            color: "#0e0c0a",
-            tracks: ["Classist"],
-            why: "Replace with your reason for loving this track.",
+            spotifyId: "1LfsedqgL2lT2wyU6nyw1a",
+            art: "Images/albumCovers/creek by mrd.jpg",
+            color: "#0c0e08",
+            tracks: ["Creek"],
+            why: "coding music",
+          },
+          {
+            id: 16,
+            title: "Someone I Know",
+            artist: "Stranger",
+            src: null,
+            spotifyId: "6I2hvGd0VMQQS88UcDRI1Z",
+            art: "Images/albumCovers/someone i know by stranger.jpg",
+            color: "#0e0c08",
+            tracks: ["Someone I Know"],
+            why: "coding music",
+          },
+          {
+            id: 17,
+            title: "Einatem (Katle Liebe Remix)",
+            artist: "Giovanni Carozza, Katle Liebe",
+            src: null,
+            spotifyId: "3nX1nZJoLqfNSBq19RPGS4",
+            art: "Images/albumCovers/einatem - katle libee remix by giovanni carozza, katle liebe.jpg",
+            color: "#080c10",
+            tracks: ["Einatem (Katle Liebe Remix)"],
+            why: "coding music",
+          },
+          {
+            id: 18,
+            title: "Let Her Go",
+            artist: "MRD",
+            src: null,
+            spotifyId: "5B2EyWmX8O7G1rZr62n3i0",
+            art: "Images/albumCovers/let her go by mrd.jpg",
+            color: "#0a0e10",
+            tracks: ["Let Her Go"],
+            why: "coding music",
+          },
+          {
+            id: 19,
+            title: "Kann Nicht Schlafen (Ich Lieg Wach)",
+            artist: "3LNA",
+            src: null,
+            spotifyId: "0J7XFx01lrlEjrvXWDPz2x",
+            art: "Images/albumCovers/kann nicht schalafen (ich lieg wach) by 3lna.jpg",
+            color: "#100a0e",
+            tracks: ["Kann Nicht Schlafen (Ich Lieg Wach)"],
+            why: "coding music",
+          },
+          {
+            id: 20,
+            title: "Free Britney",
+            artist: "Anetha",
+            src: null,
+            spotifyId: "4cZXujsgwcqot9oMpfa0no",
+            art: "Images/albumCovers/free britney by anetha.jpg",
+            color: "#0e080c",
+            tracks: ["Free Britney"],
+            why: "coding music",
           },
         ];
 
@@ -308,6 +387,8 @@
         var mpTracklist = document.getElementById("mpTracklist");
         var mpWhy = document.getElementById("mpWhy");
         var mpClose = document.getElementById("mpClose");
+        var mpSpotify = document.getElementById("mpSpotify");
+        var mpControls = document.getElementById("mpControls");
 
         var activeId = null;
         var pos = 0;
@@ -516,15 +597,32 @@
           mpWhy.textContent = t.why;
 
           mpAudio.pause();
-          if (t.src) {
-            mpAudio.src = t.src;
-          } else {
-            mpAudio.removeAttribute("src");
-          }
+          mpAudio.removeAttribute("src");
           mpAudio.load();
-          mpPlayBtn.textContent = "[ PLAY ]";
-          mpProgress.value = 0;
-          mpTime.textContent = "0:00 / 0:00";
+          mpSpotify.innerHTML = "";
+
+          if (t.spotifyId) {
+            mpControls.style.display = "none";
+            mpProgress.style.display = "none";
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://open.spotify.com/embed/track/" + t.spotifyId;
+            iframe.width = "100%";
+            iframe.height = "80";
+            iframe.frameBorder = "0";
+            iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+            iframe.setAttribute("allowtransparency", "true");
+            mpSpotify.appendChild(iframe);
+          } else {
+            mpControls.style.display = "";
+            mpProgress.style.display = "";
+            if (t.src) {
+              mpAudio.src = t.src;
+              mpAudio.load();
+            }
+            mpPlayBtn.textContent = "[ PLAY ]";
+            mpProgress.value = 0;
+            mpTime.textContent = "0:00 / 0:00";
+          }
 
           mpTracklist.innerHTML = "";
           t.tracks.forEach(function (name, i) {
@@ -551,6 +649,9 @@
           mpAudio.removeAttribute("src");
           mpAudio.load();
           mpPlayBtn.textContent = "[ PLAY ]";
+          mpSpotify.innerHTML = "";
+          mpControls.style.display = "";
+          mpProgress.style.display = "";
         }
 
         mpClose.addEventListener("click", closePlayer);
