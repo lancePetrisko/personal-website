@@ -762,14 +762,22 @@ h2 {
 .music-section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 40px 80px;
+  padding: 48px 40px 80px;
 }
 
 .music-section-heading {
   font-family: "Roboto Mono", monospace;
   font-size: 0.85rem;
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+.music-section-blurb {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.78rem;
+  color: rgba(221, 221, 221, 0.5);
+  margin: 0 0 24px;
+  font-style: italic;
 }
 
 .music-shelf-viewport {
@@ -1344,7 +1352,7 @@ a.exp-img-card:hover img {
   }
 
   .music-section {
-    padding: 0 0 60px;
+    padding: 32px 16px 60px 16px;
   }
 
   .music-shelf-viewport {
