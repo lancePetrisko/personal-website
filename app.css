@@ -1358,6 +1358,12 @@ a.exp-img-card:hover img {
     letter-spacing: 2px;
   }
 
+  .last-updated {
+    font-size: 0.56rem !important;
+    letter-spacing: 1px;
+    margin: -12px auto 32px;
+  }
+
   .about-links {
     flex-direction: row;
     flex-wrap: wrap;
