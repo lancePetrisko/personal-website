@@ -81,8 +81,8 @@ nav {
 .nav-name {
   flex: 1;
   font-family: "Roboto Mono", monospace;
-  font-size: 1rem;
-  letter-spacing: 3px;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
   color: rgb(221, 221, 221);
   text-decoration: none;
   opacity: 0.9;
@@ -1340,15 +1340,20 @@ a.exp-img-card:hover img {
   }
 
   .nav-name {
+    flex: 0 0 auto;
     font-size: 0.65rem;
     letter-spacing: 2px;
   }
 
   .nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     gap: 1.2rem;
   }
 
   .nav-right {
+    flex: 1;
     gap: 1.2rem;
   }
 
