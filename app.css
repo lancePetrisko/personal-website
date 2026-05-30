@@ -94,7 +94,8 @@ nav {
 }
 
 .nav-name:active,
-.nav-name:focus {
+.nav-name:focus,
+.nav-name.nav-active {
   color: rgb(120, 120, 120);
   opacity: 1;
 }

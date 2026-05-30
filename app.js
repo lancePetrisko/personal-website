@@ -1,4 +1,11 @@
 (function markActiveNavLink() {
+  var allNavLinks = document.querySelectorAll(".nav-name, .nav-center a, .nav-right a");
+
+  function clearActive() {
+    allNavLinks.forEach(function (a) { a.classList.remove("nav-active"); });
+  }
+
+  // Highlight current page link on load
   var path = window.location.pathname;
   document.querySelectorAll(".nav-center a, .nav-right a").forEach(function (a) {
     var href = a.getAttribute("href");
@@ -7,6 +14,14 @@
     if (path === hrefPath || path.endsWith("/" + hrefPath)) {
       a.classList.add("nav-active");
     }
+  });
+
+  // Highlight any nav link on click (covers anchor links like #about, #experience)
+  allNavLinks.forEach(function (a) {
+    a.addEventListener("click", function () {
+      clearActive();
+      a.classList.add("nav-active");
+    });
   });
 })();
 
