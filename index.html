@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lance Petrisko — Information Systems student at the University of Utah, hobbyist builder, and self-hosted enthusiast based in Salt Lake City. Portfolio of projects in homelab, 3D printing, and web design." />
+  <meta name="description" content="Lance Petrisko — Information Systems student at the University of Utah, hobbyist builder, and self-hosted enthusiast. Portfolio of projects in homelab, 3D printing, web design, and collegiate esports." />
   <meta name="author" content="Lance Petrisko" />
   <meta property="og:title" content="Lance Petrisko — Portfolio" />
   <meta property="og:description" content="Information Systems student and hobbyist builder. Homelab, 3D printing, web design, and more." />
@@ -42,15 +42,20 @@
 <!-- BE HAPPY, HAVE FUN-->
 
 
-<nav class ="navbar"> <!-- Navigatater bar class containing "navbar"-->
-    <ul> <!-- Un-orded list-->
-        <li><a href="index.html">ABOUT ME</a></li> <!--When Surrounded in "a" tags it creates hyperlink to other page-->
-        <li><a href="myExperience.html">EXPERIENCE</a></li> <!--BTW, "li" just stands for list item-->
-    </ul> 
+<nav class="navbar">
+  <a href="#about" class="nav-name">LANCE PETRISKO</a>
+  <div class="nav-center">
+    <a href="#experience">Work</a>
+    <a href="play.html">Play</a>
+  </div>
+  <div class="nav-right">
+    <a href="#about">Info</a>
+    <a href="morePages/resume.html">Resume</a>
+  </div>
 </nav>
 
 <main>
-    <section class="about-hero">
+    <section class="about-hero" id="about">
         <div class="about-photo-wrap">
             <img src="Images/indexPictures/seniorPicture.JPG" alt="Lance Petrisko" class="about-photo" />
         </div>
@@ -58,12 +63,11 @@
             <h2 class="about-name">Lance Petrisko</h2>
             <p class="about-tagline">// Information Systems Student &amp; Hobbyist Builder</p>
             <p class="about-bio">
-                Hey! I'm Lance, a Native American IS student based in the Salt Lake City but split time between Seattle, Washington. My passion is building things,
-                breaking things, and figuring out how they work. Whether it's setting up servers in my homelab,
-                writing code late into the night, or designing something to 3D print, I'm always working on a project.
+                Hallooo! I'm Lance, a Native American IS student based in the Salt Lake City but split time between Seattle, Washington. I have a passion for tinkering!! Whether it's setting up servers in my homelab,
+                coding, or designing something to 3D print, I'm always working on a project.
             </p>
             <div class="about-links">
-                <a href="myExperience.html" class="about-btn">View My Experience</a>
+                <a href="#experience" class="about-btn">View My Work</a>
                 <a href="morePages/resume.html" class="about-btn about-btn--outline">View Resume</a>
                 <a href="https://www.linkedin.com/in/lance-petrisko-b9994036a/" target="_blank" rel="noopener noreferrer" class="about-btn--icon" aria-label="LinkedIn">
                     <img src="Images/websiteIcons/linkedInLogo.jpg" alt="LinkedIn" class="social-icon" />
@@ -81,7 +85,6 @@
             <p><span class="uou-hover">University of Utah</span></p>
             <p>Information Systems, B.S.</p>
             <p>Expected Graduation: April 2028</p>
-            <!-- <p>Relevant coursework: Data Structures, Operating Systems, Computer Networks, Algorithms</p> -->
         </div>
         <div class="about-card">
             <h3>// Skills</h3>
@@ -97,10 +100,53 @@
         </div>
     </section>
 
+    <section id="experience">
+      <div class="exp-section-heading">
+        <span class="exp-prompt">visitor@lance:~$&nbsp;</span><span class="exp-typed">ls work/</span>
+      </div>
+      <div class="exp-grid">
+
+        <a class="exp-img-card" href="https://ethanle.us/" target="_blank" rel="noopener noreferrer">
+          <img src="Images/webDesign/ethan-t-le-site.png" alt="UGC Creator Website" />
+          <div class="exp-img-overlay">
+            <div class="exp-img-meta">
+              <h3>UGC Creator Website</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">html</span>
+                <span class="exp-tag">css</span>
+              </div>
+              <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="exp-img-card" href="morePages/modelTheU.html">
+          <img src="Images/modelTheUProject/actualModel.jpg" alt="3D4E UCLA Campus Print Showcase" />
+          <div class="exp-img-overlay">
+            <div class="exp-img-meta">
+              <h3>3D4E UCLA Campus Print Showcase</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">3d printing</span>
+                <span class="exp-tag">blender</span>
+              </div>
+              <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
     <p class="last-updated">
         Last updated <span id="last-updated-value">checking deploy time...</span>
     </p>
 </main>
+
+<!-- Lightbox overlay -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;">
+  <button id="lightbox-close" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:rgb(221,221,221);font-family:'Roboto Mono',monospace;font-size:2rem;cursor:pointer;line-height:1;">×</button>
+  <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:88vh;display:block;" />
+</div>
 
 <script src="last-updated.js"></script>
 <script src="app.js"></script>
@@ -186,4 +232,56 @@
   })();
 </script>
 
+<script>
+  (function () {
+    var lightbox = document.getElementById("lightbox");
+    var lightboxImg = document.getElementById("lightbox-img");
+    var closeBtn = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".project-media img").forEach(function (img) {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", function () {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.style.display = "flex";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+  })();
+</script>
+
+<script>
+(function () {
+  function isMobile() { return window.matchMedia("(max-width: 900px)").matches; }
+
+  document.querySelectorAll(".exp-img-card").forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      if (!isMobile()) return;
+
+      var wasActive = card.classList.contains("overlay-active");
+
+      // Clear all open overlays
+      document.querySelectorAll(".exp-img-card.overlay-active").forEach(function (c) {
+        c.classList.remove("overlay-active");
+      });
+
+      if (!wasActive) {
+        // First tap: show overlay, block navigation
+        card.classList.add("overlay-active");
+        e.preventDefault();
+      }
+      // Second tap: overlay already cleared above, navigation proceeds naturally
+    });
+  });
+})();
+</script>
 </html>

@@ -9,6 +9,13 @@ body {
   margin: 0px;
   min-height: 100%;
   background-color: rgb(0, 0, 0);
+  scroll-behavior: smooth;
+}
+
+#about,
+#experience,
+#music {
+  scroll-margin-top: 100px;
 }
 
 .marquee-wrapper {
@@ -53,46 +60,94 @@ h1 {
   cursor: default;
 }
 
-.navbar {
-  padding-top: 25px;
-}
-
-.navbar ul {
-  list-style-type: none; /* This removes bullet points from hyperlinked basic nav*/
-  background-color: black;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  font-family: "Roboto Mono", monospace;
-  letter-spacing: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.5rem;
-}
-
 nav {
-  height: 80px;
-  display: flex; /* Type of style of display */
-  align-items: center;
-  justify-content: center;
+  height: 100px;
 }
 
-nav a {
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 100px;
+  background-color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgba(238, 238, 238, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.nav-name {
+  flex: 1;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: rgb(221, 221, 221);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.15s;
+}
+
+.nav-name:hover {
+  opacity: 0.5;
+}
+
+.nav-name:active,
+.nav-name:focus,
+.nav-name.nav-active {
+  color: rgb(120, 120, 120);
+  opacity: 1;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2.2rem;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.nav-center a,
+.nav-right a {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   text-decoration: none;
   color: rgb(221, 221, 221);
-  padding: 0.5rem 0; /* Vertical spacing for easier clicks */
+  opacity: 0.75;
+  transition: opacity 0.15s;
 }
 
-.navbar a:hover {
-  /* When hovering u can change attributes of ".navbar a"*/
-  background-color: rgba(134, 134, 134, 0.541);
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 1px;
+.nav-center a:hover,
+.nav-right a:hover {
+  opacity: 1;
 }
 
-.navbar li {
-  float: none;
+.nav-center a:active,
+.nav-center a:focus,
+.nav-right a:active,
+.nav-right a:focus {
+  color: rgb(120, 120, 120);
+  opacity: 1;
+}
+
+.nav-center a.nav-active,
+.nav-right a.nav-active {
+  color: rgb(120, 120, 120);
+  opacity: 1;
+}
+
+main {
+  padding-top: 100px;
 }
 
 p {
@@ -205,6 +260,29 @@ h2 {
 
 .about-photo-wrap {
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.about-photo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: none;
+  pointer-events: none;
+}
+
+.about-photo-wrap:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
 }
 
 .about-photo {
@@ -289,6 +367,7 @@ h2 {
   color: rgb(221, 221, 221);
   border: 1px solid rgba(221, 221, 221, 0.5);
 }
+
 
 .about-cards {
   max-width: 1000px;
@@ -427,10 +506,19 @@ h2 {
   text-transform: lowercase;
 }
 
-.exp-timeline {
-  max-width: 1400px;
+.exp-section-heading {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 40px 80px;
+  padding: 48px 40px 0;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.exp-timeline {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 80px;
   position: relative;
 }
 
@@ -438,7 +526,7 @@ h2 {
 .exp-entry {
   display: flex;
   gap: 28px;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   position: relative;
 }
 
@@ -691,6 +779,470 @@ h2 {
   border-top: 1px solid rgba(238, 238, 238, 0.08);
 }
 
+/* ── Music shelf ─────────────────────────────────────────── */
+
+.music-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+.music-section-heading {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.spotify-volume-warn {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(221, 221, 221, 0.35);
+  margin: 6px 0 0;
+  font-style: italic;
+}
+
+.music-section-blurb {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.78rem;
+  color: rgba(221, 221, 221, 0.5);
+  margin: 0 0 24px;
+  font-style: italic;
+}
+
+.music-shelf-viewport {
+  position: relative;
+  overflow: hidden;
+  height: 228px;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.15);
+  cursor: ew-resize;
+}
+
+.music-shelf {
+  display: inline-flex;
+  gap: 6px;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.album {
+  flex-shrink: 0;
+  width: 56px;
+  height: 200px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+  transition: width 0.22s ease, transform 0.22s ease;
+}
+
+.album:hover,
+.album.active {
+  width: 180px;
+  transform: translateY(-20px);
+}
+
+.album-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 200px;
+}
+
+.album-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.album-spine-title {
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center center;
+  white-space: nowrap;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.52rem;
+  color: rgba(238, 238, 238, 0.72);
+  letter-spacing: 1px;
+  max-width: 192px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.album:hover .album-spine-title,
+.album.active .album-spine-title {
+  opacity: 0;
+}
+
+.album-face-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.68));
+  opacity: 0;
+  transition: opacity 0.12s ease 0.08s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.album:hover .album-face-info,
+.album.active .album-face-info {
+  opacity: 1;
+}
+
+.album-face-title {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.55rem;
+  color: rgba(238, 238, 238, 0.95);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.album-face-artist {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.46rem;
+  color: rgba(238, 238, 238, 0.5);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.album-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 1px solid rgba(238, 238, 238, 0.08);
+}
+
+.album-placeholder-title {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(238, 238, 238, 0.75);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.album-placeholder-artist {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.6rem;
+  color: rgba(238, 238, 238, 0.4);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ── Music player ─────────────────────────────────────────── */
+
+.music-player {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.music-player.open {
+  max-height: 520px;
+}
+
+.music-player-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  padding: 28px 0 8px;
+  align-items: start;
+}
+
+.music-art-lg {
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(238, 238, 238, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.music-art-lg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.music-art-lg .album-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  padding: 14px;
+}
+
+.music-art-lg .album-placeholder-title {
+  font-size: 0.82rem;
+  -webkit-line-clamp: 3;
+}
+
+.music-art-lg .album-placeholder-artist {
+  font-size: 0.68rem;
+}
+
+.music-info h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+}
+
+.music-artist {
+  margin: 0 0 18px !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 2px;
+  opacity: 0.5 !important;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.music-play-btn {
+  background: none;
+  border: none;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  color: rgb(238, 238, 238);
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+
+.music-play-btn:hover {
+  opacity: 0.65;
+}
+
+.music-time {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(238, 238, 238, 0.4);
+  letter-spacing: 1px;
+}
+
+.music-progress {
+  width: 100%;
+  height: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(238, 238, 238, 0.15);
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.music-progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(221, 221, 221);
+  cursor: pointer;
+}
+
+.music-progress::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(221, 221, 221);
+  cursor: pointer;
+  border: none;
+}
+
+.music-tracklist {
+  margin-bottom: 16px;
+  border: 1px solid rgba(238, 238, 238, 0.08);
+  border-radius: 4px;
+}
+
+.music-track-item {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.78rem;
+  color: rgba(238, 238, 238, 0.7);
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.06);
+}
+
+.music-track-item:last-child {
+  border-bottom: none;
+}
+
+.music-why-label {
+  font-size: 0.72rem !important;
+  letter-spacing: 2px;
+  opacity: 0.4 !important;
+  margin: 0 0 6px !important;
+}
+
+.music-why {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  opacity: 0.8;
+  margin: 0 !important;
+}
+
+.music-close {
+  background: none;
+  border: none;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: rgba(238, 238, 238, 0.35);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 14px;
+  display: block;
+  transition: color 0.15s;
+}
+
+.music-close:hover {
+  color: rgba(238, 238, 238, 0.75);
+}
+
+.shelf-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(238, 238, 238, 0.18);
+  color: rgb(221, 221, 221);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shelf-arrow--left  { left: 0; }
+.shelf-arrow--right { right: 0; }
+
+.shelf-arrow:hover  { opacity: 0.75; }
+.shelf-arrow:disabled { opacity: 0.2; pointer-events: none; }
+
+.shelf-animated {
+  transition: transform 0.3s ease;
+}
+
+/* ── Experience image grid ───────────────────────────────────── */
+
+.exp-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 40px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.exp-img-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(238, 238, 238, 0.1);
+  aspect-ratio: 4 / 3;
+  text-decoration: none;
+  cursor: default;
+}
+
+a.exp-img-card {
+  cursor: pointer;
+}
+
+.exp-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+a.exp-img-card:hover img {
+  transform: scale(1.04);
+}
+
+.exp-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.exp-img-card:hover .exp-img-overlay,
+.exp-img-card.overlay-active .exp-img-overlay {
+  opacity: 1;
+}
+
+.exp-img-meta h3 {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: rgb(238, 238, 238);
+  font-family: "Roboto Mono", monospace;
+}
+
+.exp-img-meta .exp-tags {
+  margin-bottom: 12px;
+}
+
+.exp-img-more {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: rgb(255, 220, 50);
+  display: block;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .project-card,
@@ -783,24 +1335,113 @@ h2 {
     letter-spacing: 2px;
   }
 
-  nav a {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 8px;
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .nav-name {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+
+  .nav-center {
+    gap: 1.2rem;
+  }
+
+  .nav-right {
+    gap: 1.2rem;
+  }
+
+  .nav-center a,
+  .nav-right a {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
   }
 
   .about-links {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
 
   .about-btn,
   .about-btn--outline {
+    flex: 1 1 100%;
     text-align: center;
   }
 
   .about-btn--icon {
-    align-self: flex-start;
+    align-self: auto;
+    flex: 0 0 auto;
+  }
+
+  .exp-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 16px 60px;
+  }
+
+  .music-section {
+    padding: 32px 16px 60px 16px;
+  }
+
+  .music-shelf-viewport {
+    height: 200px;
+    cursor: default;
+  }
+
+  .album {
+    width: 44px;
+    height: 172px;
+  }
+
+  .album:hover,
+  .album.active {
+    width: 148px;
+    transform: translateY(-18px);
+  }
+
+  .album-face {
+    width: 148px;
+    height: 172px;
+  }
+
+  .album-spine-title {
+    left: 22px;
+    max-width: 160px;
+  }
+
+  .shelf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .album.shelf-focused {
+    width: 148px;
+    transform: translateY(-18px);
+  }
+
+  .album.shelf-focused .album-spine-title {
+    opacity: 0;
+  }
+
+  .album.shelf-focused .album-face-info {
+    opacity: 1;
+  }
+
+  .music-player-layout {
+    grid-template-columns: 1fr;
+    padding: 28px 20px 8px;
+  }
+
+  .music-art-lg {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+  }
+
+  .music-player.open {
+    max-height: 800px;
   }
 }

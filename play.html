@@ -1,0 +1,714 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lance Petrisko — music favorites and esports."
+    />
+    <meta name="author" content="Lance Petrisko" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>lancePetrisko/play</title>
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="Images/websiteIcons/blackSquare.jpeg"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-name">LANCE PETRISKO</a>
+      <div class="nav-center">
+        <a href="index.html#experience">Work</a>
+        <a href="play.html">Play</a>
+      </div>
+      <div class="nav-right">
+        <a href="index.html#about">Info</a>
+        <a href="morePages/resume.html">Resume</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="music-section" id="music">
+        <div class="music-section-heading">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span
+          ><span class="exp-typed">ls play/coding-music-favs/</span>
+        </div>
+        <p class="music-section-blurb">love techno when building</p>
+        <div class="music-shelf-viewport" id="musicShelfViewport">
+          <div class="music-shelf" id="musicShelf"></div>
+          <button class="shelf-arrow shelf-arrow--left" id="shelfArrowLeft">
+            ←
+          </button>
+          <button class="shelf-arrow shelf-arrow--right" id="shelfArrowRight">
+            →
+          </button>
+        </div>
+        <div class="music-player" id="musicPlayer">
+          <div class="music-player-layout">
+            <div class="music-art-lg" id="mpArtWrap"></div>
+            <div class="music-info">
+              <button class="music-close" id="mpClose">[ close ]</button>
+              <h3 id="mpTitle"></h3>
+              <p class="music-artist" id="mpArtist"></p>
+              <div class="music-controls" id="mpControls">
+                <button class="music-play-btn" id="mpPlayBtn">[ PLAY ]</button>
+                <span class="music-time" id="mpTime">0:00 / 0:00</span>
+              </div>
+              <input
+                class="music-progress"
+                id="mpProgress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+              />
+              <audio id="mpAudio"></audio>
+              <div id="mpSpotify"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="esports">
+        <div class="exp-section-heading">
+          <span class="exp-prompt">visitor@lance:~$&nbsp;</span
+          ><span class="exp-typed">ls play/</span>
+        </div>
+        <div class="exp-grid">
+          <a class="exp-img-card" href="morePages/homeServer.html">
+            <img
+              src="Images/homelabProject/ciscoUCS_c240_m3.jpg"
+              alt="TrueNAS Scale Home Server"
+            />
+            <div class="exp-img-overlay">
+              <div class="exp-img-meta">
+                <h3>TrueNAS Scale Home Server</h3>
+                <div class="exp-tags">
+                  <span class="exp-tag">hardware</span>
+                  <span class="exp-tag">self hosted</span>
+                </div>
+                <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="exp-img-card" href="morePages/midnightHosting.html">
+            <img
+              src="Images/midnightHostingProject/midnighthosting.png"
+              alt="Midnight Hosting"
+            />
+            <div class="exp-img-overlay">
+              <div class="exp-img-meta">
+                <h3>Midnight Hosting</h3>
+                <div class="exp-tags">
+                  <span class="exp-tag">python</span>
+                  <span class="exp-tag">flask</span>
+                </div>
+                <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="exp-img-card" href="morePages/esports.html">
+            <img
+              src="Images/esports/lanVSUVU.jpg"
+              alt="University of Utah Esports — JV Valorant"
+            />
+            <div class="exp-img-overlay">
+              <div class="exp-img-meta">
+                <h3>University of Utah Esports — JV Valorant</h3>
+                <div class="exp-tags">
+                  <span class="exp-tag">esports</span>
+                  <span class="exp-tag">competition</span>
+                  <span class="exp-tag">valorant</span>
+                </div>
+                <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <p class="last-updated">
+        Last updated
+        <span id="last-updated-value">checking deploy time...</span>
+      </p>
+    </main>
+
+    <script src="last-updated.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+      (function () {
+        function isMobile() {
+          return window.matchMedia("(max-width: 900px)").matches;
+        }
+        document.querySelectorAll(".exp-img-card").forEach(function (card) {
+          card.addEventListener("click", function (e) {
+            if (!isMobile()) return;
+            var wasActive = card.classList.contains("overlay-active");
+            document
+              .querySelectorAll(".exp-img-card.overlay-active")
+              .forEach(function (c) {
+                c.classList.remove("overlay-active");
+              });
+            if (!wasActive) {
+              card.classList.add("overlay-active");
+              e.preventDefault();
+            }
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var TRACKS = [
+          {
+            id: 0,
+            title: "Moonchild",
+            artist: "MRD",
+            src: null,
+            spotifyId: "6GCGJ6v79g6c5QhwGE7xHT",
+            art: "Images/albumCovers/moonchild-mrd-album-cover.jpg",
+            color: "#080a14",
+            tracks: ["Moonchild"],
+            why: "coding music",
+          },
+          {
+            id: 1,
+            title: "Friednen auf der Walt",
+            artist: "Luis Ake",
+            src: null,
+            spotifyId: "5MMLfFgDMlzwG8aNOkmmh1",
+            art: "Images/albumCovers/friednen-auf-der-walt-album-cover.jpg",
+            color: "#0a1208",
+            tracks: ["Friednen auf der Walt"],
+            why: "coding music",
+          },
+          {
+            id: 2,
+            title: "Casting",
+            artist: "CONTREFAÇON",
+            src: null,
+            spotifyId: "7luHHMpLx79I79TDTT40JX",
+            art: "Images/albumCovers/casting-album-cover.jpg",
+            color: "#0e0a0a",
+            tracks: ["Casting"],
+            why: "coding music",
+          },
+          {
+            id: 3,
+            title: "Más y Más",
+            artist: "Trill Bans",
+            src: null,
+            spotifyId: "025Z8KBAXKGdKGW7MPtnPa",
+            art: "Images/albumCovers/mas-y-mas-album-cover.jpg",
+            color: "#100a0a",
+            tracks: ["Mas y Mas"],
+            why: "coding music",
+          },
+          {
+            id: 4,
+            title: "Velvet Skys",
+            artist: "Taranfall",
+            src: null,
+            spotifyId: "6vwCB2MjEPCq0rHC9ZrCOJ",
+            art: "Images/albumCovers/velvet-skys-taranfall.jpg",
+            color: "#080e12",
+            tracks: ["Velvet Skys"],
+            why: "coding music",
+          },
+          {
+            id: 5,
+            title: "Frieden",
+            artist: "Die Selektion",
+            src: null,
+            spotifyId: "1oGGCX89vSZCIDiKG1PB5M",
+            art: "Images/albumCovers/reiden.jpg",
+            color: "#0a0c0e",
+            tracks: ["Frieden"],
+            why: "coding music",
+          },
+          {
+            id: 6,
+            title: "Destination",
+            artist: "Buzz Kill",
+            src: null,
+            spotifyId: "5Mm2jeBNfT4QT8U6xixuxT",
+            art: "Images/albumCovers/destination.jpg",
+            color: "#0e0a08",
+            tracks: ["Destination"],
+            why: "coding music",
+          },
+          {
+            id: 7,
+            title: "Gone",
+            artist: "Third Wife",
+            src: null,
+            spotifyId: "4u1fJAMuSeUR9ERZtJAMni",
+            art: "Images/albumCovers/gone.jpg",
+            color: "#0a0808",
+            tracks: ["Gone"],
+            why: "coding music",
+          },
+          {
+            id: 8,
+            title: "Digital Insomnia",
+            artist: "Tanzanfall",
+            src: null,
+            spotifyId: "4eRJjguPQVBKgmY2svtwIl",
+            art: "Images/albumCovers/tanzanfall digital insom.jpg",
+            color: "#080a10",
+            tracks: ["Digital Insomnia"],
+            why: "coding music",
+          },
+          {
+            id: 9,
+            title: "Wenn der Mond in Mein Herz Kracht",
+            artist: "MCR-T",
+            src: null,
+            spotifyId: "2kUYYi9Y1TwfLgE2yftTIC",
+            art: "Images/albumCovers/wenn der mond in mein herz kracht by mcr-t.jpg",
+            color: "#0c0a0e",
+            tracks: ["Wenn der Mond in Mein Herz Kracht"],
+            why: "coding music",
+          },
+          {
+            id: 10,
+            title: "Show Me",
+            artist: "MRD",
+            src: null,
+            spotifyId: "0Uab0XwXpwxzjLjjNRi2Y1",
+            art: "Images/albumCovers/show me by mrd.jpg",
+            color: "#080c0e",
+            tracks: ["Show Me"],
+            why: "coding music",
+          },
+          {
+            id: 11,
+            title: "Zwei",
+            artist: "Obernauer",
+            src: null,
+            spotifyId: "6zoVzjPG0ZCxEEKe6PjZq3",
+            art: "Images/albumCovers/zwei by obernauer.jpg",
+            color: "#0a0e0c",
+            tracks: ["Zwei"],
+            why: "coding music",
+          },
+          {
+            id: 12,
+            title: "Arrasadora Utopia",
+            artist: "Reka, Imperial Black Unit",
+            src: null,
+            spotifyId: "1PXGL0NWbNFO8Fuj2rlk4C",
+            art: "Images/albumCovers/arrasadora utopia by reka, imperial black unit.jpg",
+            color: "#0e0808",
+            tracks: ["Arrasadora Utopia"],
+            why: "coding music",
+          },
+          {
+            id: 13,
+            title: "Silence Is Violence",
+            artist: "Lousiahhh, Maelstrom",
+            src: null,
+            spotifyId: "0BAdIHxksRsezymJn5359R",
+            art: "Images/albumCovers/silence is violence by lousiahhh, maelstrom.jpg",
+            color: "#0a080e",
+            tracks: ["Silence Is Violence"],
+            why: "coding music",
+          },
+          {
+            id: 14,
+            title: "Omens Duty",
+            artist: "Acient Methods",
+            src: null,
+            spotifyId: "1ErpfywJiNFGvg1UvCRY4J",
+            art: "Images/albumCovers/omens duty by acient methods.jpg",
+            color: "#080e0a",
+            tracks: ["Omens Duty"],
+            why: "coding music",
+          },
+          {
+            id: 15,
+            title: "Creek",
+            artist: "MRD",
+            src: null,
+            spotifyId: "1LfsedqgL2lT2wyU6nyw1a",
+            art: "Images/albumCovers/creek by mrd.jpg",
+            color: "#0c0e08",
+            tracks: ["Creek"],
+            why: "coding music",
+          },
+          {
+            id: 16,
+            title: "Someone I Know",
+            artist: "Stranger",
+            src: null,
+            spotifyId: "6I2hvGd0VMQQS88UcDRI1Z",
+            art: "Images/albumCovers/someone i know by stranger.jpg",
+            color: "#0e0c08",
+            tracks: ["Someone I Know"],
+            why: "coding music",
+          },
+          {
+            id: 17,
+            title: "Einatem (Katle Liebe Remix)",
+            artist: "Giovanni Carozza, Katle Liebe",
+            src: null,
+            spotifyId: "3nX1nZJoLqfNSBq19RPGS4",
+            art: "Images/albumCovers/einatem - katle libee remix by giovanni carozza, katle liebe.jpg",
+            color: "#080c10",
+            tracks: ["Einatem (Katle Liebe Remix)"],
+            why: "coding music",
+          },
+          {
+            id: 18,
+            title: "Let Her Go",
+            artist: "MRD",
+            src: null,
+            spotifyId: "5B2EyWmX8O7G1rZr62n3i0",
+            art: "Images/albumCovers/let her go by mrd.jpg",
+            color: "#0a0e10",
+            tracks: ["Let Her Go"],
+            why: "coding music",
+          },
+          {
+            id: 19,
+            title: "Kann Nicht Schlafen (Ich Lieg Wach)",
+            artist: "3LNA",
+            src: null,
+            spotifyId: "0J7XFx01lrlEjrvXWDPz2x",
+            art: "Images/albumCovers/kann nicht schalafen (ich lieg wach) by 3lna.jpg",
+            color: "#100a0e",
+            tracks: ["Kann Nicht Schlafen (Ich Lieg Wach)"],
+            why: "coding music",
+          },
+          {
+            id: 20,
+            title: "Free Britney",
+            artist: "Anetha",
+            src: null,
+            spotifyId: "4cZXujsgwcqot9oMpfa0no",
+            art: "Images/albumCovers/free britney by anetha.jpg",
+            color: "#0e080c",
+            tracks: ["Free Britney"],
+            why: "coding music",
+          },
+        ];
+
+        var viewport = document.getElementById("musicShelfViewport");
+        var shelf = document.getElementById("musicShelf");
+        var player = document.getElementById("musicPlayer");
+        var mpArtWrap = document.getElementById("mpArtWrap");
+        var mpTitle = document.getElementById("mpTitle");
+        var mpArtist = document.getElementById("mpArtist");
+        var mpPlayBtn = document.getElementById("mpPlayBtn");
+        var mpTime = document.getElementById("mpTime");
+        var mpProgress = document.getElementById("mpProgress");
+        var mpAudio = document.getElementById("mpAudio");
+        var mpClose = document.getElementById("mpClose");
+        var mpSpotify = document.getElementById("mpSpotify");
+        var mpControls = document.getElementById("mpControls");
+
+        var activeId = null;
+        var pos = 0;
+        var vel = 0;
+        var maxScroll = 0;
+        var mouseOver = false;
+        var raf = null;
+        var mobileIdx = 0;
+
+        var arrowLeft = document.getElementById("shelfArrowLeft");
+        var arrowRight = document.getElementById("shelfArrowRight");
+
+        function isMobile() {
+          return window.matchMedia("(max-width: 900px)").matches;
+        }
+
+        function fmt(s) {
+          if (isNaN(s) || !isFinite(s)) return "0:00";
+          var m = Math.floor(s / 60);
+          var sec = Math.floor(s % 60);
+          return m + ":" + (sec < 10 ? "0" : "") + sec;
+        }
+
+        function buildArtEl(t, large) {
+          if (large) {
+            if (t.art) {
+              var img = document.createElement("img");
+              img.src = t.art;
+              img.alt = t.title;
+              var wrap = document.createElement("div");
+              wrap.style.cssText = "width:100%;height:100%;";
+              wrap.appendChild(img);
+              return wrap;
+            }
+            var ph = document.createElement("div");
+            ph.className = "album-placeholder";
+            ph.style.backgroundColor = t.color;
+            var pttl = document.createElement("span");
+            pttl.className = "album-placeholder-title";
+            pttl.textContent = t.title;
+            var patr = document.createElement("span");
+            patr.className = "album-placeholder-artist";
+            patr.textContent = t.artist;
+            ph.appendChild(pttl);
+            ph.appendChild(patr);
+            return ph;
+          }
+
+          var face = document.createElement("div");
+          face.className = "album-face";
+          if (!t.art) face.style.backgroundColor = t.color;
+
+          if (t.art) {
+            var img = document.createElement("img");
+            img.src = t.art;
+            img.alt = t.title;
+            face.appendChild(img);
+          }
+
+          var spine = document.createElement("span");
+          spine.className = "album-spine-title";
+          spine.textContent = t.title;
+
+          var info = document.createElement("div");
+          info.className = "album-face-info";
+          var fttl = document.createElement("span");
+          fttl.className = "album-face-title";
+          fttl.textContent = t.title;
+          var fatr = document.createElement("span");
+          fatr.className = "album-face-artist";
+          fatr.textContent = t.artist;
+          info.appendChild(fttl);
+          info.appendChild(fatr);
+          face.appendChild(spine);
+          face.appendChild(info);
+          return face;
+        }
+
+        TRACKS.forEach(function (t) {
+          var div = document.createElement("div");
+          div.className = "album";
+          div.dataset.idx = t.id;
+          div.appendChild(buildArtEl(t, false));
+          shelf.appendChild(div);
+          div.addEventListener("click", function () {
+            openTrack(t);
+          });
+        });
+
+        function init() {
+          maxScroll = -(shelf.offsetWidth - viewport.offsetWidth);
+          pos = 0;
+          shelf.style.transform = "translateX(0px)";
+          if (isMobile()) {
+            setMobileFocus(0);
+            updateArrows();
+          }
+        }
+        requestAnimationFrame(function () {
+          requestAnimationFrame(init);
+        });
+
+        function tick() {
+          pos = Math.min(0, Math.max(maxScroll, pos + vel));
+          shelf.style.transform = "translateX(" + pos + "px)";
+          if (mouseOver) {
+            raf = requestAnimationFrame(tick);
+          } else {
+            raf = null;
+          }
+        }
+
+        viewport.addEventListener("mouseenter", function () {
+          if (isMobile()) return;
+          mouseOver = true;
+          if (!raf) raf = requestAnimationFrame(tick);
+        });
+
+        viewport.addEventListener("mousemove", function (e) {
+          if (isMobile()) return;
+          var rect = viewport.getBoundingClientRect();
+          var t = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          var dead = 0.18;
+          if (Math.abs(t) < dead) {
+            vel = 0;
+          } else {
+            var s = (Math.abs(t) - dead) / (1 - dead);
+            vel = -Math.sign(t) * s * s * 9;
+          }
+        });
+
+        viewport.addEventListener("mouseleave", function () {
+          if (isMobile()) return;
+          mouseOver = false;
+          vel = 0;
+        });
+
+        function setMobileFocus(idx) {
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          var albums = shelf.querySelectorAll(".album");
+          if (albums[idx]) albums[idx].classList.add("shelf-focused");
+        }
+
+        function updateArrows() {
+          arrowLeft.disabled = mobileIdx <= 0;
+          arrowRight.disabled = mobileIdx >= TRACKS.length - 1;
+        }
+
+        function navigateMobile(dir) {
+          mobileIdx = Math.max(0, Math.min(TRACKS.length - 1, mobileIdx + dir));
+          setMobileFocus(mobileIdx);
+
+          var vpW = viewport.offsetWidth;
+          var step = 44 + 6;
+          var faceW = 148;
+          var target = -(mobileIdx * step) + (vpW - faceW) / 2;
+          pos = Math.min(0, Math.max(maxScroll, target));
+
+          shelf.classList.add("shelf-animated");
+          shelf.style.transform = "translateX(" + pos + "px)";
+          setTimeout(function () {
+            shelf.classList.remove("shelf-animated");
+          }, 320);
+
+          updateArrows();
+        }
+
+        arrowLeft.addEventListener("click", function () {
+          navigateMobile(-1);
+        });
+        arrowRight.addEventListener("click", function () {
+          navigateMobile(1);
+        });
+
+        function setActiveAlbums(id) {
+          shelf.querySelectorAll(".album.active").forEach(function (el) {
+            el.classList.remove("active");
+          });
+          if (id !== null) {
+            shelf
+              .querySelectorAll(".album[data-idx='" + id + "']")
+              .forEach(function (el) {
+                el.classList.add("active");
+              });
+          }
+        }
+
+        function openTrack(t) {
+          if (activeId === t.id && player.classList.contains("open")) {
+            closePlayer();
+            return;
+          }
+          setActiveAlbums(null);
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          activeId = t.id;
+          setActiveAlbums(t.id);
+
+          mpArtWrap.innerHTML = "";
+          mpArtWrap.appendChild(buildArtEl(t, true));
+          mpTitle.textContent = t.title;
+          mpArtist.textContent = t.artist;
+          mpAudio.pause();
+          mpAudio.removeAttribute("src");
+          mpAudio.load();
+          mpSpotify.innerHTML = "";
+
+          if (t.spotifyId) {
+            mpControls.style.display = "none";
+            mpProgress.style.display = "none";
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://open.spotify.com/embed/track/" + t.spotifyId;
+            iframe.width = "100%";
+            iframe.height = "80";
+            iframe.frameBorder = "0";
+            iframe.allow =
+              "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+            iframe.setAttribute("allowtransparency", "true");
+            mpSpotify.appendChild(iframe);
+            var warn = document.createElement("p");
+            warn.className = "spotify-volume-warn";
+            warn.textContent = "// heads up: spotify embeds can be loud";
+            mpSpotify.appendChild(warn);
+          } else {
+            mpControls.style.display = "";
+            mpProgress.style.display = "";
+            if (t.src) {
+              mpAudio.src = t.src;
+              mpAudio.load();
+            }
+            mpPlayBtn.textContent = "[ PLAY ]";
+            mpProgress.value = 0;
+            mpTime.textContent = "0:00 / 0:00";
+          }
+
+          player.classList.add("open");
+          setTimeout(function () {
+            player.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 50);
+        }
+
+        function closePlayer() {
+          player.classList.remove("open");
+          setActiveAlbums(null);
+          shelf.querySelectorAll(".album.shelf-focused").forEach(function (el) {
+            el.classList.remove("shelf-focused");
+          });
+          activeId = null;
+          mpAudio.pause();
+          mpAudio.removeAttribute("src");
+          mpAudio.load();
+          mpPlayBtn.textContent = "[ PLAY ]";
+          mpSpotify.innerHTML = "";
+          mpControls.style.display = "";
+          mpProgress.style.display = "";
+        }
+
+        mpClose.addEventListener("click", closePlayer);
+
+        mpPlayBtn.addEventListener("click", function () {
+          if (!mpAudio.getAttribute("src")) return;
+          if (mpAudio.paused) {
+            mpAudio.play();
+            mpPlayBtn.textContent = "[ PAUSE ]";
+          } else {
+            mpAudio.pause();
+            mpPlayBtn.textContent = "[ PLAY ]";
+          }
+        });
+
+        mpAudio.addEventListener("timeupdate", function () {
+          if (!mpAudio.duration) return;
+          mpProgress.value = (mpAudio.currentTime / mpAudio.duration) * 100;
+          mpTime.textContent =
+            fmt(mpAudio.currentTime) + " / " + fmt(mpAudio.duration);
+        });
+
+        mpAudio.addEventListener("ended", function () {
+          mpPlayBtn.textContent = "[ PLAY ]";
+          mpProgress.value = 0;
+        });
+
+        mpProgress.addEventListener("input", function () {
+          if (!mpAudio.duration) return;
+          mpAudio.currentTime = (mpProgress.value / 100) * mpAudio.duration;
+        });
+      })();
+    </script>
+  </body>
+</html>
