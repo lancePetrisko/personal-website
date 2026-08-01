@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="YTDown — an Electron desktop app for downloading YouTube, Twitch, and Kick videos as MP4 or MP3, by Lance Petrisko."
+    />
+    <meta name="author" content="Lance Petrisko" />
+    <link rel="canonical" href="https://lancepetrisko.com/morePages/ytDown.html" />
+    <title>lancePetrisko/ytDown</title>
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="../Images/websiteIcons/blackSquare.jpeg"
+    />
+    <link rel="stylesheet" href="../app.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-center">
+        <a href="../play.html" class="about-btn about-btn--outline">&lt; BACK</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="exp-timeline">
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">01</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>YTDown</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">electron</span>
+                <span class="exp-tag">node.js</span>
+                <span class="exp-tag">yt-dlp</span>
+              </div>
+            </div>
+            <div class="exp-card-body exp-card-body--wrap">
+              <div class="project-media exp-media-float">
+                <img
+                  src="../Images/ytDownProject/yt-downloader-queue.png"
+                  alt="YTDown app window with an empty download queue, output folder picker, and Add URL and Start All buttons"
+                />
+              </div>
+              <p>
+                YTDown is a local desktop app for downloading YouTube, Twitch,
+                and Kick videos as MP4 or MP3. It runs on Windows and macOS is completely self hosted.
+              </p>
+              <p>
+                The thing I cared most about was that it takes zero setup. Most
+                downloaders assume you already have yt-dlp and ffmpeg installed
+                and on your PATH. But the downloader ships both inside the installer, so
+                there is no terminal, no Homebrew, and nothing to configure. If
+                you already have your own copies, the app ignores them and
+                prefers its bundled ones, so a broken or outdated system install
+                can't break it.
+              </p>
+              <p class="exp-tools">Electron / Node.js / yt-dlp / ffmpeg</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">02</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>What It Does</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">features</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <p>
+                You paste in a list of URLs and start them all at once. Each item
+                in the queue gets its own quality selector 2160p down to 360p,
+                filtered to what the platform actually offers and its own MP4
+                or MP3 toggle, so one batch can mix video and audio only
+                downloads.
+              </p>
+              <p>
+                Progress bars update in real time by parsing yt-dlp's stdout, and
+                any download can be cancelled mid stream. Every download writes a
+                timestamped log with the full command, stdout, stderr, and exit
+                code, viewable in-app from a Logs button on the queue item —
+                which is what makes a failed download debuggable instead of just
+                a red bar. Finished files get a See File button that reveals them
+                in Explorer or Finder.
+              </p>
+              <p class="exp-tools">
+                Download queue / per-item quality and format / live progress /
+                per-download logs
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-entry">
+          <div class="exp-index" aria-hidden="true">03</div>
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <h3>How It's Built</h3>
+              <div class="exp-tags">
+                <span class="exp-tag">express</span>
+                <span class="exp-tag">ffmpeg</span>
+                <span class="exp-tag">electron-builder</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <p>
+                Electron provides the desktop window and boots a small Node.js
+                and Express backend on port 3131, which wraps yt-dlp and ffmpeg
+                as child processes. The frontend is vanilla JS no framework.
+                ffmpeg merges the separate video and audio streams yt-dlp pulls
+                down, and re-encodes the audio to AAC so the resulting MP4 is 
+                something that just works.
+              </p>
+              <p>
+                Packaging is handled by electron-builder: an NSIS installer for
+                Windows, and .dmg builds for both Apple Silicon and Intel Macs.
+                Git hooks bump the patch version on push so every build ships a
+                distinct version number. Neither target is code signed, so
+                Windows shows a SmartScreen warning and macOS needs a right-click
+                → Open on first launch.
+              </p>
+              <p>
+                My own code is MIT. The installers bundle ffmpeg (GPL-3.0) and
+                yt-dlp (Unlicense), both run as separate executables and never
+                linked against, so YTDown itself stays MIT.
+              </p>
+              <p class="exp-tools">
+                Electron / Node.js / Express / vanilla JS / yt-dlp / ffmpeg /
+                electron-builder
+              </p>
+              <p>
+                <a
+                  class="about-btn about-btn--outline"
+                  href="https://github.com/lancePetrisko/yt-to-mp4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >VIEW ON GITHUB</a
+                >
+              </p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+
+  <script src="../app.js"></script>
+</html>
