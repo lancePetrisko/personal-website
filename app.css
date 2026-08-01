@@ -1203,6 +1203,11 @@ a.exp-img-card {
   transition: transform 0.25s ease;
 }
 
+/* Anchors the crop to the left edge for images wider than the card ratio */
+.exp-img-card--left img {
+  object-position: left;
+}
+
 a.exp-img-card:hover img {
   transform: scale(1.04);
 }
