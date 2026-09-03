@@ -1208,6 +1208,13 @@ a.exp-img-card {
   object-position: left;
 }
 
+/* Insets the under-construction gif so it sits smaller inside placeholder cards */
+.exp-img-card--wip img {
+  object-fit: contain;
+  padding: 18%;
+  box-sizing: border-box;
+}
+
 a.exp-img-card:hover img {
   transform: scale(1.04);
 }
