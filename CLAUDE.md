@@ -181,6 +181,34 @@ The layout used inside `morePages/` subpages: a numbered `.exp-index` ("01") bes
 `.exp-card` holding a header, tags, prose, and image sections. Clone an existing subpage
 (`homeServer.html` is the fullest example) rather than inventing a new layout.
 
+**External visit/repo button placement (Play section subpages):** when a `morePages/` subpage
+for a `play.html` entry needs an external link button (live site, GitHub repo, itch.io, etc.),
+put it top-right of the first (`01`) card's header, not at the bottom of the page. Pattern
+(see `ytDown.html` or `boredCube.html`):
+
+```html
+<div class="exp-card-header exp-card-header--with-link">
+  <div>
+    <h3>Card Title</h3>
+    <div class="exp-tags">
+      <span class="exp-tag">tag</span>
+    </div>
+  </div>
+  <a
+    href="https://example.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="about-btn about-btn--outline exp-card-header-link"
+    >[ VISIT LABEL ]</a
+  >
+</div>
+```
+
+`.exp-card-header--with-link` and `.exp-card-header-link` are already defined in `app.css`
+(flex row, button pinned to the right, wraps on mobile). Only add the modifier class when a
+button is present — plain `.exp-card-header` (h3 + tags, no button) stays untouched everywhere
+else. Only one such button per subpage, on the first card.
+
 ### About hero (`.about-hero`)
 On `index.html`. Flex row: photo on left, intro text (name, tagline, bio, buttons) on right.
 Stacks vertically on mobile.
