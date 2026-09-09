@@ -2,7 +2,7 @@
 
 [lancepetrisko.com](https://lancepetrisko.com)
 
-A static personal portfolio site built with plain HTML, CSS, and vanilla JavaScript. No frameworks, no build tools, no dependencies.
+Simple personal website built with plain HTML, CSS, and vanilla JavaScript. No frameworks, no build tools, no dependencies.
 
 ## Tech Stack
 
