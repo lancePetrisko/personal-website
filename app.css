@@ -560,6 +560,18 @@ h2 {
   margin-bottom: 20px;
 }
 
+.exp-card-header--with-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.exp-card-header-link {
+  flex-shrink: 0;
+}
+
 .exp-card-header h3 {
   margin: 0 0 10px;
   font-size: 1.05rem;
