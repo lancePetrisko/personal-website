@@ -1,0 +1,8 @@
+Best specs:
+  - Resolution: 1200×900px (4:3, retina-sharp on card size, not bloated)
+  - Format: JPEG for photos (quality ~80), PNG only if need transparency
+  - File size: aim under 300KB, compress with squoosh/tinypng before
+    commit
+  - Crop: subject centered — card crops edges on non-4:3 originals. Wide
+    screenshot? use .exp-img-card--left class, crops from left edge
+    instead of center.
