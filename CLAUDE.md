@@ -18,9 +18,8 @@ repo root is served as static assets, no build step).
 
 ## Purpose and Goals
 
-- Present Lance's identity, background, and skills on the index/about page
-- Showcase professional and academic work in the `#experience` grid on `index.html`
-- Showcase personal / hobby projects and interests on `play.html`
+- `index.html` is a one-pager: hero, `#work` list, `#about`, `#contact`, footer
+- `play.html` is the second page: personal / hobby projects
 - Link out to LinkedIn, GitHub, and `morePages/` subpages for expanded detail on individual entries
 - Feel personal and handcrafted, not like a template or corporate portfolio
 
@@ -28,15 +27,15 @@ repo root is served as static assets, no build step).
 
 ## Tech Stack
 
-- **HTML** — plain semantic HTML5, no templating engine
-- **CSS** — single shared stylesheet (`app.css`), no preprocessors, no frameworks
-- **JavaScript** — vanilla only. `app.js` (shared nav behavior), `last-updated.js` (deploy timestamp),
-  plus inline `<script>` blocks at the bottom of `index.html` and `play.html` for the card overlay
-  tap behavior and the music player. No libraries.
-- **Fonts** — `Roboto Mono` loaded from Google Fonts. Note: `app.css` line 1 has an `@font-face`
-  rule pointing at `/personalWebsite/Fonts/Minecraft.ttf`, but that file no longer exists and the
-  font is not used anywhere. Treat it as dead code.
-- **No build system** — files are served as-is, no npm, no bundler, no compilation step
+- **HTML**: plain semantic HTML5, no templating engine
+- **CSS**: single shared stylesheet (`app.css`), no preprocessors, no frameworks
+- **JavaScript**: vanilla only. `app.js` handles nav highlighting (current page + section in view),
+  the scroll reveal observer, and the last-updated footer. `last-updated.js` sets the deploy timestamp.
+  Each top-level page has a one-line inline `<script>` in `<head>` that adds `.js` to `<html>`
+  (so `.reveal` content only hides when JS is running). No libraries.
+- **Fonts**: `Geist` (400/500) for headings and body, `Roboto Mono` (400) for labels, tags, nav,
+  timestamps. Both loaded from Google Fonts with one link on every page.
+- **No build system**: files are served as-is, no npm, no bundler, no compilation step
 
 ---
 
@@ -44,10 +43,10 @@ repo root is served as static assets, no build step).
 
 ```
 /
-├── index.html              # Home: About Me (#about) + Work grid (#experience)
-├── play.html               # Play page: coding-music shelf/player + personal project grid
+├── index.html              # One-pager: hero, #work, #about, #contact
+├── play.html               # Play page: personal project list
 ├── app.css                 # Single shared stylesheet for all pages
-├── app.js                  # Shared JS: active nav link highlighting
+├── app.js                  # Shared JS: nav highlighting, scroll reveal, last updated
 ├── last-updated.js         # Sets window.LAST_UPDATED_AT (regenerated at deploy time)
 ├── wrangler.jsonc          # Cloudflare static-asset config
 ├── sitemap.xml             # Stale — only lists index, homeServer, modelTheU, webDesign
@@ -91,17 +90,17 @@ repo root is served as static assets, no build step).
 
 ## Navigation Structure
 
-Top-level pages (`index.html`, `play.html`) share one `.navbar`:
+Top-level pages (`index.html`, `play.html`) share one `.site-header`:
 
-- `ME` (`.nav-name`) → `#about` on index, `index.html` from play
-- `Work` → `index.html#experience`
-- `Play` → `play.html`
-- `Resume` (`.nav-right`) → `morePages/resume.html`
+- `lance_` (`.brand`, blinking accent cursor) links to top of index
+- `.site-nav`: `work` and `about` (anchors on index), `play`, `resume` (`morePages/resume.html`)
 
-`app.js` adds `.nav-active` to the link matching the current page, and on click for anchor links.
+`app.js` adds `.is-active` to the link for the current page, and on the one-pager to the link
+whose section is in view.
 
-`morePages/` subpages use a stripped-down nav: a single `< BACK` link styled as
-`.about-btn .about-btn--outline`, pointing at `../index.html#experience`.
+`morePages/` subpages use a stripped-down sticky `.navbar` with a single `< BACK` link styled as
+`.about-btn .about-btn--outline`. Work subpages point at `../index.html#work`, play subpages at
+`../play.html`.
 
 Page titles: `index.html` uses `Lance Petrisko - Portfolio`; every other page uses the terminal
 pattern `lancePetrisko/pageName` (lowercase camel for the page name).
@@ -110,129 +109,103 @@ pattern `lancePetrisko/pageName` (lowercase camel for the page name).
 
 ## Design Philosophy
 
-The site is intentionally styled after early 2000s black minimalist web aesthetics, with a
-terminal/CLI flavor. It should feel handcrafted, understated, and slightly retro — not polished
-or corporate.
+Dark minimalist with a light terminal flavor. Clean, quiet, personal. Typography and spacing
+carry the design, not decoration.
 
 ### Core visual rules:
-- **Background:** pure black (`rgb(0,0,0)`) on all pages. No gradients, no textures.
-- **Text color:** light gray (`rgb(221,221,221)` or `rgb(238,238,238)`). Never pure white.
-- **Font:** `Roboto Mono` for everything — headings, body, nav, buttons. Monospace only.
-- **Letter spacing:** used liberally on headings and nav for the retro terminal feel
-- **Borders:** low-opacity light gray (`rgba(238,238,238,0.1–0.2)`) — subtle separators only
-- **Hover effects:** opacity reduction, a faint gray background wash, or the image-card overlay
-- **Border radius:** 4–6px max, used sparingly. Never large or pill-shaped.
-- **Section headings:** rendered as a shell prompt — `visitor@lance:~$ ls work/` via
-  `.exp-section-heading` + `.exp-prompt` + `.exp-typed`. Reuse this for any new section.
+- **Tokens** live on `:root` in `app.css`: `--bg #0a0a0a`, `--fg`, `--muted`, `--faint`, `--line`,
+  `--line-strong`, `--accent #d4a259` (muted amber). Use tokens, not raw colors.
+- **Accent** is used sparingly: active nav, section numbers, link hover, focus ring, cursor,
+  `soon` status. Everything else is grayscale.
+- **Type:** Geist for headings and prose, Roboto Mono for small labels. Headings use tight negative
+  letter spacing.
+- **Borders:** hairline `--line` dividers between sections and rows.
+- **Border radius:** 3 to 4px max.
+- **Section labels:** mono `01 / work` (`.section-label`, number in a `<span>` for accent). Hero
+  kicker keeps the shell prompt (`visitor@lance:~$ whoami`).
+- **Copy:** no emojis, no em dashes, no AI-sounding filler. Use commas, colons, or slashes instead.
+
+### Motion:
+- `.load-in` on hero elements: staggered fade + rise on page load
+- `.reveal` on sections/rows: fades in on scroll via `IntersectionObserver` in `app.js`
+- Row hover (desktop only): title nudges right, arrow slides in, thumbnail preview fades in
+- `body::before` in `app.css` draws the background: a fixed CSS dot grid (14px spacing) masked by a
+  circular radial fade centered just above the middle of the viewport, dissolving toward the edges. Pure CSS, no JS.
+  Tune dot alpha, spacing, or the mask ellipse there.
+- Everything is disabled under `prefers-reduced-motion`. Keep motion subtle and short.
 
 ### What this site is NOT:
-- Not a modern SPA with animations and transitions
-- Not a dark-mode Bootstrap or Tailwind site
-- Not a glowing neon / cyberpunk aesthetic
-- Not a minimalism-for-minimalism's-sake blank page
+- Not a framework/template site (no Bootstrap, Tailwind)
+- Not a glowing neon / cyberpunk aesthetic, no color gradients (the dot grid mask is the only gradient)
+- No splash or loading screen
 
 ---
 
 ## UI / UX Rules
 
-- Navigation is always at the top, horizontally laid out, always visible
-- No JavaScript-driven scroll effects
-- No modal dialogs, tooltips, or dropdowns. The music player panel on `play.html` is the one
-  expanding-UI exception and already exists — don't add more.
-- External links open in `target="_blank"` with `rel="noopener noreferrer"`
+- Header is sticky at the top and horizontal on every width (no hamburger)
+- Mobile first: base styles target phones, desktop overrides live in `@media (min-width: 760px)`
+- No modal dialogs, tooltips, or dropdowns
+- External links open in `target="_blank"` with `rel="noopener noreferrer"` and use the `&nearr;` arrow;
+  internal links use `&rarr;`
 - The favicon is `Images/websiteIcons/blackSquare.jpeg` on all pages
-- Audio on `play.html` never autoplays — it starts only from the `[ PLAY ]` button
+- No auto-playing media
 
 ---
 
 ## Reusable Patterns and Components
 
-### Image card grid (`.exp-grid` + `.exp-img-card`) — the primary card pattern
-Used for the work grid on `index.html#experience` and the project grid on `play.html`.
-A 4:3 image with an overlay that reveals the title, tags, and a call to action on hover.
-On mobile (`max-width: 900px`) the first tap reveals the overlay and the second navigates —
-handled by the inline script at the bottom of each page.
+### Index rows (`.rows` + `.row`): the primary list pattern
+Used for `#work` on `index.html` and the project list on `play.html`. Numbered row with title,
+mono tags, and a thumbnail. On mobile the thumbnail sits on the right; on desktop it is hidden and
+fades in on hover next to an arrow.
 
 ```html
-<a class="exp-img-card" href="morePages/thing.html">
-  <img src="Images/.../thing.png" alt="Thing" />
-  <div class="exp-img-overlay">
-    <div class="exp-img-meta">
-      <h3>Thing</h3>
-      <div class="exp-tags">
-        <span class="exp-tag">tag</span>
-        <span class="exp-tag">tag</span>
-      </div>
-      <span class="exp-img-more">[ CLICK FOR MORE INFO ]</span>
+<li class="reveal">
+  <a class="row" href="morePages/thing.html">
+    <span class="row-index">01</span>
+    <div>
+      <h3 class="row-title">Thing</h3>
+      <div class="row-tags"><span>tag</span><span>tag</span></div>
     </div>
-  </div>
-</a>
+    <img class="row-thumb" src="Images/.../thing.png" alt="Thing" loading="lazy" />
+    <span class="row-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+</li>
 ```
 
-Add `.exp-img-card--left` to anchor the image crop to the left edge (used for wide screenshots).
+**Unbuilt entries:** use `<div class="row row--soon">` with no thumb or arrow and
+`<span class="row-status">soon</span>` in their place. Convert to an `<a class="row">` once the
+subpage exists. Renumber `.row-index` values when adding or removing rows.
 
-**Placeholder cards** — for a project with no subpage and no screenshot yet, use a `<div>`
-instead of an `<a>` (CSS already gives non-anchor cards `cursor: default`), point the `<img>` at
-`Gifs/underConstructionGif.gif`, and use `[ COMING SOON ]` in place of `[ CLICK FOR MORE INFO ]`.
-Convert it to an `<a>` once the subpage exists.
+### Sections (`.section` + `.section-grid`)
+Each one-pager section: `<section class="section" id="...">`, inner `.wrap.section-grid` with a
+`.section-label` and a content `<div>`. Label sits in a left column on desktop, above on mobile.
 
-### Expanded subpage timeline (`.exp-timeline` / `.exp-entry` / `.exp-card`)
-The layout used inside `morePages/` subpages: a numbered `.exp-index` ("01") beside an
-`.exp-card` holding a header, tags, prose, and image sections. Clone an existing subpage
-(`homeServer.html` is the fullest example) rather than inventing a new layout.
+### Hero (`.hero`)
+Kicker, `.hero-name`, `.hero-lead`, `.hero-meta` list (`.is-live` gives the accent dot), `.link-row`
+of `.text-link`s, and the portrait `.hero-photo` (grayscale, color on hover).
 
-**External visit/repo button placement (Play section subpages):** when a `morePages/` subpage
-for a `play.html` entry needs an external link button (live site, GitHub repo, itch.io, etc.),
-put it top-right of the first (`01`) card's header, not at the bottom of the page. Pattern
-(see `ytDown.html` or `boredCube.html`):
+### About (`.about-bio`, `.about-cols`, `.about-col`)
+Large bio paragraph, then three label + list columns (education / skills / currently).
 
-```html
-<div class="exp-card-header exp-card-header--with-link">
-  <div>
-    <h3>Card Title</h3>
-    <div class="exp-tags">
-      <span class="exp-tag">tag</span>
-    </div>
-  </div>
-  <a
-    href="https://example.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="about-btn about-btn--outline exp-card-header-link"
-    >[ VISIT LABEL ]</a
-  >
-</div>
-```
+### Text links (`.text-link`) and buttons (`.about-btn`)
+`.text-link` is the default link style (mono, accent underline grows on hover). `.about-btn` /
+`.about-btn--outline` remain for subpages (`< BACK`, visit/repo buttons).
 
-`.exp-card-header--with-link` and `.exp-card-header-link` are already defined in `app.css`
-(flex row, button pinned to the right, wraps on mobile). Only add the modifier class when a
-button is present — plain `.exp-card-header` (h3 + tags, no button) stays untouched everywhere
-else. Only one such button per subpage, on the first card.
+### Expanded subpage layout (`.exp-timeline` / `.exp-entry` / `.exp-card`)
+Used inside `morePages/`: `.exp-index` number, large `h3` title, `.exp-tags`, prose with `.exp-label`
+subheads, `.project-media` images (`.exp-media-float` floats right on desktop), and `.exp-tools`
+footer line. Clone an existing subpage (`homeServer.html` is the fullest example).
 
-### About hero (`.about-hero`)
-On `index.html`. Flex row: photo on left, intro text (name, tagline, bio, buttons) on right.
-Stacks vertically on mobile.
-
-### About cards (`.about-cards`)
-Three-column info grid on `index.html` (Education / Skills / Currently). Each `.about-card`
-has a `// Heading` style h3 and short p tags.
-
-### CTA buttons (`.about-btn`)
-Light gray filled button, dark text. `.about-btn--outline` for the ghost variant (also used for
-the subpage `< BACK` link). `.about-btn--icon` for icon-only buttons (LinkedIn, GitHub).
-
-### Music shelf and player (`.music-section`, `.music-shelf`, `.music-player`)
-`play.html` only. A horizontal album shelf; clicking an album opens the `.music-player` panel
-with Spotify embed / track list. Driven by the `TRACKS` array in the inline script at the bottom
-of `play.html` — add albums there, with art in `Images/albumCovers/`.
+**External visit/repo button placement (Play subpages):** put it top-right of the first (`01`)
+card's header using `.exp-card-header--with-link` and `.exp-card-header-link` (see `ytDown.html`
+or `boredCube.html`). Only one such button per subpage, on the first card.
 
 ### Last updated footer
-On `index.html` and `play.html`. Reads `window.LAST_UPDATED_AT` from `last-updated.js`, which is
-regenerated at deploy time. It is `null` locally, which displays as a local-copy message.
-
-### `.project-card`
-Legacy pattern. Styles still live in `app.css` but no page uses it. Do not use it for new work —
-use `.exp-img-card` instead.
+In `.site-footer` on `index.html` and `play.html`. Reads `window.LAST_UPDATED_AT` from
+`last-updated.js`, regenerated by `.github/workflows/static.yml` at deploy time. It is `null`
+locally, which displays as "local copy".
 
 ---
 
@@ -240,7 +213,7 @@ use `.exp-img-card` instead.
 
 - Indent with 2 spaces in HTML; match surrounding file style (`index.html` is less consistent
   than the others — match whatever block you are editing)
-- CSS class names use kebab-case (`.exp-img-card`, `.about-hero`, `.about-btn--icon`)
+- CSS class names use kebab-case (`.row-title`, `.section-label`, `.about-btn--outline`)
 - One shared `app.css` for all pages — do not create page-specific stylesheets
 - Comments in CSS use `/* ── Section name ─── */` style headers for sections
 - Do not use inline styles unless unavoidable
@@ -253,12 +226,12 @@ use `.exp-img-card` instead.
 
 - **No CSS frameworks** (Bootstrap, Tailwind, etc.)
 - **No JavaScript frameworks** (React, Vue, etc.)
-- **No background gradients or color washes** — the background is black, period
+- **No background gradients or color washes**
 - **No glowing, pulsing, or neon effects**
-- **No excessive animation**
+- **No excessive animation**: stick to the existing `.load-in` / `.reveal` / row hover motion
 - **No modal popups, sidebars, or complex UI patterns**
 - **No auto-playing media** (audio or video)
-- **No additional Google Fonts** — Roboto Mono is the only font in use
+- **No additional Google Fonts**: Geist and Roboto Mono only
 - **Do not rename or restructure files** without updating every href that references them
 - **Do not use `git add -A` or mass-stage files** — stage specific files only
 
@@ -266,22 +239,22 @@ use `.exp-img-card` instead.
 
 ## Rules for Future Claude Sessions
 
-1. **Preserve the visual identity.** Black background, Roboto Mono, gray text, low-opacity borders. Do not change this unless Lance explicitly asks.
-2. **Reuse existing patterns first.** New work or play entries use `.exp-img-card` in the page's `.exp-grid`. New subpages clone an existing `morePages/` file. New info on the index uses `.about-card`. Do not invent new layout patterns when an existing one fits.
+1. **Preserve the visual identity.** Near-black background, Geist + Roboto Mono, grayscale with one amber accent, hairline borders. Do not change this unless Lance explicitly asks.
+2. **Reuse existing patterns first.** New work or play entries are `.row`s in the page's `.rows` list. New subpages clone an existing `morePages/` file. New info on the index goes in an existing `.section` or a new one using the same `.section-grid` structure. Do not invent new layout patterns when an existing one fits.
 3. **Keep HTML readable.** Indent consistently, use semantic elements (`<article>`, `<section>`, `<nav>`, `<main>`), add meaningful `alt` text to all images.
 4. **No speculative improvements.** Only change what was asked. Do not refactor surrounding code, add comments to untouched sections, or "clean up" things that weren't part of the task.
 5. **Link hygiene.** Any time a file is renamed or a page is added, search all `.html` files for references and update them. Use Grep to find all occurrences before assuming a change is isolated.
 6. **Content is real.** All text on the site describes Lance's actual experience. Do not invent or alter factual content without being told to. Placeholder text should be clearly labeled as such.
 7. **Check `app.css` before adding new styles.** Many elements are already styled globally. Avoid duplicating rules.
-8. **Mobile responsiveness lives in the `@media (max-width: 900px)` block** at the bottom of `app.css`. Add responsive overrides there, not inline.
+8. **Mobile first.** Base styles are for phones; desktop overrides live in the `@media (min-width: 760px)` block near the bottom of `app.css`.
 9. **Do not commit unless asked.** Lance controls when commits happen.
 10. **Do not push to remote unless explicitly instructed.**
 
 ---
 
-## Current Entries (as of 2026-08-27)
+## Current Entries (as of 2026-10-29)
 
-### `index.html#experience` — Work
+### `index.html#work`
 | Entry | Links to |
 |---|---|
 | UGC Creator Website | `https://ethanle.us/` (external) |
@@ -290,19 +263,18 @@ use `.exp-img-card` instead.
 | AI Comp 2026 | `morePages/aiComp2026.html` |
 | IS Competition | `morePages/isComp.html` |
 
-### `play.html` — Play
+### `play.html`
 | Entry | Links to |
 |---|---|
 | TrueNAS Scale Home Server | `morePages/homeServer.html` |
 | YTDown (YouTube to MP4) | `morePages/ytDown.html` |
-| Midnight Hosting | `morePages/midnightHosting.html` |
+| Bored Cube (Browser Game) | `morePages/boredCube.html` |
 | University of Utah Esports Valorant | `morePages/esports.html` |
-| ICBM Basics (Minecraft Mod) | placeholder — no subpage yet |
-| Bored Cube (Browser Stim Game) | placeholder — no subpage yet |
-
-`play.html` also has the coding-music shelf section above the grid.
+| ICBM Basics (Minecraft Mod) | `soon` row, no subpage yet |
+| Personal Labor Tracker | `soon` row, no subpage yet |
 
 ### Known loose ends
-- `morePages/webDesign.html` exists but nothing links to it
+- `morePages/webDesign.html` and `morePages/midnightHosting.html` exist but nothing links to them
 - `sitemap.xml` is missing `play.html` and most `morePages/` files
-- `app.css` still carries the unused `@font-face` for a missing `Minecraft.ttf` and the unused `.project-card` rules
+- Most `morePages/` files carry a leftover typing-animation script that targets elements that no longer exist (throws a harmless console error)
+- `Images/albumCovers/` and `coding-music-playlist-links.txt` are unused since the music section was removed

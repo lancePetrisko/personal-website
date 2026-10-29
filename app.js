@@ -1,33 +1,60 @@
 (function markActiveNavLink() {
-  var allNavLinks = document.querySelectorAll(".nav-name, .nav-center a, .nav-right a");
+  var links = document.querySelectorAll(".site-nav a");
+  if (!links.length) return;
 
-  function clearActive() {
-    allNavLinks.forEach(function (a) { a.classList.remove("nav-active"); });
+  function setActive(link) {
+    links.forEach(function (a) { a.classList.toggle("is-active", a === link); });
   }
 
-  // Highlight current page link on load
+  // Highlight the link for the current page
   var path = window.location.pathname;
-  document.querySelectorAll(".nav-center a, .nav-right a").forEach(function (a) {
-    var href = a.getAttribute("href");
-    if (!href || href.startsWith("#")) return;
-    var hrefPath = new URL(href, window.location.href).pathname;
-    if (path === hrefPath || path.endsWith("/" + hrefPath)) {
-      a.classList.add("nav-active");
-    }
+  links.forEach(function (a) {
+    var url = new URL(a.getAttribute("href"), window.location.href);
+    if (!url.hash && url.pathname === path) setActive(a);
   });
 
-  // Highlight any nav link on click (covers anchor links like #about, #experience)
-  allNavLinks.forEach(function (a) {
-    a.addEventListener("click", function () {
-      clearActive();
-      a.classList.add("nav-active");
+  // On the one-pager, highlight whichever section is in view
+  if (!("IntersectionObserver" in window)) return;
+  var byId = {};
+  links.forEach(function (a) {
+    var url = new URL(a.getAttribute("href"), window.location.href);
+    if (url.hash && url.pathname === path) byId[url.hash.slice(1)] = a;
+  });
+  if (!Object.keys(byId).length) return;
+
+  var sectionObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setActive(byId[entry.target.id] || null);
     });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+
+  // The hero has no nav link, so it clears the highlight
+  document.querySelectorAll(".hero").forEach(function (hero) {
+    sectionObserver.observe(hero);
+  });
+  Object.keys(byId).forEach(function (id) {
+    var section = document.getElementById(id);
+    if (section) sectionObserver.observe(section);
   });
 })();
 
-function alertButton() {
-  alert("Halo!");
-}
+(function revealOnScroll() {
+  var items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+
+  items.forEach(function (el) { revealObserver.observe(el); });
+})();
 
 (function renderLastUpdated() {
   const output = document.getElementById("last-updated-value");
