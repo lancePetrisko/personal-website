@@ -48,6 +48,7 @@ repo root is served as static assets, no build step).
 ├── app.css                 # Single shared stylesheet for all pages
 ├── app.js                  # Shared JS: nav highlighting, scroll reveal, last updated
 ├── last-updated.js         # Sets window.LAST_UPDATED_AT (regenerated at deploy time)
+├── backgrounds/            # Saved alternative backgrounds (not loaded by any page)
 ├── wrangler.jsonc          # Cloudflare static-asset config
 ├── sitemap.xml             # Stale — only lists index, homeServer, modelTheU, webDesign
 ├── robots.txt
@@ -130,8 +131,13 @@ carry the design, not decoration.
 - `.reveal` on sections/rows: fades in on scroll via `IntersectionObserver` in `app.js`
 - Row hover (desktop only): title nudges right, arrow slides in, thumbnail preview fades in
 - `body::before` in `app.css` draws the background: a fixed CSS dot grid (14px spacing) masked by a
-  circular radial fade centered just above the middle of the viewport, dissolving toward the edges. Pure CSS, no JS.
-  Tune dot alpha, spacing, or the mask ellipse there.
+  circular radial fade centered just above the middle of the viewport, dissolving toward the edges.
+  Tune dot alpha, spacing, or the mask there.
+- `pressureDotGrid()` in `app.js` (mouse + no reduced motion only) swaps the CSS grid for a canvas
+  copy and makes dots within ~90px of the cursor shrink, dim, and slide inward, like a pressed plate.
+  Its spacing / radius / alpha / mask constants must stay in sync with `body::before`.
+- `backgrounds/` holds saved alternative backgrounds (`dotGrid.css` + `dotGrid.js` is a backup copy of the
+  live dot grid) with restore notes at the top of each file.
 - Everything is disabled under `prefers-reduced-motion`. Keep motion subtle and short.
 
 ### What this site is NOT:

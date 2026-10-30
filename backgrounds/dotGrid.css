@@ -1,0 +1,42 @@
+/* Saved background: dot grid with radial fade + pressure plate canvas.
+   To restore: replace the "Background" section of app.css with this file's
+   contents and restore backgrounds/dotGrid.js into app.js. */
+
+/* ── Dot grid background ────────────────────────────────────── */
+
+/* Fixed dot grid, faded out in a circle from a point just above the middle of the viewport */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(230, 230, 230, 0.4) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(circle at 50% 35%, #000 0%, rgba(0, 0, 0, 0.45) 22%, transparent 50%);
+  mask-image: radial-gradient(circle at 50% 35%, #000 0%, rgba(0, 0, 0, 0.45) 22%, transparent 50%);
+  animation: fade-in 1.6s ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Mouse users get a canvas copy of the grid that dips under the cursor (app.js) */
+.dot-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  animation: fade-in 1.6s ease both;
+}
+
+.has-dot-canvas body::before {
+  display: none;
+}
+

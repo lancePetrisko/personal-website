@@ -103,6 +103,21 @@ body::before {
   }
 }
 
+/* Mouse users get a canvas copy of the grid that dips under the cursor (app.js) */
+.dot-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  animation: fade-in 1.6s ease both;
+}
+
+.has-dot-canvas body::before {
+  display: none;
+}
+
 /* ── Header ─────────────────────────────────────────────────── */
 
 .site-header {
