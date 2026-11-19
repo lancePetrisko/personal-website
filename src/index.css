@@ -154,6 +154,19 @@ ul { list-style: none; }
 }
 .bcard-hint { font-size: 0.65rem; color: var(--muted); white-space: nowrap; transition: color 0.2s; }
 .bcard-email:hover .bcard-hint { color: var(--fg); }
+.bcard-links { display: flex; gap: 1.25rem; margin-top: 0.85rem; }
+.bcard-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.bcard-link svg { width: 1rem; height: 1rem; }
+.bcard-link:hover { color: var(--fg); }
+.bcard-link:focus-visible { outline: 1px solid var(--fg); outline-offset: 2px; }
 
 /* Hero */
 .hero {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { profile } from '../data.js';
-import { copyText } from './SocialLinks.jsx';
+import { copyText, GitHubIcon, LinkedInIcon } from './SocialLinks.jsx';
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), Math.max(min, max));
 
@@ -14,7 +14,7 @@ export default function ContactCard({ onClose }) {
   const [pos, setPos] = useState(null);
   const [dragging, setDragging] = useState(false);
   const [copied, setCopied] = useState(false);
-  const { email } = profile.links;
+  const { email, github, linkedin } = profile.links;
 
   // Start centered in the viewport.
   useLayoutEffect(() => {
@@ -97,12 +97,22 @@ export default function ContactCard({ onClose }) {
 
       <div className="bcard-body">
         <h2 className="bcard-name">{profile.name}</h2>
-        <p className="bcard-role">{profile.role} · {profile.school}</p>
+        <p className="bcard-role">{profile.role}<br />{profile.school}</p>
         <div className="bcard-rule" />
         <button type="button" className="bcard-email" onClick={onCopy} title="Copy email">
           {email}
           <span className="bcard-hint">{copied ? 'copied!' : 'click to copy'}</span>
         </button>
+        <div className="bcard-links">
+          <a href={github} target="_blank" rel="noreferrer" className="bcard-link">
+            <GitHubIcon />
+            <span>lancePetrisko</span>
+          </a>
+          <a href={linkedin} target="_blank" rel="noreferrer" className="bcard-link">
+            <LinkedInIcon />
+            <span>Lance Petrisko</span>
+          </a>
+        </div>
       </div>
     </div>,
     document.body,

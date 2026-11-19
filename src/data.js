@@ -7,8 +7,8 @@ export const profile = {
   bio: "Studying Information Systems at the University of Utah. I work where business meets technology: building data-driven tools, clean interfaces and systems that solve real problems.",
   skills: ['Python', 'SQL', 'JavaScript', 'React', 'Excel / Power BI', 'Tableau', 'Data Modeling', 'Git'],
   links: {
-    github: 'https://github.com/',
-    linkedin: 'https://linkedin.com/',
+    github: 'https://github.com/lancePetrisko',
+    linkedin: 'https://www.linkedin.com/in/lance-petrisko-b9994036a/',
     email: 'petriskolance@gmail.com',
   },
 };
