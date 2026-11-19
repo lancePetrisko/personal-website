@@ -1,8 +1,9 @@
-import { useSyncExternalStore } from 'react';
+import { useMemo, useSyncExternalStore } from 'react';
+import { Link } from 'react-router-dom';
 import FaultyTerminal from './FaultyTerminal.jsx';
 import SocialLinks from './SocialLinks.jsx';
-import ProjectTiles from './ProjectTiles.jsx';
-import { profile } from '../data.js';
+import FlexCarousel from './FlexCarousel.jsx';
+import { profile, projects } from '../data.js';
 
 const MOBILE_QUERY = '(max-width: 640px)';
 
@@ -22,6 +23,10 @@ export default function Hero() {
   // Barrel distortion is applied in screen UV space, so on a tall portrait
   // screen it bends far harder than on desktop. Flatten it on phones.
   const isMobile = useIsMobile();
+  const items = useMemo(
+    () => projects.map((p) => ({ src: p.image, alt: p.alt, title: p.title, subtitle: p.tech?.[0] })),
+    [],
+  );
 
   return (
     <section className="hero">
@@ -64,7 +69,22 @@ export default function Hero() {
           </ul>
           <SocialLinks />
         </div>
-        <ProjectTiles />
+        <div className="hero-projects">
+          <div className="hero-carousel">
+            <FlexCarousel
+              items={items}
+              preset="liquid"
+              intro="rise"
+              cardHeight={0.5}
+              gap={12}
+              squeeze={0.2}
+              focusOnClick
+              captions
+              captureWheel={false}
+            />
+          </div>
+          <Link to="/projects" className="hero-projects-link">all projects →</Link>
+        </div>
       </div>
     </section>
   );
