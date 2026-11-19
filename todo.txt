@@ -1,6 +1,0 @@
-
-
-Optimize site loading times
-
-Add personal labor tracker to play section as a card
-Remove midnight hosting from play section
