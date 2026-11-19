@@ -1,9 +1,28 @@
+import { useSyncExternalStore } from 'react';
 import FaultyTerminal from './FaultyTerminal.jsx';
 import SocialLinks from './SocialLinks.jsx';
 import ProjectTiles from './ProjectTiles.jsx';
 import { profile } from '../data.js';
 
+const MOBILE_QUERY = '(max-width: 640px)';
+
+function useIsMobile() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(MOBILE_QUERY);
+      mq.addEventListener('change', onChange);
+      return () => mq.removeEventListener('change', onChange);
+    },
+    () => window.matchMedia(MOBILE_QUERY).matches,
+    () => false,
+  );
+}
+
 export default function Hero() {
+  // Barrel distortion is applied in screen UV space, so on a tall portrait
+  // screen it bends far harder than on desktop. Flatten it on phones.
+  const isMobile = useIsMobile();
+
   return (
     <section className="hero">
       <div className="hero-bg">
@@ -18,14 +37,14 @@ export default function Hero() {
           persistence={0.28}
           mouseStrength={0.05}
           mouseGlow={0}
-          curvature={0.60}
+          curvature={isMobile ? 0.04 : 0.60}
           vignette={0.30}
           clickEffect="none"
           scramble={0.01}
           scanlineIntensity={0.15}
           glitchAmount={0.3}
           flickerAmount={0.2}
-          chromaticAberration={0.5}
+          chromaticAberration={isMobile ? 0.25 : 0.5}
         />
       </div>
       <div className="hero-scrim" />
