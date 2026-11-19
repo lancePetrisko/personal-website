@@ -1,6 +1,6 @@
 // Edit everything about the site here.
 export const profile = {
-  name: 'lance petrisko',
+  name: 'Lance Petrisko',
   role: 'Information Systems Student',
   school: 'University of Utah',
   major: 'Information Systems',

@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { profile } from '../data.js';
+import { NavLink } from 'react-router-dom';
 import ContactCard from './ContactCard.jsx';
 
 export default function Nav() {
@@ -9,7 +8,6 @@ export default function Nav() {
 
   return (
     <header className="nav">
-      <Link to="/" className="nav-name">{profile.name}</Link>
       <nav className="nav-links">
         <NavLink to="/" end>home</NavLink>
         <NavLink to="/projects">projects</NavLink>
